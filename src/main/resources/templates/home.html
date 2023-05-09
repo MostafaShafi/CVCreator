@@ -1,11 +1,110 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" th:href="@{images/icon/job-search.png}"/>
+    <link rel="stylesheet" th:href="@{css/main.css}"/>
+    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"/>
+    <script rel="script" th:src="@{js/bootstrap.bundle.min.js}"></script>
+    <script rel="script" th:src="@{js/main.js}"></script>
     <title>Home</title>
 </head>
 <body>
-    <h2>Hello world</h2>
+    <!-- Navbar -->
+    <nav class="nav justify-content-center third-bg-color">
+        <div class="row w-100">
+            <div class="col-md-2">
+                <h2 class="float-right forth-color">Joby</h2>
+            </div>
+            <div class="col-md-2">
+                <a th:href="@{/}" class="float-left"><img class="icon-size-64" th:src="@{images/icon/job-search.png}"></a>
+            </div>
+            <div class="col-md-4">
+                <ul class="nav justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link align-items-center" th:href="@{/login}">
+                            <img class="icon-size-32" th:src="@{images/icon/login.png}">
+                            <p class="icon-text">Login</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link align-items-center" th:href="@{/signin}">
+                            <img class="icon-size-32" th:src="@{images/icon/sign-in.png}">
+                            <p class="icon-text">Sign in</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <!--<form method="post" th:action="@{/saveStatus}">
+                    <button type="submit" class="btn-save ms-2 rounded-5">save Status</button>
+                </form>
+                <form method="post" th:action="@{/saveGender}">
+                    <button type="submit" class="btn-save ms-2 rounded-5">save Gender</button>
+                </form>
+                <form method="post" th:action="@{/saveExperienceType}">
+                    <button type="submit" class="btn-save ms-2 rounded-5">save ExperienceType</button>
+                </form>
+                <form method="post" th:action="@{/saveWorkLocationType}">
+                    <button type="submit" class="btn-save ms-2 rounded-5">save WorkLocationType</button>
+                </form>
+                <form method="post" th:action="@{/saveSkill}">
+                    <button type="submit" class="btn-save ms-2 rounded-5">saveSkill</button>
+                </form>
+                <form method="post" th:action="@{/saveCountry}">
+                    <button type="submit" class="btn-save ms-2 rounded-5">saveCountry</button>
+                </form>
+                <form method="post" th:action="@{/saveIndustry}">
+                    <button type="submit" class="btn-save ms-2 rounded-5">saveIndustry</button>
+                </form>
+                <form method="post" th:action="@{/saveDegree}">
+                    <button type="submit" class="btn-save ms-2 rounded-5">saveDegree</button>
+                </form>
+                <form method="post" th:action="@{/saveField}">
+                    <button type="submit" class="btn-save ms-2 rounded-5">saveField</button>
+                </form>-->
+            </div>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+
+    <!-- Main container -->
+    <div class="container mt-4">
+        <div class="row" id="main-grid">
+            <!-- Main -->
+            <main class="col-md-8 m-2" id="main-part">
+                <img class="rounded w-100" th:src="@{images/computer-networking-graphic.webp}">
+            </main>
+            <!-- End Main -->
+
+            <!-- Aside -->
+            <aside class="col-md-3 m-2">
+                <section class="mb-3 ghostwhite-bg-color joby-block rounded-start">
+                    <section class="ms-3" id="exp-title">
+                        <h4 class="font-cursive font-larger rounded-bottom w-75 pb-1 ps-1 third-bg-color">People may you know</h4>
+                    </section>
+                    <section th:each="person, iStat: ${personList}">
+                        <a class="row" th:href="@{/viewProfile/{id}(id=${person.id})}">
+                            <div class="col-md-3">
+                                <img th:if="${person.profileImage == null}" class="rounded-circle profile-image-aside" th:src="@{images/profile/profile.jpg}">
+                                <img th:if="${person.profileImage != null}" class="rounded-circle profile-image-aside"
+                                     th:src="@{${'images/profile/' + person.users.firstName + '-' + person.users.lastName + '-' + person.id + '-profile.png'}}">
+                            </div>
+                            <div class="col-md-8">
+                                <p id="personal-name" class="ff-aleo-b font-085em" th:text="${person.users.firstName + ' ' + person.users.lastName}"></p>
+                                <p id="info-position" class="ff-aleo-r font-085em mt-7-N" th:text="${person.currentPosition}"></p>
+                            </div>
+                        </a>
+                        <hr th:if="${!iStat.last}" class="hr-94 ml-3">
+                    </section>
+                </section>
+            </aside>
+            <!-- End Aside -->
+        </div>
+    </div>
+    <!-- End Main container -->
 </body>
 </html>

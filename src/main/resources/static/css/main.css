@@ -1,0 +1,309 @@
+input:valid {
+    background-color: #CFF5E7;
+}
+
+input:invalid {
+    background-color: lightpink;
+}
+
+input {
+    font-size:16px;
+    padding:2px;
+    border-width:1px;
+    border-radius:5px;
+    border-color:#063970;
+    border-style:groove;
+    font-family:monospace;
+}
+
+th, td {
+    padding:5px
+}
+
+hr {
+    width: 60%;
+}
+
+form i {
+    cursor: pointer;
+    margin-left: -30px;
+}
+
+
+/* Colors */
+.main-bg-color {
+    background-color: #CFF5E7/*D6CDA4*/;
+}
+
+.second-bg-color {
+    background-color: #A0E4CB/*3D8361*/;
+}
+
+.third-bg-color {
+    background-color: #59C1BD/*1C6758*/;
+}
+
+.forth-bg-color{
+    background-color: #0D4C92/*EEF2E6*/;
+}
+
+.third-color {
+    color: #59C1BD;
+}
+
+.forth-color{
+    color: #0D4C92;
+}
+
+.ghostwhite-bg-color {
+    background-color: ghostwhite;
+}
+
+.color-darkgrey {
+    color: darkgrey;
+}
+
+
+/* Icon */
+.icon-size-64 {
+    width: 64px;
+    height: 64px;
+}
+
+.icon-size-32 {
+    width: 32px;
+    height: 32px;
+}
+
+.icon-text {
+    margin-bottom: -8px;
+    color: #1a1d20;
+}
+
+.edit-icon {
+    width: 1em;
+    float: right;
+}
+
+
+/* Align */
+.align-items-center {
+    text-align-last: center;
+}
+
+.align-items-left {
+    text-align-last: left;
+}
+
+.joby-block {
+    border: solid #59C1BD 1px;
+    border-radius: 10px;
+    border-block-start-width: 10px;
+}
+
+
+/* Size */
+.hr-100 {
+    width: 100%;
+}
+
+.hr-94 {
+    width: 94%;
+}
+
+.hr-50 {
+    width: 50%;
+}
+
+.hr-25 {
+    width: 25%;
+}
+
+.ms-30p {
+    margin-left: 30%;
+}
+
+.mt-110pr-N {
+    margin-top: -110px;
+}
+
+.w-10em {
+    width: 10em;
+}
+
+.w-50em {
+    width: 50em;
+}
+
+.w-15 {
+    width: 15%;
+}
+
+.mt-1-N {
+    margin-top: -1%;
+}
+
+.mt-2-N {
+    margin-top: -2%;
+}
+
+.mt-7-N {
+    margin-top: -7%;
+}
+
+.mt-30-N {
+    margin-top: -30%;
+}
+
+.ml-1-N {
+    margin-left: -1%;
+}
+
+.ml-3 {
+    margin-left: 3%;
+}
+
+.ml-3-N {
+    margin-left: -3%;
+}
+
+.ml-25 {
+    margin-left: 25%;
+}
+
+.pt-10 {
+    padding-top: 10%;
+}
+
+
+/* Display */
+.display-flex {
+    display: flex;
+}
+
+.display-grid {
+    display: grid;
+}
+
+
+/* Float */
+.float-right{
+    float: right;
+}
+
+.float-left{
+    float: left;
+}
+
+
+/* Fonts */
+.font-math {
+    color: #0D4C92;
+    font-family: math;
+}
+
+.font-cursive, label {
+    color: #0D4C92;
+    font-family: cursive;
+}
+
+.ff-aleo-b {
+    font-family: Aleo-Bold;
+}
+
+.ff-aleo-r {
+    font-family: Aleo-Regular;
+}
+
+.font-larger {
+    font-size: large;
+}
+
+.font-085em {
+    font-size: 0.85em;
+}
+
+
+
+.w-w-text {
+    position: absolute;
+    top: 34%;
+    left: 40%;
+    font-weight: bold;
+}
+
+.w-company {
+    color: #0D4C92;
+    position: absolute;
+    top: 50%;
+    left: 27%;
+}
+
+.w-company img {
+    opacity: 20%;
+    width: 30%;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+}
+
+.w-person {
+    color: #0D4C92;
+    position: absolute;
+    top: 52%;
+    left: 43%;
+    font-family: inherit;
+}
+
+.w-person img {
+    opacity: 20%;
+    width: 35%;
+    bottom: -3px;
+    right: -3px;
+    position: absolute;
+}
+
+.btn-save {
+    background-color: #A0E4CB;
+}
+
+.title {
+    border-radius: 20px 100px;
+    font-size: larger;
+    font-family: cursive;
+}
+
+.profile-tb td {
+    width: 50%;
+}
+
+.profile-image {
+    width: 10em;
+    border: 2px solid ghostwhite;
+}
+
+.profile-image-aside {
+    width: 4em;
+    height: 4em;
+    border: 2px solid ghostwhite;
+}
+
+.profile-image-edit {
+    width: 15em;
+    border: 2px solid ghostwhite;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile-image-button {
+    width: 0px;
+    height: 0px;
+    border: none;
+    background-color: transparent;
+}
+
+.background-image {
+    min-height: 200px;
+    max-height: 200px;
+}

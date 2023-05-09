@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" th:href="@{images/icon/job-search.png}"/>
+    <link rel="stylesheet" th:href="@{css/main.css}"/>
+    <link rel="stylesheet" th:href="@{css/fonts.css}"/>
+    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}"/>
+    <script rel="script" th:src="@{js/bootstrap.bundle.min.js}"></script>
+    <script rel="script" th:src="@{js/main.js}"></script>
+    <title>Profile</title>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="nav justify-content-center third-bg-color">
+        <div class="row w-100">
+            <div class="col-md-4 align-items-center">
+                <a th:href="@{/}"><img class="icon-size-64" th:src="@{images/icon/job-search.png}"></a>
+            </div>
+            <div class="col-md-4">
+                <ul class="nav justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link align-items-center" th:href="@{/}">
+                            <img class="icon-size-32" th:src="@{images/icon/homepage.png}">
+                            <p class="icon-text">Home</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link align-items-center" th:href="@{/logout}">
+                            <img class="icon-size-32" th:src="@{images/icon/login.png}">
+                            <p class="icon-text">Logout</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+
+    <!-- Main container -->
+    <div class="container mt-4" id="main-container">
+        <div class="row" id="main-grid">
+            <!-- Main -->
+            <main class="col-md-8 m-2" id="main-part">
+                <!-- Personal info -->
+                <section class="rounded mb-3 ghostwhite-bg-color joby-block" id="personal-info-sec">
+
+                    <!-- Personal info form modal -->
+                    <section class="modal" tabindex="-1" id="personal-info">
+                        <div class="modal-dialog" id="personal-info-modal-dialog">
+                            <div class="modal-content" id="personal-info-modal-content">
+                                <form th:action="@{/updatePersonalInfo}" method="post">
+                                    <section class="modal-header row" id="personal-info-modal-header">
+                                        <div class="col-md-4"><h4 class="title" id="personal-info-title">Personal info</h4>
+                                        </div>
+                                        <div class="col-md-7"></div>
+                                        <div class="col-md-1">
+                                            <button name="close" id="personal-info-modal-close-btn" class="btn-close"
+                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                    </section>
+                                    <section class="modal-body" id="personal-info-modal-body">
+                                        <div class="display-grid" id="personal-info-form">
+                                            <table class="w-100">
+                                                <tbody class="profile-tb">
+                                                <tr>
+                                                    <td><label for="firstname">First name</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input id="firstname" type="text" placeholder="First name"
+                                                               th:value="${user.firstName}" th:field="*{user.firstName}"
+                                                               class="pt-1 mb-2 w-100" required>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="lastname">Last name</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input id="lastname" type="text" placeholder="Last name"
+                                                               th:value="${user.lastName}" th:field="*{user.lastName}"
+                                                               class="pt-1 mb-2 w-100" required>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="gender">Gender</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <select id="gender" th:field="*{person.gender}"
+                                                                class="pt-1 mb-2 w-100" required>
+                                                            <option th:each="item: ${genderList}" th:value="${item.id}"
+                                                                    th:text="${item.name}" th:selected="${person.gender}"></option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="birthday">Birthday</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input id="birthday" type="date" placeholder="Birthday"
+                                                               th:value="${person.birthday}" th:field="*{person.birthday}"
+                                                               class="pt-1 mb-2 w-100" required>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="country">Country</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <select id="country" th:field="*{person.country}"
+                                                                class="pt-1 mb-2 w-100" required>
+                                                            <option th:each="item: ${countryList}" th:value="${item.id}"
+                                                                    th:text="${item.name}" th:selected="${person.country}"></option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="phone">Phone</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input id="phone" type="text" placeholder="Phone"
+                                                               th:value="${person.phone}" th:field="*{person.phone}"
+                                                               class="pt-1 mb-2 w-100" required
+                                                               onblur="checkPhoneNumber(this)">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="status">Status</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <select name="status" id="status" th:field="*{person.status}"
+                                                                class="pt-1 mb-2 w-100" required>
+                                                            <option th:each="item: ${statusList}" th:value="${item.id}"
+                                                                    th:text="${item.name}" th:selected="${person.status}"></option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="current-position">Current position</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input id="current-position" type="text" placeholder="Current position"
+                                                               th:value="${person.currentPosition}" th:field="*{person.currentPosition}"
+                                                               class="pt-1 mb-2 w-100" required>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="industry">industry</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <select id="industry" th:field="*{person.industry}" class="pt-1 mb-2 w-100" required>
+                                                            <option th:each="item: ${industryList}" th:value="${item.id}"
+                                                                    th:text="${item.name}" th:selected="${person.industry}"></option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            <table>
+                                                <tbody>
+                                                <tr>
+                                                    <td><label for="address">Address</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <textarea id="address" type="text" class="pt-1 mb-2 w-100 fs-6 ff-aleo-r"
+                                                                  rows="3" th:value="${person.address}"
+                                                                  th:field="*{person.address}"></textarea>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </section>
+                                    <section class="modal-footer" id="personal-info-modal-footer">
+                                        <div class="mt-3 d-flex justify-content-end">
+                                            <button id="info-save" name="save" type="submit" class="btn-save ms-2 rounded-5 w-100">Save
+                                            </button>
+                                        </div>
+                                    </section>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Personal info show-->
+                    <section id="personal-info-show">
+                        <section>
+                            <img class="w-100 background-image" th:if="${person.backgroundImage == null}" id="default-bg-profile-img"
+                                 th:src="@{images/background/background.jpg}">
+                            <img class="w-100 background-image" th:if="${person.backgroundImage != null}" id="main-bg-profile-img"
+                                 th:src="@{${'images/background/' + user.firstName + '-' + user.lastName + '-' + person.id + '-background.png'}}">
+
+                            <button type="button" class="btn float-right ml-3-N position-absolute" data-bs-toggle="modal" data-bs-target="#background-image">
+                                <img class="edit-icon third-bg-color" th:src="@{images/icon/edit.png}">
+                            </button>
+
+                            <!-- Show background image -->
+                            <section class="modal" tabindex="-1" id="background-image">
+                                <div class="modal-dialog" id="background-image-modal-dialog">
+                                    <div class="modal-content" id="background-image-modal-content">
+                                        <section class="modal-header row" id="background-image-modal-header">
+                                            <div class="col-md-4"><h4 class="title" id="background-image-title">Background image</h4></div>
+                                            <div class="col-md-7"></div>
+                                            <div class="col-md-1">
+                                                <button name="close" id="background-image-modal-close-btn" class="btn-close"
+                                                        data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                        </section>
+                                        <section class="modal-body" id="background-image-modal-body">
+                                            <div th:if="${person.backgroundImage != null}" class="display-grid" id="background-image-form">
+                                                <img class="profile-image-edit"
+                                                     th:src="@{${'images/background/' + user.firstName + '-' + user.lastName + '-' + person.id + '-background.png'}}">
+                                            </div>
+                                        </section>
+                                        <section class="modal-footer" id="background-image-modal-footer">
+                                            <div class="mt-3 d-flex justify-content-end">
+                                                <button type="button" class="btn float-right" data-bs-toggle="modal"
+                                                        data-bs-target="#background-image-edit">Add Photo
+                                                </button>
+                                                <form th:action="@{/removeBackgroundImage}" method="post">
+                                                    <button id="background-image-remove" type="submit"
+                                                            class="btn-save ms-2 rounded-5 w-100">Remove Photo
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                            </section>
+                            <!-- End show profile image -->
+
+                            <!-- Change background image -->
+                            <section class="modal" tabindex="-1" id="background-image-edit">
+                                <div class="modal-dialog" id="background-image-edit-modal-dialog">
+                                    <div class="modal-content" id="background-image-edit-modal-content">
+                                        <form th:action="@{/uploadBackgroundImage}" method="post" enctype="multipart/form-data">
+                                            <section class="modal-header row" id="background-image-edit-modal-header">
+                                                <div class="col-md-5"><h4 class="title" id="background-image-edit-title">Upload background image</h4></div>
+                                                <div class="col-md-6"></div>
+                                                <div class="col-md-1">
+                                                    <button name="close" id="background-image-edit-modal-close-btn" class="btn-close"
+                                                            data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                            </section>
+                                            <section class="modal-body" id="background-image-edit-modal-body">
+                                                <div class="display-grid" id="background-image-edit-form">
+                                                    <input type="file" accept="image/*" name="image" placeholder="Photo">
+                                                </div>
+                                            </section>
+                                            <section class="modal-footer" id="background-image-edit-modal-footer">
+                                                <div class="mt-3 d-flex justify-content-end">
+                                                    <button id="background-image-upload" type="submit" class="btn-save ms-2 rounded-5 w-100">Upload Photo</button>
+                                                </div>
+                                            </section>
+                                        </form>
+                                    </div>
+                                </div>
+                            </section>
+                            <!-- End change profile image -->
+                        </section>
+
+                        <section class="ms-3">
+                            <section>
+                                <div class="mt-110pr-N w-10em">
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#personal-image" class="profile-image-button">
+                                        <img th:if="${person.profileImage == null}" class="rounded-circle profile-image" th:src="@{images/profile/profile.jpg}">
+                                        <img th:if="${person.profileImage != null}" class="rounded-circle profile-image"
+                                             th:src="@{${'images/profile/' + person.users.firstName + '-' + person.users.lastName + '-' + person.id + '-profile.png'}}">
+                                    </button>
+                                </div>
+
+                                <!-- Show profile image -->
+                                <section class="modal" tabindex="-1" id="personal-image">
+                                    <div class="modal-dialog" id="personal-image-modal-dialog">
+                                        <div class="modal-content" id="personal-image-modal-content">
+                                            <section class="modal-header row" id="personal-image-modal-header">
+                                                <div class="col-md-4"><h4 class="title" id="personal-image-title">Profile image</h4></div>
+                                                <div class="col-md-7"></div>
+                                                <div class="col-md-1">
+                                                    <button name="close" id="personal-image-modal-close-btn" class="btn-close"
+                                                            data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                            </section>
+                                            <section class="modal-body" id="personal-image-modal-body">
+                                                <div th:if="${person.profileImage != null}" class="display-grid" id="personal-image-form">
+                                                    <img class="rounded-circle profile-image-edit"
+                                                         th:src="@{${'images/profile/' + user.firstName + '-' + user.lastName + '-' + person.id + '-profile.png'}}">
+                                                </div>
+                                            </section>
+                                            <section class="modal-footer" id="personal-image-modal-footer">
+                                                <div class="mt-3 d-flex justify-content-end">
+                                                    <button type="button" class="btn float-right" data-bs-toggle="modal"
+                                                            data-bs-target="#personal-image-edit">Add Photo
+                                                    </button>
+                                                    <form th:action="@{/removeProfileImage}" method="post">
+                                                        <button id="image-remove" type="submit"
+                                                                class="btn-save ms-2 rounded-5 w-100">Remove Photo
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </div>
+                                </section>
+                                <!-- End show profile image -->
+
+                                <!-- Change profile image -->
+                                <section class="modal" tabindex="-1" id="personal-image-edit">
+                                    <div class="modal-dialog" id="personal-image-edit-modal-dialog">
+                                        <div class="modal-content" id="personal-image-edit-modal-content">
+                                            <form th:action="@{/uploadProfileImage}" method="post" enctype="multipart/form-data">
+                                                <section class="modal-header row" id="personal-image-edit-modal-header">
+                                                    <div class="col-md-5"><h4 class="title" id="personal-image-edit-title">Upload profile image</h4></div>
+                                                    <div class="col-md-6"></div>
+                                                    <div class="col-md-1">
+                                                        <button name="close" id="personal-image-edit-modal-close-btn" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                </section>
+                                                <section class="modal-body" id="personal-image-edit-modal-body">
+                                                    <div class="display-grid" id="personal-image-edit-form">
+                                                        <input type="file" accept="image/*"
+                                                               name="image" placeholder="Photo"><!--th:field="*{image}" th:value="${image}"-->
+                                                    </div>
+                                                </section>
+                                                <section class="modal-footer" id="personal-image-edit-modal-footer">
+                                                    <div class="mt-3 d-flex justify-content-end">
+                                                        <button id="image-upload" type="submit" class="btn-save ms-2 rounded-5 w-100">Upload Photo</button>
+                                                    </div>
+                                                </section>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </section>
+                                <!-- End change profile image -->
+
+                                <button type="button" class="btn float-right mt-4" data-bs-toggle="modal" data-bs-target="#personal-info">
+                                    <img class="edit-icon" th:src="@{images/icon/edit.png}">
+                                </button>
+                            </section>
+                            <section class="pt-10">
+                                <h3 id="personal-name" class="ff-aleo-b" th:text="${person.users.firstName + ' ' + person.users.lastName}"></h3>
+                            </section>
+                            <p id="info-position" class="ff-aleo-r mt-2-N" th:text="${person.currentPosition}"></p>
+                            <p id="info-country" class="ff-aleo-r color-darkgrey mt-2-N" th:text="${person.LocationName}"></p>
+                        </section>
+                    </section>
+                </section>
+
+                <!-- Summary -->
+                <section class="rounded mb-3 ghostwhite-bg-color joby-block" id="summary-sec">
+                    <!-- Summary modal -->
+                    <section class="modal" tabindex="-1" id="summary">
+                        <div class="modal-dialog" id="summary-modal-dialog">
+                            <div class="modal-content" id="summary-modal-content">
+                                <form th:action="@{/updatePersonalInfo}" method="post" th:object="${person}">
+                                    <section class="modal-header row" id="summary-modal-header">
+                                        <div class="col-md-4"><h4 class="title">Summary</h4></div>
+                                        <div class="col-md-7"></div>
+                                        <div class="col-md-1">
+                                            <button name="close" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                    </section>
+                                    <section class="modal-body" id="summary-modal-body">
+                                        <div class="display-grid">
+                                            <table>
+                                                <tbody>
+                                                <tr>
+                                                    <td><label class="fs-6" for="summary-txt">You can write a summary about
+                                                        your experience, educations, industries and skills.</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <textarea rows="8" id="summary-txt" class="pt-1 mb-2 w-100 fs-6 ff-aleo-r"
+                                                                  th:value="${summary}" th:field="*{summary}"></textarea>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </section>
+                                    <section class="modal-footer" id="summary-modal-footer">
+                                        <div class="mt-3 d-flex justify-content-end">
+                                            <button id="sum-save" name="save" type="submit" class="btn-save ms-2 rounded-5 w-100">Save
+                                            </button>
+                                        </div>
+                                    </section>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Summary show-->
+                    <section class="ms-3" id="summary-show">
+                        <section class="display-flex">
+                            <div class="w-50em" id="sum-title">
+                                <h4 class="font-cursive font-larger rounded-bottom w-15 pb-1 ps-1 third-bg-color">Summary</h4>
+                            </div>
+                            <button type="button" class="btn float-right" data-bs-toggle="modal" data-bs-target="#summary">
+                                <img class="edit-icon" th:src="@{images/icon/edit.png}">
+                            </button>
+                        </section>
+                        <section>
+                            <p class="pt-1 mb-2 w-100 fs-6 ff-aleo-r" th:text="${person.summary}"></p>
+                        </section>
+                    </section>
+                </section>
+
+                <!-- Experiences -->
+                <section class="rounded mb-3 ghostwhite-bg-color joby-block" id="experience-sec">
+                    <!-- Experiences new modal -->
+                    <section class="modal" tabindex="-1" id="add-experience">
+                        <div class="modal-dialog" id="add-experience-modal-dialog">
+                            <div class="modal-content" id="add-experience-modal-content">
+                                <form th:action="@{/addExperience}" method="post" th:object="${experience}">
+                                    <section class="modal-header row" id="add-experience-modal-header">
+                                        <div class="col-md-4"><h4 class="title">Experience</h4></div>
+                                        <div class="col-md-7"></div>
+                                        <div class="col-md-1">
+                                            <button name="close" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                    </section>
+                                    <section class="modal-body" id="add-experience-modal-body">
+                                        <div class="display-grid">
+                                            <table class="w-100">
+                                                <tbody class="experience-tb">
+                                                    <tr>
+                                                        <td><label for="title">Title</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input id="new-title" type="text" placeholder="Title"
+                                                                   class="pt-1 mb-2 w-100" th:field="*{title}" required>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="company-name">Company name</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input id="new-company-name" type="text" placeholder="Company name"
+                                                                   th:field="*{companyName}" class="pt-1 mb-2 w-100" required>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="type">Type</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <select id="new-type" th:field="*{type}" class="pt-1 mb-2 w-100"
+                                                                    required>
+                                                                <option th:each="item: ${experienceTypeList}" th:value="${item.id}"
+                                                                        th:text="${item.name}"></option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="related-industry">Industry</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <select id="new-related-industry" th:field="*{industry}"
+                                                                    class="pt-1 mb-2 w-100" required>
+                                                                <option th:each="item: ${industryList}" th:value="${item.id}"
+                                                                        th:text="${item.name}"></option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="location">Location</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input id="new-location" type="text" placeholder="Location(City)"
+                                                                   th:field="*{location}" class="pt-1 mb-2 w-100">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="location-type">Location type</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <select id="new-location-type" th:field="*{workLocationType}"
+                                                                    class="pt-1 mb-2 w-100" required>
+                                                                <option th:each="item: ${locationTypeList}" th:value="${item.id}"
+                                                                        th:text="${item.name}"></option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <section class="display-flex mt-3">
+                                                <hr class="hr-50 ml-25">
+                                            </section>
+                                            <table class="w-100">
+                                                <tbody class="profile-tb">
+                                                    <tr>
+                                                        <td><label>Do you currently working here?</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input id="new-is-until-work" type="checkbox" th:checked="*{isUntilWork}"
+                                                                   class="pt-1 mb-2 w-100" onchange="makeExperienceEndDateRequired()">
+                                                            <!--<select th:field="*{isUntilWork}" class="pt-1 mb-2 w-100"
+                                                                    required onchange="makeExperienceEndDateRequired()">
+                                                                <option th:each="item: ${isUntilWorkList}" th:value="${item.name}"
+                                                                        th:text="${item.name}"></option>
+                                                            </select>-->
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="exp-start-date">Start date</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input id="new-exp-start-date" type="date" placeholder="Start date"
+                                                                   th:field="*{startDate}" class="pt-1 mb-2 w-100" required>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="exp-end-date">End date</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input id="new-exp-end-date" type="date" placeholder="End date"
+                                                                   th:field="*{endDate}" class="pt-1 mb-2 w-100" required>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <section class="display-flex mt-3">
+                                                <hr class="hr-50 ml-25">
+                                            </section>
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><label for="description">Description</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <textarea id="new-exp-description" class="pt-1 mb-2 w-100"
+                                                                      th:field="*{description}"></textarea>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </section>
+                                    <section class="modal-footer" id="add-experience-modal-footer">
+                                        <div class="mt-3 d-flex justify-content-end">
+                                            <button id="new-exp-save" name="save" type="submit"
+                                                    class="btn-save ms-2 rounded-5 w-100">Save
+                                            </button>
+                                        </div>
+                                    </section>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Experiences edit modal -->
+                    <section class="modal" tabindex="-1" id="edit-experience">
+                        <div class="modal-dialog" id="edit-experience-modal-dialog">
+                            <div class="modal-content" id="edit-experience-modal-content">
+                                <form action="@{/updateExperience}" method="post" th:object="${experience}">
+                                    <section class="modal-header row" id="edit-experience-modal-header">
+                                        <div class="col-md-4"><h4 class="title">Experience</h4></div>
+                                        <div class="col-md-7"></div>
+                                        <div class="col-md-1">
+                                            <button name="close" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                    </section>
+                                    <section class="modal-body" id="edit-experience-modal-body">
+                                        <div class="display-grid">
+                                            <table class="w-100">
+                                                <tbody class="experience-tb">
+                                                <tr>
+                                                    <td><label for="title">Title</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input id="title" type="text" placeholder="Title" class="pt-1 mb-2 w-100"
+                                                               th:field="*{title}" th:value="${title}" required>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="company-name">Company name</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input id="company-name" type="text" placeholder="Company name"
+                                                               th:field="*{companyName}" th:value="${companyName}"
+                                                               class="pt-1 mb-2 w-100" required>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="type">Type</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <select id="type" th:field="*{type}" class="pt-1 mb-2 w-100" required>
+                                                            <option th:each="item: ${experienceTypeList}" th:value="${item.id}"
+                                                                    th:text="${item.name}" th:selected="${type}"></option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="related-industry">Industry</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <select id="related-industry" th:field="*{industry}"
+                                                                class="pt-1 mb-2 w-100" required>
+                                                            <option th:each="item: ${industryList}" th:value="${item.id}"
+                                                                    th:text="${item.name}" th:selected="${industry}"></option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="location">Location</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input id="location" type="text" placeholder="Location(City)"
+                                                               th:field="*{location}" th:value="${location}"
+                                                               class="pt-1 mb-2 w-100">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="location-type">Location type</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <select id="location-type" th:field="*{workLocationType}"
+                                                                class="pt-1 mb-2 w-100" required>
+                                                            <option th:each="item: ${locationTypeList}" th:value="${item.id}"
+                                                                    th:text="${item.name}" th:selected="${workLocationType}"></option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            <section class="display-flex mt-3">
+                                                <hr class="hr-50 ml-25">
+                                            </section>
+                                            <table class="w-100">
+                                                <tbody class="profile-tb">
+                                                <tr>
+                                                    <td><label>Do you currently working here?</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <select id="is-until-work" th:field="*{isUntilWork}"
+                                                                class="pt-1 mb-2 w-100" required>
+                                                            <option th:each="item: ${isUntilWorkList}" th:value="${item.id}"
+                                                                    th:text="${item.name}" th:selected="${isUntilWork}"></option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="exp-start-date">Start date</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input id="exp-start-date" type="date" placeholder="Start date"
+                                                               th:field="*{startDate}" th:value="${startDate}"
+                                                               class="pt-1 mb-2 w-100" required>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="exp-end-date">End date</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input id="exp-end-date" type="date" placeholder="End date"
+                                                               th:field="*{endDate}" th:value="${endDate}"
+                                                               class="pt-1 mb-2 w-100" required>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            <section class="display-flex mt-3">
+                                                <hr class="hr-50 ml-25">
+                                            </section>
+                                            <table>
+                                                <tbody>
+                                                <tr>
+                                                    <td><label for="description">Description</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <textarea id="description" class="pt-1 mb-2 w-100"
+                                                                  th:field="*{description}" th:value="${description}"></textarea>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </section>
+                                    <section class="modal-footer" id="edit-experience-modal-footer">
+                                        <div class="mt-3 d-flex justify-content-end">
+                                            <button id="edit-exp-save" name="save" type="submit"
+                                                    class="btn-save ms-2 rounded-5 w-100">Save
+                                            </button>
+                                        </div>
+                                    </section>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Experience show-->
+                    <section class="ms-3" id="experience-show">
+                        <section id="exp-header" class="display-flex">
+                            <div class="w-50em" id="exp-title"><h4 class="font-cursive font-larger rounded-bottom w-15 pb-1 ps-1 third-bg-color">Experience</h4></div>
+                            <button type="button" class="btn float-right" data-bs-toggle="modal" data-bs-target="#add-experience">
+                                <img class="edit-icon" th:src="@{images/icon/add.png}">
+                            </button>
+                        </section>
+                        <section id="exp-body" class="mt-3" th:each="exp, iStat : ${experienceList}">
+                            <form method="get" th:action="@{/editExperience}">
+                                <div class="display-flex">
+                                    <h6 class="w-50em" id="experience-title" th:text="${exp.title}"></h6>
+                                    <button type="submit" class="btn float-right">
+                                        <img class="edit-icon" th:src="@{images/icon/edit.png}">
+                                    </button>
+                                </div>
+                                <p id="experience-company-name" class="mt-1-N">
+                                    <span th:text="${exp.companyName}"> . </span>
+                                    <span th:text="${exp.type.name}"></span>
+                                </p>
+                                <p id="experience-industry" class="mt-1-N" th:text="${exp.industryName}"></p>
+                                <p id="experience-period" class="mt-1-N color-darkgrey">
+                                    <span th:text="${#dates.format(exp.startDate, 'YYY-dd-MM')}" id="experience-startDate"></span>
+                                    <span th:if="${exp.endDate != null}"> - </span>
+                                    <span th:text="${#dates.format(exp.endDate, 'YYY-dd-MM')}" id="experience-endDate"></span>
+                                    <span th:if="${exp.endDate != null}"> . </span>
+                                    <span id="periodDiff" th:text="${exp.period}" class="forth-color"></span>
+                                </p>
+                                <p class="mt-2-N color-darkgrey">
+                                    <span id="experience-location" th:text="${exp.location}"> . </span>
+                                    <span id="experience-location-type" th:text="${exp.workLocationType.name}"></span>
+                                </p>
+                                <p id="experience-description" class="mt-2-N" th:text="${exp.description}"></p>
+                                <div class="display-flex mt-3">
+                                    <hr th:if="${!iStat.last}" class="hr-100 ml-1-N">
+                                </div>
+                            </form>
+                        </section>
+                    </section>
+                </section>
+
+                <!-- Educations -->
+                <section class="rounded mb-3 ghostwhite-bg-color joby-block" id="educations-sec">
+                    <!-- Educations new modal -->
+                    <section class="modal" tabindex="-1" id="add-educations">
+                        <div class="modal-dialog" id="add-educations-modal-dialog">
+                            <div class="modal-content" id="add-educations-modal-content">
+                                <form th:action="@{/addEducation}" method="post" th:object="${education}">
+                                    <section class="modal-header row" id="add-educations-modal-header">
+                                        <div class="col-md-4"><h4 class="title">Educations</h4></div>
+                                        <div class="col-md-7"></div>
+                                        <div class="col-md-1">
+                                            <button name="close" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                    </section>
+                                    <section class="modal-body" id="veducations-modal-body">
+                                        <div class="display-grid">
+                                            <table class="w-100">
+                                                <tbody class="education-tb">
+                                                <tr>
+                                                    <td><label for="school">School</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input id="new-school" type="text" placeholder="School"
+                                                               class="pt-1 mb-2 w-100" th:field="*{school}" required>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="degree">Degree</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <select id="new-degree" th:field="*{degree}" class="pt-1 mb-2 w-100"
+                                                                required>
+                                                            <option th:each="item: ${degreeList}" th:value="${item.id}"
+                                                                    th:text="${item.name}"></option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="field">Field</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <select id="new-field" th:field="*{field}" class="pt-1 mb-2 w-100"
+                                                                required>
+                                                            <option th:each="item: ${fieldList}" th:value="${item.id}"
+                                                                    th:text="${item.name}"></option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="edu-start-date">Start date</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input id="new-edu-start-date" type="date" placeholder="Start date"
+                                                               th:field="*{startDate}" class="pt-1 mb-2 w-100" required>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="edu-end-date">End date</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input id="new-edu-end-date" type="date" placeholder="End date"
+                                                               th:field="*{endDate}" class="pt-1 mb-2 w-100">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="grade">Grade</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input id="new-grade" type="number" step=".01" max="20" min="10"
+                                                               placeholder="Grade" th:field="*{grade}"
+                                                               class="pt-1 mb-2 w-100" required onblur="checkGradeRange(this)">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="activities">Activities</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <textarea id="new-activities" placeholder="Activities"
+                                                                  class="pt-1 mb-2 w-100" th:field="*{activities}"></textarea>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="edu-description">Description</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <textarea id="new-edu-description" class="pt-1 mb-2 w-100"
+                                                                  th:field="*{description}"></textarea>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </section>
+                                    <section class="modal-footer" id="add-educations-modal-footer">
+                                        <div class="mt-3 d-flex justify-content-end">
+                                            <button id="add-edu-save" name="save" type="submit"
+                                                    class="btn-save ms-2 rounded-5 w-100">Save
+                                            </button>
+                                        </div>
+                                    </section>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Educations edit modal -->
+                    <section class="modal" tabindex="-1" id="edit-educations">
+                        <div class="modal-dialog" id="edit-educations-modal-dialog">
+                            <div class="modal-content" id="edit-educations-modal-content">
+                                <form action="#" method="post" th:object="${education}">
+                                    <section class="modal-header row" id="edit-educations-modal-header">
+                                        <div class="col-md-4"><h4 class="title">Educations</h4></div>
+                                        <div class="col-md-7"></div>
+                                        <div class="col-md-1">
+                                            <button name="close" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                    </section>
+                                    <section class="modal-body" id="edit-educations-modal-body">
+                                        <div class="display-grid">
+                                            <table class="w-100">
+                                                <tbody class="education-tb">
+                                                <tr>
+                                                    <td><label for="school">School</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input id="school" type="text" placeholder="School" class="pt-1 mb-2 w-100"
+                                                               th:field="*{school}" th:value="${school}" required>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="degree">Degree</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <select id="degree" th:field="*{degree}" class="pt-1 mb-2 w-100"
+                                                                required>
+                                                            <option th:each="item: ${degreeList}" th:value="${item.id}"
+                                                                    th:text="${item.name}" th:selected="${degree}"></option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="field">Field</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <select id="field" th:field="*{field}" class="pt-1 mb-2 w-100" required>
+                                                            <option th:each="item: ${fieldList}" th:value="${item.id}"
+                                                                    th:text="${item.name}" th:selected="${field}"></option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="edu-start-date">Start date</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input id="edu-start-date" type="date" placeholder="Start date"
+                                                               th:field="*{startDate}" th:value="${startDate}"
+                                                               class="pt-1 mb-2 w-100" required>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="edu-end-date">End date</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input id="edu-end-date" type="date" placeholder="End date"
+                                                               th:field="*{endDate}" th:value="${endDate}"
+                                                               class="pt-1 mb-2 w-100">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="grade">Grade</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input id="grade" type="number" step=".01" max="20" min="10"
+                                                               placeholder="Grade" th:field="*{grade}" th:value="${grade}"
+                                                               class="pt-1 mb-2 w-100" required onblur="checkGradeRange(this)">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="activities">Activities</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <textarea id="activities" placeholder="Activities" class="pt-1 mb-2 w-100"
+                                                                  th:field="*{activities}" th:value="${activities}"></textarea>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="edu-description">Description</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <textarea id="edu-description" class="pt-1 mb-2 w-100"
+                                                                  th:field="*{description}" th:value="${description}"></textarea>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </section>
+                                    <section class="modal-footer" id="edit-educations-modal-footer">
+                                        <div class="mt-3 d-flex justify-content-end">
+                                            <button id="edu-save" name="save" type="submit"
+                                                    class="btn-save ms-2 rounded-5 w-100">Save
+                                            </button>
+                                        </div>
+                                    </section>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Educations show-->
+                    <section class="ms-3" id="educations-show">
+                        <section id="edu-header" class="display-flex">
+                            <div class="w-50em" id="edu-title"><h4 class="font-cursive font-larger rounded-bottom w-15 pb-1 ps-1 third-bg-color">Educations</h4></div>
+                            <button type="button" class="btn float-right" data-bs-toggle="modal"
+                                    data-bs-target="#add-educations">
+                                <img class="edit-icon" th:src="@{images/icon/add.png}">
+                            </button>
+                        </section>
+                        <section id="edu-body" class="mt-3" th:each="edu, iStat : ${educationList}">
+                            <div class="display-flex">
+                                <h6 class="w-50em" id="education-school" th:text="${edu.school}"></h6>
+                                <button type="button" class="btn float-right" data-bs-toggle="modal"
+                                        data-bs-target="#edit-educations">
+                                    <img class="edit-icon" th:src="@{images/icon/edit.png}">
+                                </button>
+                            </div>
+                            <p id="education-info" class="mt-1-N color-darkgrey">
+                                <span th:text="${edu.degreeName}"> . </span>
+                                <span th:text="${edu.fieldName}"></span>
+                            </p>
+                            <p id="education-period" class="mt-1-N color-darkgrey">
+                                <span th:text="${#dates.format(edu.startDate, 'YYY-dd-MM')}"></span>
+                                <span> - </span>
+                                <span th:text="${#dates.format(edu.endDate, 'YYY-dd-MM')}"></span>
+                            </p>
+                            <p id="education-activities" class="mt-1-N" th:text="${edu.activities}"></p>
+                            <p id="education-description" class="mt-1-N" th:text="${edu.description}"></p>
+                            <div class="display-flex mt-3">
+                                <hr th:if="${!iStat.last}" class="hr-100 ml-1-N">
+                            </div>
+                        </section>
+                    </section>
+                </section>
+
+                <!-- Skills -->
+                <section class="rounded mb-3 ghostwhite-bg-color joby-block" id="skills-sec">
+                    <!-- Skills add modal -->
+                    <section class="modal" tabindex="-1" id="add-skills">
+                        <div class="modal-dialog" id="add-skills-modal-dialog">
+                            <div class="modal-content" id="add-skills-modal-content">
+                                <form th:action="@{/addSkill}" method="post" th:object="${skill}">
+                                    <section class="modal-header row" id="add-skills-modal-header">
+                                        <div class="col-md-4"><h4 class="title">Skills</h4></div>
+                                        <div class="col-md-7"></div>
+                                        <div class="col-md-1">
+                                            <button name="close" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                    </section>
+                                    <section class="modal-body" id="add-skills-modal-body">
+                                        <div class="display-grid">
+                                            <table class="w-100">
+                                                <tbody class="skills-tb">
+                                                <tr>
+                                                    <td><label for="skill">Skill</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <datalist id="new-skill-list">
+                                                            <option th:each="item: ${skillList}" th:value="${item.name}"
+                                                                    th:text="${item.name}"></option>
+                                                        </datalist>
+
+                                                        <input id="new-skill-name" type="text" placeholder="Skill" required
+                                                               class="pt-1 mb-2 w-100" aria-expanded="false" th:field="*{name}"
+                                                               aria-autocomplete="list" list="new-skill-list">
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </section>
+                                    <section class="modal-footer" id="add-skills-modal-footer">
+                                        <div class="mt-3 d-flex justify-content-end">
+                                            <button id="add-sk-save" name="save" type="submit" class="btn-save ms-2 rounded-5 w-100">Save
+                                            </button>
+                                        </div>
+                                    </section>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Skills edit modal -->
+                    <section class="modal" tabindex="-1" id="edit-skills">
+                        <div class="modal-dialog" id="edit-skills-modal-dialog">
+                            <div class="modal-content" id="edit-skills-modal-content">
+                                <form action="#" method="post" th:object="${skill}">
+                                    <section class="modal-header row" id="edit-skills-modal-header">
+                                        <div class="col-md-4"><h4 class="title">Skills</h4></div>
+                                        <div class="col-md-7"></div>
+                                        <div class="col-md-1">
+                                            <button name="close" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                    </section>
+                                    <section class="modal-body" id="edit-skills-modal-body">
+                                        <div class="display-grid">
+                                            <table class="w-100">
+                                                <tbody class="skills-tb">
+                                                <tr>
+                                                    <td><label for="skill">Skill</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <datalist id="skill-list">
+                                                            <option th:each="item: ${skillList}" th:value="${item.id}"
+                                                                    th:text="${item.name}" th:selected="${name}"></option>
+                                                        </datalist>
+
+                                                        <input id="skill" type="text" placeholder="Skill" class="pt-1 mb-2 w-100"
+                                                               th:field="*{name}" th:value="${name}" required
+                                                               aria-autocomplete="on" list="skill-list">
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </section>
+                                    <section class="modal-footer" id="edit-skills-modal-footer">
+                                        <div class="mt-3 d-flex justify-content-end">
+                                            <button id="sk-save" name="save" type="submit" class="btn-save ms-2 rounded-5 w-100">Save</button>
+                                        </div>
+                                    </section>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Skills error modal -->
+                    <!--<div class="modal fade" tabindex="-1" id="error-skills" role="dialog">
+                        <div class="modal-dialog">
+                            <section class="modal-content">
+                                <section class="modal-header row" id="error-skills-modal-header">
+                                    <div class="col-md-4"><h4 class="title">Skills</h4></div>
+                                    <div class="col-md-7"></div>
+                                    <div class="col-md-1">
+                                        <button name="close" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                </section>
+                                <section class="modal-body" id="error-skills-modal-body">
+                                    <p class="alert alert-danger" role="alert" id="skills-error-message" th:text="${error}"></p>
+                                </section>
+                                <section class="modal-footer"></section>
+                            </section>
+                        </div>
+                    </div>-->
+
+                    <div style="display: none" class="alert fade" id="alert-success" role="alert" data-mdb-color="success" data-mdb-position="top-right"
+                         data-mdb-stacking="true" data-mdb-width="150px" data-mdb-append-to-body="true"
+                         data-mdb-hidden="true" data-mdb-autohide="true" data-mdb-delay="2000">
+                        <p class="alert alert-danger" role="alert" id="skills-error-message" th:text="${error}"></p>
+                    </div>
+
+                    <!-- Skills show-->
+                    <section class="ms-3" id="skills-show">
+                        <section id="sk-header" class="display-flex">
+                            <div class="w-50em" id="sk-title"><h4 class="font-cursive font-larger rounded-bottom w-15 pb-1 ps-1 third-bg-color">Skills</h4></div>
+                            <button type="button" class="btn float-right" data-bs-toggle="modal"
+                                    data-bs-target="#add-skills">
+                                <img class="edit-icon" th:src="@{images/icon/add.png}">
+                            </button>
+                        </section>
+                        <section id="sk-body" th:each="sk, iStat : ${skillObjList}">
+                            <div class="display-flex">
+                                <p th:text="${sk.name}" class="w-50em"></p>
+                                <button type="button" class="btn float-right" data-bs-toggle="modal" data-bs-target="#edit-skills">
+                                    <img class="edit-icon" th:src="@{images/icon/edit.png}">
+                                </button>
+                            </div>
+                            <div th:if="${!iStat.last}" class="display-flex mt-2-N">
+                                <hr class="hr-100 ml-1-N">
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </main>
+            <!-- End Main -->
+
+            <!-- Aside -->
+            <aside class="col-md-3 m-2">
+                <section class="mb-3 ghostwhite-bg-color joby-block rounded-start">
+                    <div>
+                        <p class="fs-6 ff-aleo-r pt-1 mb-2 ms-2">Here you can see ADs.</p>
+                    </div>
+                </section>
+            </aside>
+            <!-- End Aside -->
+        </div>
+    </div>
+    <!-- End Main container -->
+</body>
+</html>

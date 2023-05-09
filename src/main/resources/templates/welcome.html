@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" th:href="@{images/icon/job-search.png}"/>
+    <link rel="stylesheet" th:href="@{css/main.css}"/>
+    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}"/>
+    <script rel="script" th:src="@{js/bootstrap.bundle.min.js}"></script>
+    <script rel="script" th:src="@{js/main.js}"></script>
+    <title>Welcome</title>
+</head>
+<body>
+    <nav class="nav justify-content-center third-bg-color">
+        <div class="row w-100">
+            <div class="col-md-4 align-items-center">
+                <a th:href="@{/}"><img class="icon-size-64" th:src="@{images/icon/job-search.png}"></a>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <p class="font-cursive" th:text="${user.fullName}"></p>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div id="w-image">
+            <img class="w-100 rounded" th:src="@{images/welcome-pic.jpg}"/>
+            <h1 class="font-cursive w-w-text">Welcome to Joby</h1>
+
+            <form th:action="@{/personProfile}" method="get" th:object="${user}">
+                <button type="submit">
+                    <div class="w-person border border-2 border-secondary rounded p-2">
+                        <img th:src="@{images/icon/personal-icon.png}"/>
+                        <h4>Complete your CV</h4>
+                        <div>
+                            <dl>
+                                <dt>Create your professional resume</dt>
+                                <dt>Add your experiences and educations</dt>
+                                <dt>...</dt>
+                            </dl>
+                        </div>
+                    </div>
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

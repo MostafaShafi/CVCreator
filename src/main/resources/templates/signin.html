@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" th:href="@{images/icon/job-search.png}"/>
+    <link rel="stylesheet" th:href="@{css/main.css}"/>
+    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"/>
+    <script rel="script" th:src="@{js/bootstrap.bundle.min.js}"></script>
+    <script rel="script" th:src="@{js/main.js}"></script>
+    <title>Sign in</title>
+</head>
+<body>
+    <nav class="nav justify-content-center third-bg-color">
+        <div class="row w-100">
+            <div class="col-md-4 align-items-center">
+                <a th:href="@{/}"><img class="icon-size-64" th:src="@{images/icon/job-search.png}"></a>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <aside class="col-md-3"></aside>
+            <main class="col-md-6">
+                <section class="main-bg-color">
+                    <form class="joby-block rounded mb-3 ghostwhite-bg-color p-3" th:action="@{/register}" th:object="${user}" method="post">
+                        <section class="align-items-center">
+                            <h4 class="title">Sign in</h4>
+                        </section>
+                        </br>
+
+                        <!-- Personal info form modal -->
+                        <section class="modal" tabindex="-1" id="personal-info">
+                            <div class="modal-dialog" id="personal-info-modal-dialog">
+                                <div class="modal-content" id="personal-info-modal-content">
+                                    <section class="modal-header row" id="personal-info-modal-header">
+                                        <div class="col-md-4"></div>
+                                        <div class="col-md-7"></div>
+                                        <div class="col-md-1">
+                                            <button name="close" id="personal-info-modal-close-btn" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                    </section>
+                                    <section class="modal-body" id="personal-info-modal-body">
+                                        <div class="display-grid" id="personal-info-form">
+                                            <table class="w-100">
+                                                <tbody class="profile-tb">
+                                                    <tr>
+                                                        <td><label for="firstname">First name</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input id="firstname" type="text" placeholder="First name"
+                                                                   th:field="*{firstName}" class="pt-1 mb-2 w-100" required>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="lastname">Last name</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input id="lastname" type="text" placeholder="Last name"
+                                                                   th:field="*{lastName}" class="pt-1 mb-2 w-100" required>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </section>
+                                    <section class="modal-footer" id="personal-info-modal-footer">
+                                        <div class="mt-3 d-flex justify-content-end">
+                                            <input id="info-save" name="save" type="submit" class="btn-save ms-2 rounded-5 w-100">
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section>
+                            <table class="w-100">
+                                <tbody>
+                                    <tr>
+                                        <td><label for="email">Email</label></td>
+                                        <td>
+                                            <input id="email" type="email" placeholder="Email" th:field="*{email}"
+                                                   class="pt-1 mb-2 w-100" onchange="emailValidation(this)">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="password">Password</label></td>
+                                        <td>
+                                            <div>
+                                                <input id="password" type="password" placeholder="Password" th:field="*{password}"
+                                                   class="pt-1 mb-2 w-100" onchange="checkPasswordFormat()">
+                                                <i class="bi bi-eye-slash" id="togglePassword" onclick="hideShowPassword()"></i>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </section>
+                        <section class="align-items-center mt-3">
+                            <p class="text-danger ms-2 rounded-5 w-50"><small th:text="${error}"></small></p>
+                        </section>
+                        <section class="align-items-center mt-3">
+                            <button id="sign-in" type="button" data-bs-toggle="modal" data-bs-target="#personal-info"
+                                    class="btn-info ms-2 rounded-5 w-50">Sign in</button>
+                        </section>
+                        <section class="display-flex ms-30p mt-3">
+                            <hr class="hr-25"><p>&nbsp or &nbsp</p><hr class="hr-25">
+                        </section>
+                        <section class="align-items-center">
+                            <p>If you are already a member <a th:href="@{/login}">Login</a></p>
+                        </section>
+                    </form>
+                </section>
+            </main>
+            <aside class="col-md-3"></aside>
+        </div>
+    </div>
+</body>
+</html>

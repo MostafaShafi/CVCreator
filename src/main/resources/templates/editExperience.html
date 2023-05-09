@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" th:href="@{images/icon/job-search.png}"/>
+    <link rel="stylesheet" th:href="@{css/main.css}"/>
+    <link rel="stylesheet" th:href="@{css/fonts.css}"/>
+    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}"/>
+    <script rel="script" th:src="@{js/bootstrap.bundle.min.js}"></script>
+    <script rel="script" th:src="@{js/main.js}"></script>
+    <title>Profile</title>
+</head>
+<body>
+    <!-- Main container -->
+    <div class="container mt-4" id="main-container">
+        <div class="row" id="main-grid">
+            <!-- Main -->
+            <main class="col-md-12" id="main-part">
+                <!-- Experiences -->
+                <section class="rounded mb-3 ghostwhite-bg-color joby-block" id="experience-sec">
+                    <!-- Experiences edit modal -->
+                    <section class="modal" tabindex="-1" id="edit-experience">
+                        <div class="modal-dialog" id="edit-experience-modal-dialog">
+                            <div class="modal-content" id="edit-experience-modal-content">
+                                <form action="@{/updateExperience}" method="post" th:object="${experience}">
+                                    <section class="modal-header row" id="edit-experience-modal-header">
+                                        <div class="col-md-4"><h4 class="title">Experience</h4></div>
+                                        <div class="col-md-7"></div>
+                                        <div class="col-md-1">
+                                            <button name="close" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                    </section>
+                                    <section class="modal-body" id="edit-experience-modal-body">
+                                        <div class="display-grid">
+                                            <table class="w-100">
+                                                <tbody class="experience-tb">
+                                                <tr>
+                                                    <td><label for="title">Title</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input id="title" type="text" placeholder="Title" class="pt-1 mb-2 w-100"
+                                                               th:field="*{title}" th:value="${title}" required>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="company-name">Company name</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input id="company-name" type="text" placeholder="Company name"
+                                                               th:field="*{companyName}" th:value="${companyName}"
+                                                               class="pt-1 mb-2 w-100" required>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="type">Type</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <select id="type" th:field="*{type}" class="pt-1 mb-2 w-100" required>
+                                                            <option th:each="item: ${experienceTypeList}" th:value="${item.id}"
+                                                                    th:text="${item.name}" th:selected="${type}"></option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="related-industry">Industry</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <select id="related-industry" th:field="*{industry}"
+                                                                class="pt-1 mb-2 w-100" required>
+                                                            <option th:each="item: ${industryList}" th:value="${item.id}"
+                                                                    th:text="${item.name}" th:selected="${industry}"></option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="location">Location</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input id="location" type="text" placeholder="Location(City)"
+                                                               th:field="*{location}" th:value="${location}"
+                                                               class="pt-1 mb-2 w-100">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="location-type">Location type</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <select id="location-type" th:field="*{workLocationType}"
+                                                                class="pt-1 mb-2 w-100" required>
+                                                            <option th:each="item: ${locationTypeList}" th:value="${item.id}"
+                                                                    th:text="${item.name}" th:selected="${workLocationType}"></option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            <section class="display-flex mt-3">
+                                                <hr class="hr-50 ml-25">
+                                            </section>
+                                            <table class="w-100">
+                                                <tbody class="profile-tb">
+                                                <tr>
+                                                    <td><label>Do you currently working here?</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <select id="is-until-work" th:field="*{isUntilWork}"
+                                                                class="pt-1 mb-2 w-100" required>
+                                                            <option th:each="item: ${isUntilWorkList}" th:value="${item.id}"
+                                                                    th:text="${item.name}" th:selected="${isUntilWork}"></option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="exp-start-date">Start date</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input id="exp-start-date" type="date" placeholder="Start date"
+                                                               th:field="*{startDate}" th:value="${startDate}"
+                                                               class="pt-1 mb-2 w-100" required>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="exp-end-date">End date</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input id="exp-end-date" type="date" placeholder="End date"
+                                                               th:field="*{endDate}" th:value="${endDate}"
+                                                               class="pt-1 mb-2 w-100" required>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            <section class="display-flex mt-3">
+                                                <hr class="hr-50 ml-25">
+                                            </section>
+                                            <table>
+                                                <tbody>
+                                                <tr>
+                                                    <td><label for="description">Description</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <textarea id="description" class="pt-1 mb-2 w-100"
+                                                                  th:field="*{description}" th:value="${description}"></textarea>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </section>
+                                    <section class="modal-footer" id="edit-experience-modal-footer">
+                                        <div class="mt-3 d-flex justify-content-end">
+                                            <button id="edit-exp-save" name="save" type="submit"
+                                                    class="btn-save ms-2 rounded-5 w-100">Save
+                                            </button>
+                                        </div>
+                                    </section>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+            </main>
+            <!-- End Main -->
+        </div>
+    </div>
+    <!-- End Main container -->
+</body>
+</html>

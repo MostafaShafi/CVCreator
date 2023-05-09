@@ -1,0 +1,24 @@
+@font-face {
+    font-family: Aleo-Bold;
+    src: url("../font/Aleo-Bold.ttf");
+}
+
+@font-face {
+    font-family: Aleo-BoldItalic;
+    src: url("../font/Aleo-BoldItalic.ttf");
+}
+
+@font-face {
+    font-family: Aleo-Italic;
+    src: url("../font/Aleo-Italic.ttf");
+}
+
+@font-face {
+    font-family: Aleo-Light;
+    src: url("../font/Aleo-Light.ttf");
+}
+
+@font-face {
+    font-family: Aleo-Regular;
+    src: url("../font/Aleo-Regular.ttf");
+}
