@@ -7,7 +7,7 @@ import java.util.List;
 public interface ExperienceService {
     List<Experience> findAll();
 
-    Experience findById(Long id);
+    Experience findById(Integer id);
 
     Experience save(Experience experience);
 

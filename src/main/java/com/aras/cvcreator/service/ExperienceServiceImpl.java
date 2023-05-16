@@ -21,7 +21,7 @@ public class ExperienceServiceImpl implements ExperienceService {
     }
 
     @Override
-    public Experience findById(Long id) {
+    public Experience findById(Integer id) {
         return repository.findById(id.intValue()).orElse(null);
     }
 
