@@ -17,6 +17,7 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -163,10 +164,10 @@ public class PersonController {
         return "redirect:/personProfile";
     }
 
-    @GetMapping("/editExperience")
-    public String login(@ModelAttribute("user") Users user, @ModelAttribute("exp") Experience experience,
-                        RedirectAttributes redirectAttributes) {
-        redirectAttributes.addFlashAttribute("experience", experience);
+    @PostMapping("/editExperience")
+    public String login(@ModelAttribute("expId") String id, Model model, RedirectAttributes redirectAttributes) {
+        model.addAttribute("experience", experienceService.findById(Integer.parseInt(id)));
+        redirectAttributes.addFlashAttribute("experience", experienceService.findById(Integer.parseInt(id)));
         return "editExperience";
     }
 
