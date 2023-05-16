@@ -732,8 +732,9 @@
                             </button>
                         </section>
                         <section id="exp-body" class="mt-3" th:each="exp, iStat : ${experienceList}">
-                            <form method="get" th:action="@{/editExperience}">
+                            <form th:action="@{/editExperience}" method="post" th:object="${exp}">
                                 <div class="display-flex">
+                                    <input hidden th:name="expId" th:value="${exp.getId()}"/>
                                     <h6 class="w-50em" id="experience-title" th:text="${exp.title}"></h6>
                                     <button type="submit" class="btn float-right">
                                         <img class="edit-icon" th:src="@{images/icon/edit.png}">
