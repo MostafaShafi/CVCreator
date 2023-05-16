@@ -13,27 +13,41 @@
     <title>Profile</title>
 </head>
 <body>
+    <!-- Navbar -->
+    <nav class="nav justify-content-center third-bg-color">
+        <div class="row w-100">
+            <div class="col-md-4 align-items-center">
+                <a th:href="@{/}"><img class="icon-size-64" th:src="@{images/icon/job-search.png}"></a>
+            </div>
+            <div class="col-md-4">
+                <ul class="nav justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link align-items-center" th:href="@{/}">
+                            <img class="icon-size-32" th:src="@{images/icon/homepage.png}">
+                            <p class="icon-text">Home</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+
     <!-- Main container -->
     <div class="container mt-4" id="main-container">
         <div class="row" id="main-grid">
             <!-- Main -->
-            <main class="col-md-12" id="main-part">
+            <main class="col-md-10 ms-5" id="main-part">
                 <!-- Experiences -->
                 <section class="rounded mb-3 ghostwhite-bg-color joby-block" id="experience-sec">
                     <!-- Experiences edit modal -->
-                    <section class="modal" tabindex="-1" id="edit-experience">
-                        <div class="modal-dialog" id="edit-experience-modal-dialog">
-                            <div class="modal-content" id="edit-experience-modal-content">
+                    <section tabindex="-1" id="edit-experience">
+                        <div  id="edit-experience-modal-dialog">
+                            <div  id="edit-experience-modal-content">
+                                <div class="col-md-4"><h4 class="title">Experience</h4></div>
                                 <form action="@{/updateExperience}" method="post" th:object="${experience}">
-                                    <section class="modal-header row" id="edit-experience-modal-header">
-                                        <div class="col-md-4"><h4 class="title">Experience</h4></div>
-                                        <div class="col-md-7"></div>
-                                        <div class="col-md-1">
-                                            <button name="close" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                        </div>
-                                    </section>
-                                    <section class="modal-body" id="edit-experience-modal-body">
+                                    <section id="edit-experience-body">
                                         <div class="display-grid">
                                             <table class="w-100">
                                                 <tbody class="experience-tb">
@@ -160,10 +174,10 @@
                                             </table>
                                         </div>
                                     </section>
-                                    <section class="modal-footer" id="edit-experience-modal-footer">
+                                    <section id="edit-experience-footer">
                                         <div class="mt-3 d-flex justify-content-end">
-                                            <button id="edit-exp-save" name="save" type="submit"
-                                                    class="btn-save ms-2 rounded-5 w-100">Save
+                                            <button id="edit-exp-save" name="save" type="submit" class="btn-save ms-2 rounded-5 w-100">
+                                                Save
                                             </button>
                                         </div>
                                     </section>
