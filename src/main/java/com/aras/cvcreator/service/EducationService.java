@@ -7,7 +7,7 @@ import java.util.List;
 public interface EducationService {
     List<Education> findAll();
 
-    Education findById(Long id);
+    Education findById(Integer id);
 
     Education save(Education education);
 

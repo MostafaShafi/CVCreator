@@ -5,6 +5,7 @@ import com.aras.cvcreator.repository.ExperienceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -17,7 +18,8 @@ public class ExperienceServiceImpl implements ExperienceService {
 
     @Override
     public List<Experience> findAll() {
-        return StreamSupport.stream(repository.findAll().spliterator(), false).collect(Collectors.toList());
+        return StreamSupport.stream(repository.findAll().spliterator(), false).
+                sorted(Comparator.comparing(Experience::getStartDate).reversed()).collect(Collectors.toList());
     }
 
     @Override
@@ -32,6 +34,7 @@ public class ExperienceServiceImpl implements ExperienceService {
 
     @Override
     public List<Experience> findExperiencesByPersonId(Integer personId) {
-        return StreamSupport.stream(repository.findExperiencesByPersonId(personId).spliterator(), false).collect(Collectors.toList());
+        return StreamSupport.stream(repository.findExperiencesByPersonId(personId).spliterator(), false).
+                sorted(Comparator.comparing(Experience::getStartDate).reversed()).collect(Collectors.toList());
     }
 }
