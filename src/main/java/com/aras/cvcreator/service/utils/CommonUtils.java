@@ -21,6 +21,19 @@ public class CommonUtils {
         return string == null || string.isEmpty() ? newItem : string.concat(", ").concat(newItem);
     }
 
+    public String removeItemFromStringSeparatedByComma(String mainString, String removableItem) {
+        if (mainString != null && !mainString.isEmpty() && mainString.contains(removableItem)) {
+            if (mainString.endsWith(removableItem)) {
+                mainString = mainString.replace(", ".concat(removableItem), "");
+            }
+            else {
+                mainString = mainString.replace(removableItem.concat(", "), "");
+            }
+        }
+
+        return mainString;
+    }
+
     /**
      * Split a string of integers with a separator. If string is empty then return a new list.
      * @param string Existence string
