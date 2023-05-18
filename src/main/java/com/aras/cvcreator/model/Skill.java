@@ -13,12 +13,6 @@ public class Skill {
     @Column(name = "name")
     private String name;
 
-    /*@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "personId")
-    @Convert(converter = PersonConverter.class)
-    @ManyToMany(mappedBy = "skills", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Person> person;*/
-
     public void setId(Integer id) {
         this.id = id;
     }
@@ -34,12 +28,4 @@ public class Skill {
     public void setName(String name) {
         this.name = name;
     }
-
-    /*public List<Person> getPerson() {
-        return person;
-    }
-
-    public void setPerson(List<Person> person) {
-        this.person = person;
-    }*/
 }
