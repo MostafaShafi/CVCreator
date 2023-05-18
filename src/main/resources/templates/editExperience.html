@@ -46,7 +46,8 @@
                         <div  id="edit-experience-modal-dialog">
                             <div  id="edit-experience-modal-content">
                                 <div class="col-md-4"><h4 class="title">Experience</h4></div>
-                                <form action="@{/updateExperience}" method="post" th:object="${experience}">
+                                <form th:action="@{/updateExperience}" method="post" th:object="${experience}">
+                                    <input hidden th:name="extId" th:value="${experience.getId()}"/>
                                     <section id="edit-experience-body">
                                         <div class="display-grid">
                                             <table class="w-100">
@@ -122,38 +123,35 @@
                                             </section>
                                             <table class="w-100">
                                                 <tbody class="profile-tb">
-                                                <tr>
-                                                    <td><label>Do you currently working here?</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <select id="is-until-work" th:field="*{isUntilWork}"
-                                                                class="pt-1 mb-2 w-100" required>
-                                                            <option th:each="item: ${isUntilWorkList}" th:value="${item.id}"
-                                                                    th:text="${item.name}" th:selected="${isUntilWork}"></option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><label for="exp-start-date">Start date</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input id="exp-start-date" type="date" placeholder="Start date"
-                                                               th:field="*{startDate}" th:value="${startDate}"
-                                                               class="pt-1 mb-2 w-100" required>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><label for="exp-end-date">End date</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input id="exp-end-date" type="date" placeholder="End date"
-                                                               th:field="*{endDate}" th:value="${endDate}"
-                                                               class="pt-1 mb-2 w-100" required>
-                                                    </td>
-                                                </tr>
+                                                    <tr>
+                                                        <td><label>Do you currently working here?</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input id="is-until-work" type="checkbox" th:checked="*{isUntilWork}"
+                                                                   class="pt-1 mb-2 w-100" onchange="makeExperienceEndDateRequired()">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="exp-start-date">Start date</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input id="exp-start-date" type="date" placeholder="Start date"
+                                                                   th:field="*{startDate}" th:value="${startDate}"
+                                                                   class="pt-1 mb-2 w-100" required>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="exp-end-date">End date</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input id="exp-end-date" type="date" placeholder="End date"
+                                                                   th:field="*{endDate}" th:value="${endDate}"
+                                                                   class="pt-1 mb-2 w-100" required>
+                                                        </td>
+                                                    </tr>
                                                 </tbody>
                                             </table>
                                             <section class="display-flex mt-3">
@@ -161,22 +159,23 @@
                                             </section>
                                             <table>
                                                 <tbody>
-                                                <tr>
-                                                    <td><label for="description">Description</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <textarea id="description" class="pt-1 mb-2 w-100"
-                                                                  th:field="*{description}" th:value="${description}"></textarea>
-                                                    </td>
-                                                </tr>
+                                                    <tr>
+                                                        <td><label for="description">Description</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <textarea id="description" class="pt-1 mb-2 w-100"
+                                                                      th:field="*{description}" th:value="${description}"></textarea>
+                                                        </td>
+                                                    </tr>
                                                 </tbody>
                                             </table>
                                         </div>
                                     </section>
                                     <section id="edit-experience-footer">
-                                        <div class="mt-3 d-flex justify-content-end">
-                                            <button id="edit-exp-save" name="save" type="submit" class="btn-save ms-2 rounded-5 w-100">
+                                        <div class="mt-3 align-items-center">
+                                            <button id="edit-exp-save" name="save" type="submit"
+                                                    class="btn-save ms-2 mb-4 mt-3 w-25 rounded-5">
                                                 Save
                                             </button>
                                         </div>
