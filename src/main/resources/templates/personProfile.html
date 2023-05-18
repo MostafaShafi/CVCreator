@@ -600,10 +600,19 @@
                                     <span id="experience-location-type" th:text="${exp.workLocationType.name}"></span>
                                 </p>
                                 <p id="experience-description" class="mt-2-N" th:text="${exp.description}"></p>
-                                <div class="display-flex mt-3">
-                                    <hr th:if="${!iStat.last}" class="hr-100 ml-1-N">
+                            </form>
+                            <form th:action="@{/removeExperience}" method="post" th:object="${exp}">
+                                <div class="display-flex">
+                                    <input hidden th:name="expId" th:value="${exp.getId()}"/>
+                                    <h6 class="w-50em"></h6>
+                                    <button type="submit" class="btn float-right">
+                                        <img class="edit-icon" th:src="@{images/icon/remove.png}">
+                                    </button>
                                 </div>
                             </form>
+                            <div class="display-flex">
+                                <hr th:if="${!iStat.last}" class="hr-100 ml-1-N">
+                            </div>
                         </section>
                     </section>
                 </section>
@@ -753,10 +762,19 @@
                                 </p>
                                 <p id="education-activities" class="mt-1-N" th:text="${edu.activities}"></p>
                                 <p id="education-description" class="mt-1-N" th:text="${edu.description}"></p>
-                                <div class="display-flex mt-3">
-                                    <hr th:if="${!iStat.last}" class="hr-100 ml-1-N">
+                            </form>
+                            <form th:action="@{/removeEducation}" method="post" th:object="${edu}">
+                                <div class="display-flex">
+                                    <input hidden th:name="eduId" th:value="${edu.getId()}"/>
+                                    <h6 class="w-50em"></h6>
+                                    <button type="submit" class="btn float-right">
+                                        <img class="edit-icon" th:src="@{images/icon/remove.png}">
+                                    </button>
                                 </div>
                             </form>
+                            <div class="display-flex">
+                                <hr th:if="${!iStat.last}" class="hr-100 ml-1-N">
+                            </div>
                         </section>
                     </section>
                 </section>
@@ -818,19 +836,24 @@
                     <!-- Skills show-->
                     <section class="ms-3" id="skills-show">
                         <section id="sk-header" class="display-flex">
-                            <div class="w-50em" id="sk-title"><h4 class="font-cursive font-larger rounded-bottom w-15 pb-1 ps-1 third-bg-color">Skills</h4></div>
+                            <div class="w-50em" id="sk-title">
+                                <h4 class="font-cursive font-larger rounded-bottom w-15 pb-1 ps-1 third-bg-color">Skills</h4>
+                            </div>
                             <button type="button" class="btn float-right" data-bs-toggle="modal"
                                     data-bs-target="#add-skills">
                                 <img class="edit-icon" th:src="@{images/icon/add.png}">
                             </button>
                         </section>
                         <section id="sk-body" th:each="sk, iStat : ${skillObjList}">
-                            <div class="display-flex">
-                                <p th:text="${sk.name}" class="w-50em"></p>
-                                <button type="button" class="btn float-right" data-bs-toggle="modal" data-bs-target="#edit-skills">
-                                    <img class="edit-icon" th:src="@{images/icon/edit.png}">
-                                </button>
-                            </div>
+                            <form th:action="@{/removeSkill}" method="post" th:object="${sk}">
+                                <div class="display-flex">
+                                    <input hidden th:name="skillId" th:value="${sk.getId()}"/>
+                                    <p th:text="${sk.name}" class="w-50em"></p>
+                                    <button type="submit" class="btn float-right">
+                                        <img class="edit-icon" th:src="@{images/icon/remove.png}">
+                                    </button>
+                                </div>
+                            </form>
                             <div th:if="${!iStat.last}" class="display-flex mt-2-N">
                                 <hr class="hr-100 ml-1-N">
                             </div>

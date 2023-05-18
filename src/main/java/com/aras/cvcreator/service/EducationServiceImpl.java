@@ -38,4 +38,9 @@ public class EducationServiceImpl implements EducationService {
         return StreamSupport.stream(repository.findEducationsByPersonId(id).spliterator(), false).
         sorted(Comparator.comparing(Education::getStartDate).reversed()).collect(Collectors.toList());
     }
+
+    @Override
+    public void delete(Education education) {
+        repository.delete(education);
+    }
 }

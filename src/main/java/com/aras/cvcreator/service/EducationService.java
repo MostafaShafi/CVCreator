@@ -12,4 +12,6 @@ public interface EducationService {
     Education save(Education education);
 
     List<Education> findEducationsByPersonId(Integer id);
+
+    void delete(Education education);
 }

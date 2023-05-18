@@ -14,4 +14,6 @@ public interface SkillService {
     List<Skill> findSkillsByPersonId(List<Integer> ids);
 
     Skill findByName(String name);
+
+    void delete(Skill skill);
 }

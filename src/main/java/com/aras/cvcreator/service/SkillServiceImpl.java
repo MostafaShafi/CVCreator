@@ -1,5 +1,6 @@
 package com.aras.cvcreator.service;
 
+import com.aras.cvcreator.model.Education;
 import com.aras.cvcreator.model.Skill;
 import com.aras.cvcreator.repository.SkillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +39,10 @@ public class SkillServiceImpl implements SkillService {
     @Override
     public Skill findByName(String name) {
         return repository.findByName(name);
+    }
+
+    @Override
+    public void delete(Skill skill) {
+        repository.delete(skill);
     }
 }

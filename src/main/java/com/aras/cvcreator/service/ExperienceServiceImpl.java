@@ -37,4 +37,9 @@ public class ExperienceServiceImpl implements ExperienceService {
         return StreamSupport.stream(repository.findExperiencesByPersonId(personId).spliterator(), false).
                 sorted(Comparator.comparing(Experience::getStartDate).reversed()).collect(Collectors.toList());
     }
+
+    @Override
+    public void delete(Experience experience) {
+        repository.delete(experience);
+    }
 }

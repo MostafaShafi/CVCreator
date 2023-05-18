@@ -12,4 +12,6 @@ public interface ExperienceService {
     Experience save(Experience experience);
 
     List<Experience> findExperiencesByPersonId(Integer personId);
+
+    void delete(Experience experience);
 }
