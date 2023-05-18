@@ -722,150 +722,41 @@
                         </div>
                     </section>
 
-                    <!-- Educations edit modal -->
-                    <section class="modal" tabindex="-1" id="edit-educations">
-                        <div class="modal-dialog" id="edit-educations-modal-dialog">
-                            <div class="modal-content" id="edit-educations-modal-content">
-                                <form action="#" method="post" th:object="${education}">
-                                    <section class="modal-header row" id="edit-educations-modal-header">
-                                        <div class="col-md-4"><h4 class="title">Educations</h4></div>
-                                        <div class="col-md-7"></div>
-                                        <div class="col-md-1">
-                                            <button name="close" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                        </div>
-                                    </section>
-                                    <section class="modal-body" id="edit-educations-modal-body">
-                                        <div class="display-grid">
-                                            <table class="w-100">
-                                                <tbody class="education-tb">
-                                                <tr>
-                                                    <td><label for="school">School</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input id="school" type="text" placeholder="School" class="pt-1 mb-2 w-100"
-                                                               th:field="*{school}" th:value="${school}" required>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><label for="degree">Degree</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <select id="degree" th:field="*{degree}" class="pt-1 mb-2 w-100"
-                                                                required>
-                                                            <option th:each="item: ${degreeList}" th:value="${item.id}"
-                                                                    th:text="${item.name}" th:selected="${degree}"></option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><label for="field">Field</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <select id="field" th:field="*{field}" class="pt-1 mb-2 w-100" required>
-                                                            <option th:each="item: ${fieldList}" th:value="${item.id}"
-                                                                    th:text="${item.name}" th:selected="${field}"></option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><label for="edu-start-date">Start date</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input id="edu-start-date" type="date" placeholder="Start date"
-                                                               th:field="*{startDate}" th:value="${startDate}"
-                                                               class="pt-1 mb-2 w-100" required>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><label for="edu-end-date">End date</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input id="edu-end-date" type="date" placeholder="End date"
-                                                               th:field="*{endDate}" th:value="${endDate}"
-                                                               class="pt-1 mb-2 w-100">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><label for="grade">Grade</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input id="grade" type="number" step=".01" max="20" min="10"
-                                                               placeholder="Grade" th:field="*{grade}" th:value="${grade}"
-                                                               class="pt-1 mb-2 w-100" required onblur="checkGradeRange(this)">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><label for="activities">Activities</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <textarea id="activities" placeholder="Activities" class="pt-1 mb-2 w-100"
-                                                                  th:field="*{activities}" th:value="${activities}"></textarea>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><label for="edu-description">Description</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <textarea id="edu-description" class="pt-1 mb-2 w-100"
-                                                                  th:field="*{description}" th:value="${description}"></textarea>
-                                                    </td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </section>
-                                    <section class="modal-footer" id="edit-educations-modal-footer">
-                                        <div class="mt-3 d-flex justify-content-end">
-                                            <button id="edu-save" name="save" type="submit"
-                                                    class="btn-save ms-2 rounded-5 w-100">Save
-                                            </button>
-                                        </div>
-                                    </section>
-                                </form>
-                            </div>
-                        </div>
-                    </section>
-
                     <!-- Educations show-->
                     <section class="ms-3" id="educations-show">
                         <section id="edu-header" class="display-flex">
-                            <div class="w-50em" id="edu-title"><h4 class="font-cursive font-larger rounded-bottom w-15 pb-1 ps-1 third-bg-color">Educations</h4></div>
+                            <div class="w-50em" id="edu-title">
+                                <h4 class="font-cursive font-larger rounded-bottom w-15 pb-1 ps-1 third-bg-color">Educations</h4>
+                            </div>
                             <button type="button" class="btn float-right" data-bs-toggle="modal"
                                     data-bs-target="#add-educations">
                                 <img class="edit-icon" th:src="@{images/icon/add.png}">
                             </button>
                         </section>
                         <section id="edu-body" class="mt-3" th:each="edu, iStat : ${educationList}">
-                            <div class="display-flex">
-                                <h6 class="w-50em" id="education-school" th:text="${edu.school}"></h6>
-                                <button type="button" class="btn float-right" data-bs-toggle="modal"
-                                        data-bs-target="#edit-educations">
-                                    <img class="edit-icon" th:src="@{images/icon/edit.png}">
-                                </button>
-                            </div>
-                            <p id="education-info" class="mt-1-N color-darkgrey">
-                                <span th:text="${edu.degreeName}"> . </span>
-                                <span th:text="${edu.fieldName}"></span>
-                            </p>
-                            <p id="education-period" class="mt-1-N color-darkgrey">
-                                <span th:text="${#dates.format(edu.startDate, 'YYY-dd-MM')}"></span>
-                                <span> - </span>
-                                <span th:text="${#dates.format(edu.endDate, 'YYY-dd-MM')}"></span>
-                            </p>
-                            <p id="education-activities" class="mt-1-N" th:text="${edu.activities}"></p>
-                            <p id="education-description" class="mt-1-N" th:text="${edu.description}"></p>
-                            <div class="display-flex mt-3">
-                                <hr th:if="${!iStat.last}" class="hr-100 ml-1-N">
-                            </div>
+                            <form th:action="@{/editEducation}" method="post" th:object="${edu}">
+                                <div class="display-flex">
+                                    <input hidden th:name="eduId" th:value="${edu.getId()}"/>
+                                    <h6 class="w-50em" id="education-school" th:text="${edu.school}"></h6>
+                                    <button type="submit" class="btn float-right">
+                                        <img class="edit-icon" th:src="@{images/icon/edit.png}">
+                                    </button>
+                                </div>
+                                <p id="education-info" class="mt-1-N color-darkgrey">
+                                    <span th:text="${edu.degreeName}"> . </span>
+                                    <span th:text="${edu.fieldName}"></span>
+                                </p>
+                                <p id="education-period" class="mt-1-N color-darkgrey">
+                                    <span th:text="${#dates.format(edu.startDate, 'YYY-dd-MM')}"></span>
+                                    <span> - </span>
+                                    <span th:text="${#dates.format(edu.endDate, 'YYY-dd-MM')}"></span>
+                                </p>
+                                <p id="education-activities" class="mt-1-N" th:text="${edu.activities}"></p>
+                                <p id="education-description" class="mt-1-N" th:text="${edu.description}"></p>
+                                <div class="display-flex mt-3">
+                                    <hr th:if="${!iStat.last}" class="hr-100 ml-1-N">
+                                </div>
+                            </form>
                         </section>
                     </section>
                 </section>

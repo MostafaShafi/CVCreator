@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" th:href="@{images/icon/job-search.png}"/>
+    <link rel="stylesheet" th:href="@{css/main.css}"/>
+    <link rel="stylesheet" th:href="@{css/fonts.css}"/>
+    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}"/>
+    <script rel="script" th:src="@{js/bootstrap.bundle.min.js}"></script>
+    <script rel="script" th:src="@{js/main.js}"></script>
+    <title>Edit Education</title>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="nav justify-content-center third-bg-color">
+        <div class="row w-100">
+            <div class="col-md-4 align-items-center">
+                <a th:href="@{/}"><img class="icon-size-64" th:src="@{images/icon/job-search.png}"></a>
+            </div>
+            <div class="col-md-4">
+                <ul class="nav justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link align-items-center" th:href="@{/}">
+                            <img class="icon-size-32" th:src="@{images/icon/homepage.png}">
+                            <p class="icon-text">Home</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+
+    <!-- Main container -->
+    <div class="container mt-4" id="main-container">
+        <div class="row" id="main-grid">
+            <!-- Main -->
+            <main class="col-md-10 ms-5" id="main-part">
+                <!-- Experiences -->
+                <section class="rounded mb-3 ghostwhite-bg-color joby-block" id="education-sec">
+                    <!-- Experiences edit modal -->
+                    <section tabindex="-1" id="edit-education">
+                        <div  id="edit-education-modal-dialog">
+                            <div  id="edit-education-modal-content">
+                                <div class="col-md-4"><h4 class="title">Education</h4></div>
+                                <form th:action="@{/updateEducation}" method="post" th:object="${education}">
+                                    <input hidden th:name="eduId" th:value="${education.getId()}"/>
+                                    <section id="edit-education-body">
+                                        <div class="display-grid">
+                                            <table class="w-100">
+                                                <tbody class="education-tb">
+                                                    <tr>
+                                                        <td><label for="school">School</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input id="school" type="text" placeholder="School" class="pt-1 mb-2 w-100"
+                                                                   th:field="*{school}" th:value="${school}" required>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="degree">Degree</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <select id="degree" th:field="*{degree}" class="pt-1 mb-2 w-100"
+                                                                    required>
+                                                                <option th:each="item: ${degreeList}" th:value="${item.id}"
+                                                                        th:text="${item.name}" th:selected="${degree}"></option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="field">Field</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <select id="field" th:field="*{field}" class="pt-1 mb-2 w-100" required>
+                                                                <option th:each="item: ${fieldList}" th:value="${item.id}"
+                                                                        th:text="${item.name}" th:selected="${field}"></option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="edu-start-date">Start date</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input id="edu-start-date" type="date" placeholder="Start date"
+                                                                   th:field="*{startDate}" th:value="${startDate}"
+                                                                   class="pt-1 mb-2 w-100" required>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="edu-end-date">End date</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input id="edu-end-date" type="date" placeholder="End date"
+                                                                   th:field="*{endDate}" th:value="${endDate}"
+                                                                   class="pt-1 mb-2 w-100">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="grade">Grade</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input id="grade" type="number" step=".01" max="20" min="10"
+                                                                   placeholder="Grade" th:field="*{grade}" th:value="${grade}"
+                                                                   class="pt-1 mb-2 w-100" required onblur="checkGradeRange(this)">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="activities">Activities</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <textarea id="activities" placeholder="Activities" class="pt-1 mb-2 w-100"
+                                                                      th:field="*{activities}" th:value="${activities}"></textarea>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="edu-description">Description</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <textarea id="edu-description" class="pt-1 mb-2 w-100"
+                                                                      th:field="*{description}" th:value="${description}"></textarea>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </section>
+                                    <section id="edit-education-footer">
+                                        <div class="mt-3 align-items-center">
+                                            <button id="edit-exp-save" name="save" type="submit"
+                                                    class="btn-save ms-2 mb-4 mt-3 w-25 rounded-5">
+                                                Save
+                                            </button>
+                                        </div>
+                                    </section>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+            </main>
+            <!-- End Main -->
+        </div>
+    </div>
+    <!-- End Main container -->
+</body>
+</html>
