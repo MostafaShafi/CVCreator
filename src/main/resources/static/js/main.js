@@ -35,7 +35,7 @@ function hideShowPassword() {
 }
 
 function makeExperienceEndDateRequired() {
-    document.getElementById("new-exp-end-date").required = !document.getElementById("new-is-until-work").checked;
+    document.getElementById("exp-end-date").required = !document.getElementById("is-until-work").checked;
 }
 
 function showErrorModal() {
