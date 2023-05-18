@@ -124,6 +124,7 @@ public class PersonController {
     }
     //</editor-fold>
 
+    //<editor-fold desc="Personal Info">
     @PostMapping("/saveInfo")
     private String savePersonalInfo(@ModelAttribute("person") Person person) {
         return "redirect:/personProfile";
@@ -133,70 +134,6 @@ public class PersonController {
     private String updatePersonalInfo(@ModelAttribute("person") Person person, @ModelAttribute("image") MultipartFile image,
                                       RedirectAttributes redirectAttributes) {
         personService.save(person);
-
-        redirectAttributes.addFlashAttribute("person", person);
-        redirectAttributes.addFlashAttribute("experience", new Experience());
-        redirectAttributes.addFlashAttribute("education", new Education());
-        redirectAttributes.addFlashAttribute("skill", new Skill());
-
-        redirectAttributes.addFlashAttribute("experienceList", experienceService.findExperiencesByPersonId(person.getId()));
-        redirectAttributes.addFlashAttribute("educationList", educationService.findEducationsByPersonId(person.getId()));
-        redirectAttributes.addFlashAttribute("skillObjList", skillService.findSkillsByPersonId(
-                commonUtils.splitStringOfIntegers(person.getSkills(), ", ")));
-        return "redirect:/personProfile";
-    }
-
-    @PostMapping("/addExperience")
-    private String addExperience(@ModelAttribute("person") Person person, @ModelAttribute("image") MultipartFile image,
-                                 @ModelAttribute("experience") Experience experience, RedirectAttributes redirectAttributes) {
-        experience.setPerson(person);
-        experienceService.save(experience);
-
-        redirectAttributes.addFlashAttribute("person", person);
-        redirectAttributes.addFlashAttribute("experience", new Experience());
-        redirectAttributes.addFlashAttribute("education", new Education());
-        redirectAttributes.addFlashAttribute("skill", new Skill());
-
-        redirectAttributes.addFlashAttribute("experienceList", experienceService.findExperiencesByPersonId(person.getId()));
-        redirectAttributes.addFlashAttribute("educationList", educationService.findEducationsByPersonId(person.getId()));
-        redirectAttributes.addFlashAttribute("skillObjList", skillService.findSkillsByPersonId(
-                commonUtils.splitStringOfIntegers(person.getSkills(), ", ")));
-        return "redirect:/personProfile";
-    }
-
-    @PostMapping("/editExperience")
-    public String login(@ModelAttribute("person") Person person, @ModelAttribute("expId") String id, Model model,
-                        RedirectAttributes redirectAttributes) {
-        redirectAttributes.addFlashAttribute("person", person);
-        model.addAttribute("experience", experienceService.findById(Integer.parseInt(id)));
-        redirectAttributes.addFlashAttribute("experience", experienceService.findById(Integer.parseInt(id)));
-        return "editExperience";
-    }
-
-    @PostMapping("/updateExperience")
-    private String updateExperience(@ModelAttribute("person") Person person, @ModelAttribute("experience") Experience experience,
-                                    @ModelAttribute("extId") Integer id, RedirectAttributes redirectAttributes) {
-        experience.setPerson(person);
-        experience.setId(id);
-        experienceService.save(experience);
-
-        redirectAttributes.addFlashAttribute("person", person);
-        redirectAttributes.addFlashAttribute("experience", new Experience());
-        redirectAttributes.addFlashAttribute("education", new Education());
-        redirectAttributes.addFlashAttribute("skill", new Skill());
-
-        redirectAttributes.addFlashAttribute("experienceList", experienceService.findExperiencesByPersonId(person.getId()));
-        redirectAttributes.addFlashAttribute("educationList", educationService.findEducationsByPersonId(person.getId()));
-        redirectAttributes.addFlashAttribute("skillObjList", skillService.findSkillsByPersonId(
-                commonUtils.splitStringOfIntegers(person.getSkills(), ", ")));
-        return "redirect:/personProfile";
-    }
-
-    @PostMapping("/addEducation")
-    private String addEducation(@ModelAttribute("person") Person person, @ModelAttribute("education") Education education,
-                                 RedirectAttributes redirectAttributes) {
-        education.setPerson(person);
-        educationService.save(education);
 
         redirectAttributes.addFlashAttribute("person", person);
         redirectAttributes.addFlashAttribute("experience", new Experience());
@@ -236,6 +173,163 @@ public class PersonController {
         return "redirect:/personProfile";
     }
 
+    @GetMapping("/viewProfile/{id}")
+    private String viewProfile(@PathVariable(value = "id") Integer id, Model model, RedirectAttributes redirectAttributes) {
+        try {
+            Person person = personService.findById(id);
+
+            //<editor-fold desc="Load image to profiles image and background image directory">
+            if (person.getProfileImage() != null) {
+                Path filepath = Paths.get(profileImageDir,
+                        person.getProfileImage().getName().concat(".").concat(person.getProfileImage().getType()));
+                File file = filepath.toFile();
+                try {
+                    file.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try (OutputStream os = Files.newOutputStream(filepath)) {
+                    os.write(person.getProfileImage().getImage());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    redirectAttributes.addFlashAttribute("error", "Uploading profile image was not successful!");
+                    return "redirect:/";
+                }
+            }
+
+            if (person.getBackgroundImage() != null) {
+                Path filepath = Paths.get(backgroundImageDir,
+                        person.getBackgroundImage().getName().concat(".").concat(person.getBackgroundImage().getType()));
+                File file = filepath.toFile();
+                try {
+                    file.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try (OutputStream os = Files.newOutputStream(filepath)) {
+                    os.write(person.getBackgroundImage().getImage());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    redirectAttributes.addFlashAttribute("error", "Uploading background image was not successful!");
+                    return "redirect:/";
+                }
+            }
+            //</editor-fold>
+
+            model.addAttribute("user", userService.getByPersonId(id));
+            model.addAttribute("person", person);
+
+            model.addAttribute("experience", new Experience());
+            model.addAttribute("education", new Education());
+            model.addAttribute("skill", new Skill());
+            model.addAttribute("image", new byte[]{});
+
+            model.addAttribute("experienceList", experienceService.findExperiencesByPersonId(person.getId()));
+            model.addAttribute("educationList", educationService.findEducationsByPersonId(person.getId()));
+            model.addAttribute("skillObjList", skillService.findSkillsByPersonId(
+                    commonUtils.splitStringOfIntegers(person.getSkills(), ", ")));
+            return "viewPersonProfile";
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
+            return "redirect:/";
+        }
+    }
+    //</editor-fold>
+    //<editor-fold desc="Experience">
+    @PostMapping("/addExperience")
+    private String addExperience(@ModelAttribute("person") Person person, @ModelAttribute("image") MultipartFile image,
+                                 @ModelAttribute("experience") Experience experience, RedirectAttributes redirectAttributes) {
+        experience.setPerson(person);
+        experienceService.save(experience);
+
+        redirectAttributes.addFlashAttribute("person", person);
+        redirectAttributes.addFlashAttribute("experience", new Experience());
+        redirectAttributes.addFlashAttribute("education", new Education());
+        redirectAttributes.addFlashAttribute("skill", new Skill());
+
+        redirectAttributes.addFlashAttribute("experienceList", experienceService.findExperiencesByPersonId(person.getId()));
+        redirectAttributes.addFlashAttribute("educationList", educationService.findEducationsByPersonId(person.getId()));
+        redirectAttributes.addFlashAttribute("skillObjList", skillService.findSkillsByPersonId(
+                commonUtils.splitStringOfIntegers(person.getSkills(), ", ")));
+        return "redirect:/personProfile";
+    }
+
+    @PostMapping("/editExperience")
+    public String editExperience(@ModelAttribute("person") Person person, @ModelAttribute("expId") String id, Model model,
+                        RedirectAttributes redirectAttributes) {
+        redirectAttributes.addFlashAttribute("person", person);
+        model.addAttribute("experience", experienceService.findById(Integer.parseInt(id)));
+        redirectAttributes.addFlashAttribute("experience", experienceService.findById(Integer.parseInt(id)));
+        return "editExperience";
+    }
+
+    @PostMapping("/updateExperience")
+    private String updateExperience(@ModelAttribute("person") Person person, @ModelAttribute("experience") Experience experience,
+                                    @ModelAttribute("extId") Integer id, RedirectAttributes redirectAttributes) {
+        experience.setPerson(person);
+        experience.setId(id);
+        experienceService.save(experience);
+
+        redirectAttributes.addFlashAttribute("person", person);
+        redirectAttributes.addFlashAttribute("experience", new Experience());
+        redirectAttributes.addFlashAttribute("education", new Education());
+        redirectAttributes.addFlashAttribute("skill", new Skill());
+
+        redirectAttributes.addFlashAttribute("experienceList", experienceService.findExperiencesByPersonId(person.getId()));
+        redirectAttributes.addFlashAttribute("educationList", educationService.findEducationsByPersonId(person.getId()));
+        redirectAttributes.addFlashAttribute("skillObjList", skillService.findSkillsByPersonId(
+                commonUtils.splitStringOfIntegers(person.getSkills(), ", ")));
+        return "redirect:/personProfile";
+    }
+    //</editor-fold>
+    //<editor-fold desc="Education">
+    @PostMapping("/addEducation")
+    private String addEducation(@ModelAttribute("person") Person person, @ModelAttribute("education") Education education,
+                                 RedirectAttributes redirectAttributes) {
+        education.setPerson(person);
+        educationService.save(education);
+
+        redirectAttributes.addFlashAttribute("person", person);
+        redirectAttributes.addFlashAttribute("experience", new Experience());
+        redirectAttributes.addFlashAttribute("education", new Education());
+        redirectAttributes.addFlashAttribute("skill", new Skill());
+
+        redirectAttributes.addFlashAttribute("experienceList", experienceService.findExperiencesByPersonId(person.getId()));
+        redirectAttributes.addFlashAttribute("educationList", educationService.findEducationsByPersonId(person.getId()));
+        redirectAttributes.addFlashAttribute("skillObjList", skillService.findSkillsByPersonId(
+                commonUtils.splitStringOfIntegers(person.getSkills(), ", ")));
+        return "redirect:/personProfile";
+    }
+
+    @PostMapping("/editEducation")
+    public String editEducation(@ModelAttribute("person") Person person, @ModelAttribute("eduId") String id, Model model,
+                                 RedirectAttributes redirectAttributes) {
+        redirectAttributes.addFlashAttribute("person", person);
+        model.addAttribute("education", educationService.findById(Integer.parseInt(id)));
+        redirectAttributes.addFlashAttribute("education", educationService.findById(Integer.parseInt(id)));
+        return "editEducation";
+    }
+
+    @PostMapping("/updateEducation")
+    private String updateEducation(@ModelAttribute("person") Person person, @ModelAttribute("education") Education education,
+                                    @ModelAttribute("eduId") Integer id, RedirectAttributes redirectAttributes) {
+        education.setPerson(person);
+        education.setId(id);
+        educationService.save(education);
+
+        redirectAttributes.addFlashAttribute("person", person);
+        redirectAttributes.addFlashAttribute("experience", new Experience());
+        redirectAttributes.addFlashAttribute("education", new Education());
+        redirectAttributes.addFlashAttribute("skill", new Skill());
+
+        redirectAttributes.addFlashAttribute("experienceList", experienceService.findExperiencesByPersonId(person.getId()));
+        redirectAttributes.addFlashAttribute("educationList", educationService.findEducationsByPersonId(person.getId()));
+        redirectAttributes.addFlashAttribute("skillObjList", skillService.findSkillsByPersonId(
+                commonUtils.splitStringOfIntegers(person.getSkills(), ", ")));
+        return "redirect:/personProfile";
+    }
+    //</editor-fold>
+    //<editor-fold desc="Image">
     @PostMapping("/uploadProfileImage")
     private String uploadProfileImage(@ModelAttribute("person") Person person, @ModelAttribute("image") MultipartFile image,
                                       RedirectAttributes redirectAttributes) {
@@ -367,66 +461,5 @@ public class PersonController {
                 commonUtils.splitStringOfIntegers(person.getSkills(), ", ")));
         return "redirect:/personProfile";
     }
-
-    @GetMapping("/viewProfile/{id}")
-    private String viewProfile(@PathVariable(value = "id") Integer id, Model model, RedirectAttributes redirectAttributes) {
-        try {
-            Person person = personService.findById(id);
-
-            //<editor-fold desc="Load image to profiles image and background image directory">
-            if (person.getProfileImage() != null) {
-                Path filepath = Paths.get(profileImageDir,
-                        person.getProfileImage().getName().concat(".").concat(person.getProfileImage().getType()));
-                File file = filepath.toFile();
-                try {
-                    file.createNewFile();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                try (OutputStream os = Files.newOutputStream(filepath)) {
-                    os.write(person.getProfileImage().getImage());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    redirectAttributes.addFlashAttribute("error", "Uploading profile image was not successful!");
-                    return "redirect:/";
-                }
-            }
-
-            if (person.getBackgroundImage() != null) {
-                Path filepath = Paths.get(backgroundImageDir,
-                        person.getBackgroundImage().getName().concat(".").concat(person.getBackgroundImage().getType()));
-                File file = filepath.toFile();
-                try {
-                    file.createNewFile();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                try (OutputStream os = Files.newOutputStream(filepath)) {
-                    os.write(person.getBackgroundImage().getImage());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    redirectAttributes.addFlashAttribute("error", "Uploading background image was not successful!");
-                    return "redirect:/";
-                }
-            }
-            //</editor-fold>
-
-            model.addAttribute("user", userService.getByPersonId(id));
-            model.addAttribute("person", person);
-
-            model.addAttribute("experience", new Experience());
-            model.addAttribute("education", new Education());
-            model.addAttribute("skill", new Skill());
-            model.addAttribute("image", new byte[]{});
-
-            model.addAttribute("experienceList", experienceService.findExperiencesByPersonId(person.getId()));
-            model.addAttribute("educationList", educationService.findEducationsByPersonId(person.getId()));
-            model.addAttribute("skillObjList", skillService.findSkillsByPersonId(
-                    commonUtils.splitStringOfIntegers(person.getSkills(), ", ")));
-            return "viewPersonProfile";
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", e.getMessage());
-            return "redirect:/";
-        }
-    }
+    //</editor-fold>
 }
