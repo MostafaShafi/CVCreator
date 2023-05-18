@@ -7,6 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Controller
 public class MainController {
     //<editor-fold desc="Services and Utils">
@@ -116,14 +119,26 @@ public class MainController {
 
     @PostMapping("/saveSkill")
     public String saveSkill(@ModelAttribute("user") Users user) {
-        String[] ss = new String[]{"Java Script", "Html", "Css", "Python", "Android", "Spring Core", "Spring Boot", "Spring MVC",
-                "Spring Security", "Spring Data", "Spring Cloud", "Hibernate", "Thymeleaf", "Programing", "Web Programing",};
+        String[] ss = new String[]{
+                "Java Script", "Html", "Css", "Bootsrtap", "Angular", "React", "VueJs", "NodeJs", "ExtJs", "UI/UX",
+                "Python", "NumPy", "Pandas", "SciPy", "NLP", "MatPlot", "Machine Learning", "Deep Learning", "Data mining",
+                "Java", "Perl", "Matlab", "R Programming", "C Programing", "C++", "C#", ".Net", "Android", "Swift", "Kotlin", "Go Lang",
+                "Spring Core", "Spring Boot", "Spring MVC", "Spring Security", "Spring Data", "Spring Cloud",
+                "Hibernate", "Thymeleaf", "Swing", "JavaFX", "J2EE", "Jasper Report", "Programing", "Web Programing",
+                "Oracle", "PL/SQL", "PostgreSql", "NoSql", "H2", "MySql", "SqlLite", "MongoDB", "Neo4J", "Redis", "Cassandra",
+                "PHP", "Laravel", "Git", "GitHub", "GitLab", "Git Bash", "Maven", "Gradle", "Intellij", "Eclipse", "Visual Studio",
+                "IOC", "Web Crawling", "Rest API", "Teamwork", "Prototyping", "Requirement Analysis", "OOP",
+                "Microsoft Word", "Microsoft Excel", "Microsoft PowerPoint"
+        };
 
+        List<String> collect = skillService.findAll().stream().map(Skill::getName).collect(Collectors.toList());
         Skill skill = null;
         for (int i = 0; i < ss.length; i++) {
-            skill = new Skill();
-            skill.setName(ss[i]);
-            skillService.save(skill);
+            if (!collect.contains(ss[i])) {
+                skill = new Skill();
+                skill.setName(ss[i]);
+                skillService.save(skill);
+            }
         }
         return "home";
     }
