@@ -623,7 +623,7 @@
                                                     aria-label="Close"></button>
                                         </div>
                                     </section>
-                                    <section class="modal-body" id="veducations-modal-body">
+                                    <section class="modal-body" id="educations-modal-body">
                                         <div class="display-grid">
                                             <table class="w-100">
                                                 <tbody class="education-tb">
@@ -632,7 +632,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <input id="new-school" type="text" placeholder="School"
+                                                        <input id="school" type="text" placeholder="School"
                                                                class="pt-1 mb-2 w-100" th:field="*{school}" required>
                                                     </td>
                                                 </tr>
@@ -641,7 +641,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <select id="new-degree" th:field="*{degree}" class="pt-1 mb-2 w-100"
+                                                        <select id="degree" th:field="*{degree}" class="pt-1 mb-2 w-100"
                                                                 required>
                                                             <option th:each="item: ${degreeList}" th:value="${item.id}"
                                                                     th:text="${item.name}"></option>
@@ -653,7 +653,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <select id="new-field" th:field="*{field}" class="pt-1 mb-2 w-100"
+                                                        <select id="field" th:field="*{field}" class="pt-1 mb-2 w-100"
                                                                 required>
                                                             <option th:each="item: ${fieldList}" th:value="${item.id}"
                                                                     th:text="${item.name}"></option>
@@ -665,7 +665,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <input id="new-edu-start-date" type="date" placeholder="Start date"
+                                                        <input id="edu-start-date" type="date" placeholder="Start date"
                                                                th:field="*{startDate}" class="pt-1 mb-2 w-100" required>
                                                     </td>
                                                 </tr>
@@ -674,7 +674,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <input id="new-edu-end-date" type="date" placeholder="End date"
+                                                        <input id="edu-end-date" type="date" placeholder="End date"
                                                                th:field="*{endDate}" class="pt-1 mb-2 w-100">
                                                     </td>
                                                 </tr>
@@ -683,7 +683,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <input id="new-grade" type="number" step=".01" max="20" min="10"
+                                                        <input id="grade" type="number" step=".01" max="20" min="10"
                                                                placeholder="Grade" th:field="*{grade}"
                                                                class="pt-1 mb-2 w-100" required onblur="checkGradeRange(this)">
                                                     </td>
@@ -693,7 +693,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <textarea id="new-activities" placeholder="Activities"
+                                                        <textarea id="activities" placeholder="Activities"
                                                                   class="pt-1 mb-2 w-100" th:field="*{activities}"></textarea>
                                                     </td>
                                                 </tr>
@@ -702,7 +702,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <textarea id="new-edu-description" class="pt-1 mb-2 w-100"
+                                                        <textarea id="edu-description" class="pt-1 mb-2 w-100"
                                                                   th:field="*{description}"></textarea>
                                                     </td>
                                                 </tr>
@@ -780,18 +780,18 @@
                                             <table class="w-100">
                                                 <tbody class="skills-tb">
                                                 <tr>
-                                                    <td><label for="skill">Skill</label></td>
+                                                    <td><label for="skill-name">Skill</label></td>
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <datalist id="new-skill-list">
+                                                        <datalist id="skill-list">
                                                             <option th:each="item: ${skillList}" th:value="${item.name}"
                                                                     th:text="${item.name}"></option>
                                                         </datalist>
 
-                                                        <input id="new-skill-name" type="text" placeholder="Skill" required
+                                                        <input id="skill-name" type="text" placeholder="Skill" required
                                                                class="pt-1 mb-2 w-100" aria-expanded="false" th:field="*{name}"
-                                                               aria-autocomplete="list" list="new-skill-list">
+                                                               aria-autocomplete="list" list="skill-list">
                                                     </td>
                                                 </tr>
                                                 </tbody>
@@ -808,70 +808,6 @@
                             </div>
                         </div>
                     </section>
-
-                    <!-- Skills edit modal -->
-                    <section class="modal" tabindex="-1" id="edit-skills">
-                        <div class="modal-dialog" id="edit-skills-modal-dialog">
-                            <div class="modal-content" id="edit-skills-modal-content">
-                                <form action="#" method="post" th:object="${skill}">
-                                    <section class="modal-header row" id="edit-skills-modal-header">
-                                        <div class="col-md-4"><h4 class="title">Skills</h4></div>
-                                        <div class="col-md-7"></div>
-                                        <div class="col-md-1">
-                                            <button name="close" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                    </section>
-                                    <section class="modal-body" id="edit-skills-modal-body">
-                                        <div class="display-grid">
-                                            <table class="w-100">
-                                                <tbody class="skills-tb">
-                                                <tr>
-                                                    <td><label for="skill">Skill</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <datalist id="skill-list">
-                                                            <option th:each="item: ${skillList}" th:value="${item.id}"
-                                                                    th:text="${item.name}" th:selected="${name}"></option>
-                                                        </datalist>
-
-                                                        <input id="skill" type="text" placeholder="Skill" class="pt-1 mb-2 w-100"
-                                                               th:field="*{name}" th:value="${name}" required
-                                                               aria-autocomplete="on" list="skill-list">
-                                                    </td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </section>
-                                    <section class="modal-footer" id="edit-skills-modal-footer">
-                                        <div class="mt-3 d-flex justify-content-end">
-                                            <button id="sk-save" name="save" type="submit" class="btn-save ms-2 rounded-5 w-100">Save</button>
-                                        </div>
-                                    </section>
-                                </form>
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Skills error modal -->
-                    <!--<div class="modal fade" tabindex="-1" id="error-skills" role="dialog">
-                        <div class="modal-dialog">
-                            <section class="modal-content">
-                                <section class="modal-header row" id="error-skills-modal-header">
-                                    <div class="col-md-4"><h4 class="title">Skills</h4></div>
-                                    <div class="col-md-7"></div>
-                                    <div class="col-md-1">
-                                        <button name="close" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                </section>
-                                <section class="modal-body" id="error-skills-modal-body">
-                                    <p class="alert alert-danger" role="alert" id="skills-error-message" th:text="${error}"></p>
-                                </section>
-                                <section class="modal-footer"></section>
-                            </section>
-                        </div>
-                    </div>-->
 
                     <div style="display: none" class="alert fade" id="alert-success" role="alert" data-mdb-color="success" data-mdb-position="top-right"
                          data-mdb-stacking="true" data-mdb-width="150px" data-mdb-append-to-body="true"
