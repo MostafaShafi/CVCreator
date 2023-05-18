@@ -165,15 +165,19 @@ public class PersonController {
     }
 
     @PostMapping("/editExperience")
-    public String login(@ModelAttribute("expId") String id, Model model, RedirectAttributes redirectAttributes) {
+    public String login(@ModelAttribute("person") Person person, @ModelAttribute("expId") String id, Model model,
+                        RedirectAttributes redirectAttributes) {
+        redirectAttributes.addFlashAttribute("person", person);
         model.addAttribute("experience", experienceService.findById(Integer.parseInt(id)));
         redirectAttributes.addFlashAttribute("experience", experienceService.findById(Integer.parseInt(id)));
         return "editExperience";
     }
 
     @PostMapping("/updateExperience")
-    private String updateExperience(@ModelAttribute("person") Person person, @ModelAttribute("image") MultipartFile image,
-                                    @ModelAttribute("experience") Experience experience, RedirectAttributes redirectAttributes) {
+    private String updateExperience(@ModelAttribute("person") Person person, @ModelAttribute("experience") Experience experience,
+                                    @ModelAttribute("extId") Integer id, RedirectAttributes redirectAttributes) {
+        experience.setPerson(person);
+        experience.setId(id);
         experienceService.save(experience);
 
         redirectAttributes.addFlashAttribute("person", person);
