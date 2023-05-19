@@ -1,6 +1,5 @@
 package com.aras.cvcreator.service;
 
-import com.aras.cvcreator.model.Education;
 import com.aras.cvcreator.model.Skill;
 import com.aras.cvcreator.repository.SkillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +31,7 @@ public class SkillServiceImpl implements SkillService {
     }
 
     @Override
-    public List<Skill> findSkillsByPersonId(List<Integer> ids) {//StreamSupport.stream(repository.findSkillsByPersonId(id).spliterator(), false).collect(Collectors.toList());
+    public List<Skill> findSkillsByPersonId(List<Integer> ids) {
         return StreamSupport.stream(repository.findAllById(ids).spliterator(), false).collect(Collectors.toList());
     }
 

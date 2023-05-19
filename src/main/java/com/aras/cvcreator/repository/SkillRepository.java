@@ -11,9 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public interface SkillRepository extends CrudRepository<Skill, Integer> {
 
-    @Query(value = "select *, 0 as clazz_ from person_skill where personid = :personid", nativeQuery = true)
-    public Iterable<Skill> findSkillsByPersonId(@Param("personid") Integer id);
-
     @Query(value = "select *, 0 as clazz_ from skill where name like :name", nativeQuery = true)
     public Skill findByName(@Param("name") String name);
 }
