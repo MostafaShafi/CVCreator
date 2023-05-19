@@ -66,104 +66,104 @@
                                         <div class="display-grid" id="personal-info-form">
                                             <table class="w-100">
                                                 <tbody class="profile-tb">
-                                                <tr>
-                                                    <td><label for="firstname">First name</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input id="firstname" type="text" placeholder="First name"
-                                                               th:value="${user.firstName}" th:field="*{user.firstName}"
-                                                               class="pt-1 mb-2 w-100" required>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><label for="lastname">Last name</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input id="lastname" type="text" placeholder="Last name"
-                                                               th:value="${user.lastName}" th:field="*{user.lastName}"
-                                                               class="pt-1 mb-2 w-100" required>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><label for="gender">Gender</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <select id="gender" th:field="*{person.gender}"
-                                                                class="pt-1 mb-2 w-100" required>
-                                                            <option th:each="item: ${genderList}" th:value="${item.id}"
-                                                                    th:text="${item.name}" th:selected="${person.gender}"></option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><label for="birthday">Birthday</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input id="birthday" type="date" placeholder="Birthday"
-                                                               th:value="${person.birthday}" th:field="*{person.birthday}"
-                                                               class="pt-1 mb-2 w-100" required>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><label for="country">Country</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <select id="country" th:field="*{person.country}"
-                                                                class="pt-1 mb-2 w-100" required>
-                                                            <option th:each="item: ${countryList}" th:value="${item.id}"
-                                                                    th:text="${item.name}" th:selected="${person.country}"></option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><label for="phone">Phone</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input id="phone" type="text" placeholder="Phone"
-                                                               th:value="${person.phone}" th:field="*{person.phone}"
-                                                               class="pt-1 mb-2 w-100" required
-                                                               onblur="checkPhoneNumber(this)">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><label for="status">Status</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <select name="status" id="status" th:field="*{person.status}"
-                                                                class="pt-1 mb-2 w-100" required>
-                                                            <option th:each="item: ${statusList}" th:value="${item.id}"
-                                                                    th:text="${item.name}" th:selected="${person.status}"></option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><label for="current-position">Current position</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input id="current-position" type="text" placeholder="Current position"
-                                                               th:value="${person.currentPosition}" th:field="*{person.currentPosition}"
-                                                               class="pt-1 mb-2 w-100" required>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><label for="industry">industry</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <select id="industry" th:field="*{person.industry}" class="pt-1 mb-2 w-100" required>
-                                                            <option th:each="item: ${industryList}" th:value="${item.id}"
-                                                                    th:text="${item.name}" th:selected="${person.industry}"></option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
+                                                    <tr>
+                                                        <td><label for="firstname">First name</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input id="firstname" type="text" placeholder="First name"
+                                                                   th:value="${user.firstName}" th:field="*{user.firstName}"
+                                                                   class="pt-1 mb-2 w-100" required>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="lastname">Last name</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input id="lastname" type="text" placeholder="Last name"
+                                                                   th:value="${user.lastName}" th:field="*{user.lastName}"
+                                                                   class="pt-1 mb-2 w-100" required>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="gender">Gender</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <select id="gender" th:field="*{person.gender}"
+                                                                    class="pt-1 mb-2 w-100" required>
+                                                                <option th:each="item: ${genderList}" th:value="${item.id}"
+                                                                        th:text="${item.name}" th:selected="${person.gender}"></option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="birthday">Birthday</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input id="birthday" type="date" placeholder="Birthday"
+                                                                   th:value="${person.birthday}" th:field="*{person.birthday}"
+                                                                   class="pt-1 mb-2 w-100" required>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="country">Country</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <select id="country" th:field="*{person.country}"
+                                                                    class="pt-1 mb-2 w-100" required>
+                                                                <option th:each="item: ${countryList}" th:value="${item.id}"
+                                                                        th:text="${item.name}" th:selected="${person.country}"></option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="phone">Phone</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input id="phone" type="text" placeholder="Phone"
+                                                                   th:value="${person.phone}" th:field="*{person.phone}"
+                                                                   class="pt-1 mb-2 w-100" required
+                                                                   onblur="checkPhoneNumber(this)">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="status">Status</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <select name="status" id="status" th:field="*{person.status}"
+                                                                    class="pt-1 mb-2 w-100" required>
+                                                                <option th:each="item: ${statusList}" th:value="${item.id}"
+                                                                        th:text="${item.name}" th:selected="${person.status}"></option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="current-position">Current position</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input id="current-position" type="text" placeholder="Current position"
+                                                                   th:value="${person.currentPosition}" th:field="*{person.currentPosition}"
+                                                                   class="pt-1 mb-2 w-100" required>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="industry">industry</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <select id="industry" th:field="*{person.industry}" class="pt-1 mb-2 w-100" required>
+                                                                <option th:each="item: ${industryList}" th:value="${item.id}"
+                                                                        th:text="${item.name}" th:selected="${person.industry}"></option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
                                                 </tbody>
                                             </table>
                                             <table>
@@ -636,85 +636,85 @@
                                         <div class="display-grid">
                                             <table class="w-100">
                                                 <tbody class="education-tb">
-                                                <tr>
-                                                    <td><label for="school">School</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input id="school" type="text" placeholder="School"
-                                                               class="pt-1 mb-2 w-100" th:field="*{school}" required>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><label for="degree">Degree</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <select id="degree" th:field="*{degree}" class="pt-1 mb-2 w-100"
-                                                                required>
-                                                            <option th:each="item: ${degreeList}" th:value="${item.id}"
-                                                                    th:text="${item.name}"></option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><label for="field">Field</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <select id="field" th:field="*{field}" class="pt-1 mb-2 w-100"
-                                                                required>
-                                                            <option th:each="item: ${fieldList}" th:value="${item.id}"
-                                                                    th:text="${item.name}"></option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><label for="edu-start-date">Start date</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input id="edu-start-date" type="date" placeholder="Start date"
-                                                               th:field="*{startDate}" class="pt-1 mb-2 w-100" required>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><label for="edu-end-date">End date</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input id="edu-end-date" type="date" placeholder="End date"
-                                                               th:field="*{endDate}" class="pt-1 mb-2 w-100">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><label for="grade">Grade</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input id="grade" type="number" step=".01" max="20" min="10"
-                                                               placeholder="Grade" th:field="*{grade}"
-                                                               class="pt-1 mb-2 w-100" required onblur="checkGradeRange(this)">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><label for="activities">Activities</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <textarea id="activities" placeholder="Activities"
-                                                                  class="pt-1 mb-2 w-100" th:field="*{activities}"></textarea>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><label for="edu-description">Description</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <textarea id="edu-description" class="pt-1 mb-2 w-100"
-                                                                  th:field="*{description}"></textarea>
-                                                    </td>
-                                                </tr>
+                                                    <tr>
+                                                        <td><label for="school">School</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input id="school" type="text" placeholder="School"
+                                                                   class="pt-1 mb-2 w-100" th:field="*{school}" required>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="degree">Degree</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <select id="degree" th:field="*{degree}" class="pt-1 mb-2 w-100"
+                                                                    required>
+                                                                <option th:each="item: ${degreeList}" th:value="${item.id}"
+                                                                        th:text="${item.name}"></option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="field">Field</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <select id="field" th:field="*{field}" class="pt-1 mb-2 w-100"
+                                                                    required>
+                                                                <option th:each="item: ${fieldList}" th:value="${item.id}"
+                                                                        th:text="${item.name}"></option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="edu-start-date">Start date</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input id="edu-start-date" type="date" placeholder="Start date"
+                                                                   th:field="*{startDate}" class="pt-1 mb-2 w-100" required>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="edu-end-date">End date</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input id="edu-end-date" type="date" placeholder="End date"
+                                                                   th:field="*{endDate}" class="pt-1 mb-2 w-100">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="grade">Grade</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <input id="grade" type="number" step=".01" max="20" min="10"
+                                                                   placeholder="Grade" th:field="*{grade}"
+                                                                   class="pt-1 mb-2 w-100" required onblur="checkGradeRange(this)">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="activities">Activities</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <textarea id="activities" placeholder="Activities"
+                                                                      class="pt-1 mb-2 w-100" th:field="*{activities}"></textarea>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="edu-description">Description</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <textarea id="edu-description" class="pt-1 mb-2 w-100"
+                                                                      th:field="*{description}"></textarea>
+                                                        </td>
+                                                    </tr>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -797,21 +797,21 @@
                                         <div class="display-grid">
                                             <table class="w-100">
                                                 <tbody class="skills-tb">
-                                                <tr>
-                                                    <td><label for="skill-name">Skill</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <datalist id="skill-list">
-                                                            <option th:each="item: ${skillList}" th:value="${item.name}"
-                                                                    th:text="${item.name}"></option>
-                                                        </datalist>
+                                                    <tr>
+                                                        <td><label for="skill-name">Skill</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <datalist id="skill-list">
+                                                                <option th:each="item: ${skillList}" th:value="${item.name}"
+                                                                        th:text="${item.name}"></option>
+                                                            </datalist>
 
-                                                        <input id="skill-name" type="text" placeholder="Skill" required
-                                                               class="pt-1 mb-2 w-100" aria-expanded="false" th:field="*{name}"
-                                                               aria-autocomplete="list" list="skill-list">
-                                                    </td>
-                                                </tr>
+                                                            <input id="skill-name" type="text" placeholder="Skill" required
+                                                                   class="pt-1 mb-2 w-100" aria-expanded="false" th:field="*{name}"
+                                                                   aria-autocomplete="list" list="skill-list">
+                                                        </td>
+                                                    </tr>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -849,6 +849,95 @@
                                 <div class="display-flex">
                                     <input hidden th:name="skillId" th:value="${sk.getId()}"/>
                                     <p th:text="${sk.name}" class="w-50em"></p>
+                                    <button type="submit" class="btn float-right">
+                                        <img class="edit-icon" th:src="@{images/icon/remove.png}">
+                                    </button>
+                                </div>
+                            </form>
+                            <div th:if="${!iStat.last}" class="display-flex mt-2-N">
+                                <hr class="hr-100 ml-1-N">
+                            </div>
+                        </section>
+                    </section>
+                </section>
+
+                <!-- Languages -->
+                <section class="rounded mb-3 ghostwhite-bg-color joby-block" id="languages-sec">
+                    <!-- Languages add modal -->
+                    <section class="modal" tabindex="-1" id="add-languages">
+                        <div class="modal-dialog" id="add-languages-modal-dialog">
+                            <div class="modal-content" id="add-languages-modal-content">
+                                <form th:action="@{/addLanguage}" method="post" th:object="${language}">
+                                    <section class="modal-header row" id="add-languages-modal-header">
+                                        <div class="col-md-4"><h4 class="title">Languages</h4></div>
+                                        <div class="col-md-7"></div>
+                                        <div class="col-md-1">
+                                            <button name="close" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                    </section>
+                                    <section class="modal-body" id="add-languages-modal-body">
+                                        <div class="display-grid">
+                                            <table class="w-100">
+                                                <tbody class="languages-tb">
+                                                    <tr>
+                                                        <td><label for="language-name">Language</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <datalist id="language-list">
+                                                                <option th:each="item: ${languageList}" th:value="${item.name}"
+                                                                        th:text="${item.name}"></option>
+                                                            </datalist>
+
+                                                            <input id="language-name" type="text" placeholder="Language" required
+                                                                   class="pt-1 mb-2 w-100" aria-expanded="false" th:field="*{name}"
+                                                                   aria-autocomplete="list" list="language-list">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="proficiency">Proficiency</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <select id="proficiency" th:field="*{proficiency}"
+                                                                    class="pt-1 mb-2 w-100" required>
+                                                                <option th:each="item: ${proficiencyList}" th:value="${item.id}"
+                                                                        th:text="${item.name}"></option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </section>
+                                    <section class="modal-footer" id="add-languages-modal-footer">
+                                        <div class="mt-3 d-flex justify-content-end">
+                                            <button id="add-lang-save" name="save" type="submit" class="btn-save ms-2 rounded-5 w-100">Save
+                                            </button>
+                                        </div>
+                                    </section>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Languages show-->
+                    <section class="ms-3" id="languages-show">
+                        <section id="lang-header" class="display-flex">
+                            <div class="w-50em" id="lang-title">
+                                <h4 class="font-cursive font-larger rounded-bottom w-15 pb-1 ps-1 third-bg-color">Languages</h4>
+                            </div>
+                            <button type="button" class="btn float-right" data-bs-toggle="modal"
+                                    data-bs-target="#add-languages">
+                                <img class="edit-icon" th:src="@{images/icon/add.png}">
+                            </button>
+                        </section>
+                        <section id="lang-body" th:each="lang, iStat : ${langObjList}">
+                            <form th:action="@{/removeLanguage}" method="post" th:object="${lang}">
+                                <div class="display-flex">
+                                    <input hidden th:name="langId" th:value="${lang.getId()}"/>
+                                    <p th:text="${lang.name}" class="w-50em"></p>
+                                    <p th:text="${lang.proficiency.name}" class="w-50em color-darkgrey"></p>
                                     <button type="submit" class="btn float-right">
                                         <img class="edit-icon" th:src="@{images/icon/remove.png}">
                                     </button>

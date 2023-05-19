@@ -57,6 +57,12 @@ public class PersonController {
     @Autowired
     private WorkLocationTypeServiceImpl workLocationTypeService;
     @Autowired
+    private LanguageServiceImpl languageService;
+    @Autowired
+    private BaseLanguageServiceImpl baseLanguageService;
+    @Autowired
+    private ProficiencyServiceImpl proficiencyService;
+    @Autowired
     private String profileImageDir;
     @Autowired
     private String backgroundImageDir;
@@ -76,6 +82,16 @@ public class PersonController {
     @ModelAttribute("skillList")
     public List<Skill> skillList() {
         return skillService.findAll();
+    }
+
+    @ModelAttribute("languageList")
+    public List<BaseLanguage> languageList() {
+        return baseLanguageService.findAll();
+    }
+
+    @ModelAttribute("proficiencyList")
+    public List<Proficiency> proficiencyList() {
+        return proficiencyService.findAll();
     }
 
     @ModelAttribute("countryList")
@@ -139,11 +155,13 @@ public class PersonController {
         redirectAttributes.addFlashAttribute("experience", new Experience());
         redirectAttributes.addFlashAttribute("education", new Education());
         redirectAttributes.addFlashAttribute("skill", new Skill());
+        redirectAttributes.addFlashAttribute("language", new Language());
 
         redirectAttributes.addFlashAttribute("experienceList", experienceService.findExperiencesByPersonId(person.getId()));
         redirectAttributes.addFlashAttribute("educationList", educationService.findEducationsByPersonId(person.getId()));
         redirectAttributes.addFlashAttribute("skillObjList", skillService.findSkillsByPersonId(
                 commonUtils.splitStringOfIntegers(person.getSkills(), ", ")));
+        redirectAttributes.addFlashAttribute("langObjList", languageService.findLanguagesByPersonId(person.getId()));
         return "redirect:/personProfile";
     }
 
@@ -193,15 +211,11 @@ public class PersonController {
             model.addAttribute("user", userService.getByPersonId(id));
             model.addAttribute("person", person);
 
-            model.addAttribute("experience", new Experience());
-            model.addAttribute("education", new Education());
-            model.addAttribute("skill", new Skill());
-            model.addAttribute("image", new byte[]{});
-
             model.addAttribute("experienceList", experienceService.findExperiencesByPersonId(person.getId()));
             model.addAttribute("educationList", educationService.findEducationsByPersonId(person.getId()));
             model.addAttribute("skillObjList", skillService.findSkillsByPersonId(
                     commonUtils.splitStringOfIntegers(person.getSkills(), ", ")));
+            model.addAttribute("langObjList", languageService.findLanguagesByPersonId(person.getId()));
             return "viewPersonProfile";
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("error", e.getMessage());
@@ -246,11 +260,13 @@ public class PersonController {
         redirectAttributes.addFlashAttribute("experience", new Experience());
         redirectAttributes.addFlashAttribute("education", new Education());
         redirectAttributes.addFlashAttribute("skill", new Skill());
+        redirectAttributes.addFlashAttribute("language", new Language());
 
         redirectAttributes.addFlashAttribute("experienceList", experienceService.findExperiencesByPersonId(person.getId()));
         redirectAttributes.addFlashAttribute("educationList", educationService.findEducationsByPersonId(person.getId()));
         redirectAttributes.addFlashAttribute("skillObjList", skillService.findSkillsByPersonId(
                 commonUtils.splitStringOfIntegers(person.getSkills(), ", ")));
+        redirectAttributes.addFlashAttribute("langObjList", languageService.findLanguagesByPersonId(person.getId()));
         return "redirect:/personProfile";
     }
 
@@ -268,11 +284,13 @@ public class PersonController {
         redirectAttributes.addFlashAttribute("experience", new Experience());
         redirectAttributes.addFlashAttribute("education", new Education());
         redirectAttributes.addFlashAttribute("skill", new Skill());
+        redirectAttributes.addFlashAttribute("language", new Language());
 
         redirectAttributes.addFlashAttribute("experienceList", experienceService.findExperiencesByPersonId(person.getId()));
         redirectAttributes.addFlashAttribute("educationList", educationService.findEducationsByPersonId(person.getId()));
         redirectAttributes.addFlashAttribute("skillObjList", skillService.findSkillsByPersonId(
                 commonUtils.splitStringOfIntegers(person.getSkills(), ", ")));
+        redirectAttributes.addFlashAttribute("langObjList", languageService.findLanguagesByPersonId(person.getId()));
         return "redirect:/personProfile";
     }
 
@@ -312,11 +330,13 @@ public class PersonController {
         redirectAttributes.addFlashAttribute("experience", new Experience());
         redirectAttributes.addFlashAttribute("education", new Education());
         redirectAttributes.addFlashAttribute("skill", new Skill());
+        redirectAttributes.addFlashAttribute("language", new Language());
 
         redirectAttributes.addFlashAttribute("experienceList", experienceService.findExperiencesByPersonId(person.getId()));
         redirectAttributes.addFlashAttribute("educationList", educationService.findEducationsByPersonId(person.getId()));
         redirectAttributes.addFlashAttribute("skillObjList", skillService.findSkillsByPersonId(
                 commonUtils.splitStringOfIntegers(person.getSkills(), ", ")));
+        redirectAttributes.addFlashAttribute("langObjList", languageService.findLanguagesByPersonId(person.getId()));
         return "redirect:/personProfile";
     }
 
@@ -334,11 +354,13 @@ public class PersonController {
         redirectAttributes.addFlashAttribute("experience", new Experience());
         redirectAttributes.addFlashAttribute("education", new Education());
         redirectAttributes.addFlashAttribute("skill", new Skill());
+        redirectAttributes.addFlashAttribute("language", new Language());
 
         redirectAttributes.addFlashAttribute("experienceList", experienceService.findExperiencesByPersonId(person.getId()));
         redirectAttributes.addFlashAttribute("educationList", educationService.findEducationsByPersonId(person.getId()));
         redirectAttributes.addFlashAttribute("skillObjList", skillService.findSkillsByPersonId(
                 commonUtils.splitStringOfIntegers(person.getSkills(), ", ")));
+        redirectAttributes.addFlashAttribute("langObjList", languageService.findLanguagesByPersonId(person.getId()));
         return "redirect:/personProfile";
     }
     //</editor-fold>
@@ -353,11 +375,13 @@ public class PersonController {
         redirectAttributes.addFlashAttribute("experience", new Experience());
         redirectAttributes.addFlashAttribute("education", new Education());
         redirectAttributes.addFlashAttribute("skill", new Skill());
+        redirectAttributes.addFlashAttribute("language", new Language());
 
         redirectAttributes.addFlashAttribute("experienceList", experienceService.findExperiencesByPersonId(person.getId()));
         redirectAttributes.addFlashAttribute("educationList", educationService.findEducationsByPersonId(person.getId()));
         redirectAttributes.addFlashAttribute("skillObjList", skillService.findSkillsByPersonId(
                 commonUtils.splitStringOfIntegers(person.getSkills(), ", ")));
+        redirectAttributes.addFlashAttribute("langObjList", languageService.findLanguagesByPersonId(person.getId()));
         return "redirect:/personProfile";
     }
 
@@ -381,11 +405,13 @@ public class PersonController {
         redirectAttributes.addFlashAttribute("experience", new Experience());
         redirectAttributes.addFlashAttribute("education", new Education());
         redirectAttributes.addFlashAttribute("skill", new Skill());
+        redirectAttributes.addFlashAttribute("language", new Language());
 
         redirectAttributes.addFlashAttribute("experienceList", experienceService.findExperiencesByPersonId(person.getId()));
         redirectAttributes.addFlashAttribute("educationList", educationService.findEducationsByPersonId(person.getId()));
         redirectAttributes.addFlashAttribute("skillObjList", skillService.findSkillsByPersonId(
                 commonUtils.splitStringOfIntegers(person.getSkills(), ", ")));
+        redirectAttributes.addFlashAttribute("langObjList", languageService.findLanguagesByPersonId(person.getId()));
         return "redirect:/personProfile";
     }
 
@@ -406,11 +432,13 @@ public class PersonController {
         redirectAttributes.addFlashAttribute("experience", new Experience());
         redirectAttributes.addFlashAttribute("education", new Education());
         redirectAttributes.addFlashAttribute("skill", new Skill());
+        redirectAttributes.addFlashAttribute("language", new Language());
 
         redirectAttributes.addFlashAttribute("experienceList", experienceService.findExperiencesByPersonId(person.getId()));
         redirectAttributes.addFlashAttribute("educationList", educationService.findEducationsByPersonId(person.getId()));
         redirectAttributes.addFlashAttribute("skillObjList", skillService.findSkillsByPersonId(
                 commonUtils.splitStringOfIntegers(person.getSkills(), ", ")));
+        redirectAttributes.addFlashAttribute("langObjList", languageService.findLanguagesByPersonId(person.getId()));
         return "redirect:/personProfile";
     }
 
@@ -434,11 +462,13 @@ public class PersonController {
         redirectAttributes.addFlashAttribute("experience", new Experience());
         redirectAttributes.addFlashAttribute("education", new Education());
         redirectAttributes.addFlashAttribute("skill", new Skill());
+        redirectAttributes.addFlashAttribute("language", new Language());
 
         redirectAttributes.addFlashAttribute("experienceList", experienceService.findExperiencesByPersonId(person.getId()));
         redirectAttributes.addFlashAttribute("educationList", educationService.findEducationsByPersonId(person.getId()));
         redirectAttributes.addFlashAttribute("skillObjList", skillService.findSkillsByPersonId(
                 commonUtils.splitStringOfIntegers(person.getSkills(), ", ")));
+        redirectAttributes.addFlashAttribute("langObjList", languageService.findLanguagesByPersonId(person.getId()));
         return "redirect:/personProfile";
     }
 
@@ -448,7 +478,7 @@ public class PersonController {
         return "redirect:/personProfile";
     }
     //</editor-fold>
-    //<editor-fold desc="Education">
+    //<editor-fold desc="Skill">
     @PostMapping("/addSkill")
     private String addSkill(@ModelAttribute("person") Person person, @ModelAttribute("image") MultipartFile image,
                             @ModelAttribute("skill") Skill skill, RedirectAttributes redirectAttributes) {
@@ -467,11 +497,13 @@ public class PersonController {
         redirectAttributes.addFlashAttribute("experience", new Experience());
         redirectAttributes.addFlashAttribute("education", new Education());
         redirectAttributes.addFlashAttribute("skill", new Skill());
+        redirectAttributes.addFlashAttribute("language", new Language());
 
         redirectAttributes.addFlashAttribute("experienceList", experienceService.findExperiencesByPersonId(person.getId()));
         redirectAttributes.addFlashAttribute("educationList", educationService.findEducationsByPersonId(person.getId()));
         redirectAttributes.addFlashAttribute("skillObjList", skillService.findSkillsByPersonId(
                 commonUtils.splitStringOfIntegers(person.getSkills(), ", ")));
+        redirectAttributes.addFlashAttribute("langObjList", languageService.findLanguagesByPersonId(person.getId()));
         return "redirect:/personProfile";
     }
 
@@ -479,6 +511,33 @@ public class PersonController {
     public String removeSkill(@ModelAttribute("person") Person person, @ModelAttribute("skillId") String id) {
         person.setSkills(commonUtils.removeItemFromStringSeparatedByComma(person.getSkills(), id));
         personService.save(person);
+        return "redirect:/personProfile";
+    }
+    //</editor-fold>
+    //<editor-fold desc="Language">
+    @PostMapping("/addLanguage")
+    private String addLanguage(@ModelAttribute("person") Person person, @ModelAttribute("image") MultipartFile image,
+                            @ModelAttribute("language") Language language, RedirectAttributes redirectAttributes) {
+        language.setPerson(person);
+        languageService.save(language);
+
+        redirectAttributes.addFlashAttribute("person", person);
+        redirectAttributes.addFlashAttribute("experience", new Experience());
+        redirectAttributes.addFlashAttribute("education", new Education());
+        redirectAttributes.addFlashAttribute("skill", new Skill());
+        redirectAttributes.addFlashAttribute("language", new Language());
+
+        redirectAttributes.addFlashAttribute("experienceList", experienceService.findExperiencesByPersonId(person.getId()));
+        redirectAttributes.addFlashAttribute("educationList", educationService.findEducationsByPersonId(person.getId()));
+        redirectAttributes.addFlashAttribute("skillObjList", skillService.findSkillsByPersonId(
+                commonUtils.splitStringOfIntegers(person.getSkills(), ", ")));
+        redirectAttributes.addFlashAttribute("langObjList", languageService.findLanguagesByPersonId(person.getId()));
+        return "redirect:/personProfile";
+    }
+
+    @PostMapping("/removeLanguage")
+    public String removeLanguage(@ModelAttribute("person") Person person, @ModelAttribute("langId") String id) {
+        languageService.delete(languageService.findById(Integer.parseInt(id)));
         return "redirect:/personProfile";
     }
     //</editor-fold>

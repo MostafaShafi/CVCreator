@@ -73,6 +73,9 @@ public class Person {
     @Column(name = "skills")
     private String skills;
 
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+    private List<Language> languages;
+
     public Gender getGender() {
         return gender;
     }
@@ -203,5 +206,13 @@ public class Person {
 
     public void setSkills(String skillList) {
         this.skills = skillList;
+    }
+
+    public List<Language> getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(List<Language> languages) {
+        this.languages = languages;
     }
 }

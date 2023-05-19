@@ -51,6 +51,12 @@ public class RegistrationController {
     private SkillServiceImpl skillService;
     @Autowired
     private StatusServiceImpl statusService;
+    @Autowired
+    private LanguageServiceImpl languageService;
+    @Autowired
+    private BaseLanguageServiceImpl baseLanguageService;
+    @Autowired
+    private ProficiencyServiceImpl proficiencyService;
     //</editor-fold>
 
     @ModelAttribute("user")
@@ -115,13 +121,17 @@ public class RegistrationController {
         model.addAttribute("experience", new Experience());
         model.addAttribute("education", new Education());
         model.addAttribute("skill", new Skill());
+        model.addAttribute("language", new Language());
 
         model.addAttribute("experienceList", experienceService.findExperiencesByPersonId(person.getId()));
         model.addAttribute("educationList", educationService.findEducationsByPersonId(person.getId()));
         model.addAttribute("skillObjList", skillService.findSkillsByPersonId(
                 commonUtils.splitStringOfIntegers(person.getSkills(), ", ")));
+        model.addAttribute("langObjList", languageService.findLanguagesByPersonId(person.getId()));
 
         model.addAttribute("skillList", skillService.findAll());
+        model.addAttribute("languageList", baseLanguageService.findAll());
+        model.addAttribute("proficiencyList", proficiencyService.findAll());
         model.addAttribute("countryList", locationService.findAll());
         model.addAttribute("industryList", industryService.findAll());
         model.addAttribute("relatedIndustryList", industryService.findAll());
