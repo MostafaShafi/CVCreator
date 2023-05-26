@@ -201,7 +201,8 @@
                             <img class="w-100 background-image" th:if="${person.backgroundImage != null}" id="main-bg-profile-img"
                                  th:src="@{${'images/background/' + user.firstName + '-' + user.lastName + '-' + person.id + '-background.png'}}">
 
-                            <button type="button" class="btn float-right ml-3-N position-absolute" data-bs-toggle="modal" data-bs-target="#background-image">
+                            <button type="button" class="btn float-right ml-3-N position-absolute" data-bs-toggle="modal"
+                                    data-bs-target="#background-image">
                                 <img class="edit-icon third-bg-color" th:src="@{images/icon/edit.png}">
                             </button>
 
@@ -273,8 +274,10 @@
                         <section class="ms-3">
                             <section>
                                 <div class="mt-110pr-N w-10em">
-                                    <button type="button" data-bs-toggle="modal" data-bs-target="#personal-image" class="profile-image-button">
-                                        <img th:if="${person.profileImage == null}" class="rounded-circle profile-image" th:src="@{images/profile/profile.jpg}">
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#personal-image"
+                                            class="profile-image-button">
+                                        <img th:if="${person.profileImage == null}" class="rounded-circle profile-image"
+                                             th:src="@{images/profile/profile.jpg}">
                                         <img th:if="${person.profileImage != null}" class="rounded-circle profile-image"
                                              th:src="@{${'images/profile/' + person.users.firstName + '-' + person.users.lastName + '-' + person.id + '-profile.png'}}">
                                     </button>

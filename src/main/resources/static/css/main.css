@@ -175,6 +175,11 @@ form i {
     padding-top: 10%;
 }
 
+.A4-size {
+    height: 3508px;
+    width: 2480px;
+}
+
 
 /* Display */
 .display-flex {
