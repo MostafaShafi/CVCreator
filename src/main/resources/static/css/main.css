@@ -47,6 +47,10 @@ form i {
     background-color: #0D4C92/*EEF2E6*/;
 }
 
+.second-bg-color {
+    color: #A0E4CB;
+}
+
 .third-color {
     color: #59C1BD;
 }
@@ -59,10 +63,21 @@ form i {
     background-color: ghostwhite;
 }
 
+.ghostwhite-color {
+    color: ghostwhite;
+}
+
 .color-darkgrey {
     color: darkgrey;
 }
 
+.color-white {
+    color: white;
+}
+
+.color-bg-white {
+    background-color: white;
+}
 
 /* Icon */
 .icon-size-64 {
@@ -103,28 +118,16 @@ form i {
 
 
 /* Size */
-.hr-100 {
-    width: 100%;
-}
-
-.hr-94 {
-    width: 94%;
-}
-
-.hr-50 {
-    width: 50%;
-}
-
-.hr-25 {
-    width: 25%;
-}
-
 .ms-30p {
     margin-left: 30%;
 }
 
 .mt-110pr-N {
     margin-top: -110px;
+}
+
+.w-94 {
+    width: 94%;
 }
 
 .w-10em {
@@ -145,6 +148,10 @@ form i {
 
 .mt-2-N {
     margin-top: -2%;
+}
+
+.mb-5-N {
+    margin-bottom: -5%;
 }
 
 .mt-7-N {
@@ -311,4 +318,28 @@ form i {
 .background-image {
     min-height: 200px;
     max-height: 200px;
+}
+
+.sheet-outer {
+    margin: 0;
+    background: #e0e0e0;
+}
+
+.sheet {
+    overflow: hidden;
+    position: relative;
+    box-sizing: border-box;
+    page-break-after: always;
+    background: white;
+    box-shadow: 0 .5mm 2mm rgba(0,0,0,.3);
+    margin: 5mm auto;
+}
+
+.sheet-outer.A4 .sheet {
+    width: 210mm;
+    height: 296mm
+}
+
+.sheet-outer.A4 .sheet hr {
+    opacity: 1;
 }
