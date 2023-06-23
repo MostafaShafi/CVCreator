@@ -359,6 +359,20 @@
                             <p id="info-country" class="ff-aleo-r color-darkgrey mt-2-N" th:text="${person.LocationName}"></p>
                         </section>
                     </section>
+
+                    <section id="personal-more-actions">
+                        <form th:action="@{/showCV}" method="post">
+                            <button id="show-cv" type="submit" class="btn-outline-secondary ms-2 mb-2 rounded-5 w-20">
+                                <img class="edit-icon mt-1" th:src="@{images/icon/download.png}">
+                                Show as PDF
+                            </button>
+                        </form>
+
+                        <a th:href="@{/showCV}" class="btn-outline-secondary ms-2 mb-2 rounded-5 w-20">
+                            <img class="edit-icon mt-1" th:src="@{images/icon/download.png}">
+                            Show as PDF
+                        </a>
+                    </section>
                 </section>
 
                 <!-- Summary -->
@@ -594,8 +608,10 @@
                                 <p id="experience-period" class="mt-1-N color-darkgrey">
                                     <span th:text="${#dates.format(exp.startDate, 'YYY-dd-MM')}" id="experience-startDate"></span>
                                     <span th:if="${exp.endDate != null}"> - </span>
-                                    <span th:text="${#dates.format(exp.endDate, 'YYY-dd-MM')}" id="experience-endDate"></span>
-                                    <span th:if="${exp.endDate != null}"> . </span>
+                                    <span th:if="${exp.endDate != null}" th:text="${#dates.format(exp.endDate, 'YYY-dd-MM')}"
+                                          id="experience-endDate"></span>
+                                    <span th:if="${exp.endDate == null}">present</span>
+                                    <span> . </span>
                                     <span id="periodDiff" th:text="${exp.period}" class="forth-color"></span>
                                 </p>
                                 <p class="mt-2-N color-darkgrey">

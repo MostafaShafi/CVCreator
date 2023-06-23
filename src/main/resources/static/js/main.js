@@ -44,3 +44,9 @@ function showErrorModal() {
         alert(errorMessage.innerHTML);
     }
 }
+
+function makePDF() {
+    const element = document.getElementById('main');
+    // Choose the element and save the PDF for your user.
+    html2pdf().from(element).save();
+}
