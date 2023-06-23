@@ -160,9 +160,10 @@ public class Experience {
     }
 
     public String getPeriod() {
-        if (this.startDate != null && this.endDate != null) {
+        if (this.startDate != null) {
             LocalDateTime st = LocalDateTime.ofInstant(this.startDate.toInstant(), ZoneId.systemDefault());
-            LocalDateTime ed = LocalDateTime.ofInstant(this.endDate.toInstant(), ZoneId.systemDefault());
+            LocalDateTime ed = LocalDateTime.ofInstant(this.endDate != null ? this.endDate.toInstant() : (new Date()).toInstant(),
+                    ZoneId.systemDefault());
 
             long year = ChronoUnit.YEARS.between(st, ed);
             long month = ChronoUnit.MONTHS.between(st, ed) % 12;
@@ -170,5 +171,9 @@ public class Experience {
                     (month > 1 ? (month + " mos") : (month == 1 ? (month + "mo") : ""));
         }
         return new String();
+    }
+
+    public boolean getIsDescriptionEmpty() {
+        return this.description == null || this.description.isEmpty() ? true : false;
     }
 }
