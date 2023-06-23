@@ -95,7 +95,8 @@
                     <section th:each="person, iStat: ${personList}">
                         <a class="row" th:href="@{/viewProfile/{id}(id=${person.id})}">
                             <div class="col-md-3">
-                                <img th:if="${person.profileImage == null}" class="rounded-circle profile-image-aside" th:src="@{images/profile/profile.jpg}">
+                                <img th:if="${person.profileImage == null}" class="rounded-circle profile-image-aside"
+                                     th:src="@{images/profile/profile.jpg}">
                                 <img th:if="${person.profileImage != null}" class="rounded-circle profile-image-aside"
                                      th:src="@{${'images/profile/' + person.users.firstName + '-' + person.users.lastName + '-' + person.id + '-profile.png'}}">
                             </div>
