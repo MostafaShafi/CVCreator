@@ -148,8 +148,9 @@ public class PersonController {
     }
 
     @PostMapping("/updatePersonalInfo")
-    private String updatePersonalInfo(@ModelAttribute("person") Person person, @ModelAttribute("image") MultipartFile image,
-                                      RedirectAttributes redirectAttributes) {
+    private String updatePersonalInfo(@ModelAttribute("user") Users user, @ModelAttribute("person") Person person,
+                                      @ModelAttribute("image") MultipartFile image, RedirectAttributes redirectAttributes) {
+        userService.save(user);
         personService.save(person);
 
         redirectAttributes.addFlashAttribute("person", person);
