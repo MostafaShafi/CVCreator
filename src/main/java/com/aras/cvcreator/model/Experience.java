@@ -176,4 +176,10 @@ public class Experience {
     public boolean getIsDescriptionEmpty() {
         return this.description == null || this.description.isEmpty() ? true : false;
     }
+
+    public String getDescSummary() {
+        return this.description != null && !this.description.isEmpty() && this.description.length() > 100 ?
+                this.description.substring(0, 100).concat(" ...") :
+                this.description;
+    }
 }

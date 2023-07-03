@@ -15,8 +15,11 @@
         <title>CV</title>
     </head>
     <body class="sheet-outer A4">
-        <button id="generatePDF" onclick="makePDF()" class="rounded-3 btn btn-secondary ml-50 mt-2 mb-2">Download as PDF</button>
+        <!-- Download Btn -->
+        <button id="generatePDF" onclick="makePDF()" class="rounded-3 btn btn-secondary ms-50 mt-2 mb-2">Download as PDF</button>
+        <!-- End Download Btn -->
 
+        <!-- CV PDF -->
         <main id="main" class="sheet display-flex ff-aleo-r">
             <div class="col-md-4 color-bg-cv h-100">
                 <section class="ms-5 mt-5 w-10em">
@@ -32,8 +35,8 @@
                     <p class="mt-2-N font-size-12" th:text="${person.phone}"></p>
                     <h6>Email:</h6>
                     <p class="mt-2-N font-size-12" th:text="${person.users.email}"></p>
-                    <h6>Address:</h6>
-                    <p class="mt-2-N font-size-12" th:text="${person.address}"></p>
+                    <h6 th:unless="${person.isAddressEmpty}">Address:</h6>
+                    <p class="mt-2-N font-size-12" th:unless="${person.isAddressEmpty}" th:text="${person.address}"></p>
 
                     <h3 class="mt-4 mb-5-N">Education</h3>
                     <hr class="w-100 ghostwhite-color ghostwhite-bg-color" size="4">
@@ -44,7 +47,8 @@
                             <span th:text="${#dates.format(edu.endDate, 'YYY-dd-MM')}"></span>
                         </p>
                         <p class="mt-2-N">
-                            <span th:text="${edu.degreeName}"> . </span>
+                            <span th:text="${edu.degreeName}"></span>
+                            <span> . </span>
                             <span th:text="${edu.fieldName}"></span>
                         </p>
                         <p class="mt-2-N font-size-12" th:text="${edu.school}"></p>
@@ -69,25 +73,25 @@
             </div>
 
             <div class="col-md-8 ms-3 pe-5 color-text-cv">
-                <h1 class="ff-aleo-b mt-5" th:text="${person.users.firstName + ' ' + person.users.lastName}"></h1>
+                <h1 id="PersonName" class="ff-aleo-b mt-5" th:text="${person.users.firstName + ' ' + person.users.lastName}"></h1>
                 <p class="ff-aleo-r mt-2-N" th:text="${person.currentPosition}"></p>
                 <p class="ff-aleo-r" th:text="${person.summary}"></p>
 
                 <h3 class="mb-2-N">Experience</h3>
-                <hr class="w-75 color-bg-cv" size="4">
+                <hr class="w-85 ms-4-N color-bg-cv" size="4">
                 <section th:each="exp, iStat : ${experienceList}" class="mb-2 row">
                     <section class="col-md-1">
                         <div class="dot"></div>
-                        <div th:unless="${exp.isDescriptionEmpty}" class="vertical-line h-110-px"></div>
-                        <div th:if="${exp.isDescriptionEmpty}" class="vertical-line h-75-px"></div>
+                        <div th:unless="${exp.isDescriptionEmpty}" class="vertical-line h-95-px"></div>
+                        <div th:if="${exp.isDescriptionEmpty}" class="vertical-line h-70-px"></div>
                     </section>
                     <section class="col-md-11">
                         <p class="font-size-12">
                             <span th:text="${#dates.format(exp.startDate, 'YYY-dd-MM')}" id="experience-startDate"></span>
-                            <span th:if="${exp.endDate != null}"> - </span>
+                            <span> - </span>
                             <span th:if="${exp.endDate != null}" th:text="${#dates.format(exp.endDate, 'YYY-dd-MM')}"
                                   id="experience-endDate"></span>
-                            <span th:if="${exp.endDate == null}">present</span>
+                            <span th:if="${exp.endDate == null}">Present</span>
                             <span> . </span>
                             <span id="periodDiff" th:text="${exp.period}" class="forth-color"></span>
                         </p>
@@ -98,14 +102,15 @@
                             <span th:text="${exp.workLocationType.name}" class="mt-2-N color-darkgrey"></span>
                         </p>
                         <h6 class="mt-2-N" th:text="${exp.title}"></h6>
-                        <p th:text="${exp.description}"></p>
+                        <p th:text="${exp.descSummary}" class="font-size-12"></p>
                     </section>
                 </section>
 
                 <h3 class="mt-4 mb-2-N">Skill</h3>
-                <hr class="w-75 color-bg-cv" size="4">
+                <hr class="w-85 ms-4-N color-bg-cv" size="4">
                 <span th:each="sk , iStat : ${skillObjList}" th:text="${sk.name}" class="me-3"></span>
             </div>
         </main>
+        <!-- End CV PDF -->
     </body>
 </html>

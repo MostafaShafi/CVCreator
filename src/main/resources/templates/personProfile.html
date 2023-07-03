@@ -201,7 +201,7 @@
                             <img class="w-100 background-image" th:if="${person.backgroundImage != null}" id="main-bg-profile-img"
                                  th:src="@{${'images/background/' + user.firstName + '-' + user.lastName + '-' + person.id + '-background.png'}}">
 
-                            <button type="button" class="btn float-right ml-3-N position-absolute" data-bs-toggle="modal"
+                            <button type="button" class="btn float-right ms-3-N position-absolute" data-bs-toggle="modal"
                                     data-bs-target="#background-image">
                                 <img class="edit-icon third-bg-color" th:src="@{images/icon/edit.png}">
                             </button>
@@ -273,7 +273,7 @@
 
                         <section class="ms-3">
                             <section>
-                                <div class="mt-110pr-N w-10em">
+                                <div class="mt-110-N w-10em">
                                     <button type="button" data-bs-toggle="modal" data-bs-target="#personal-image"
                                             class="profile-image-button">
                                         <img th:if="${person.profileImage == null}" class="rounded-circle profile-image"
@@ -360,17 +360,10 @@
                         </section>
                     </section>
 
-                    <section id="personal-more-actions">
-                        <form th:action="@{/showCV}" method="post">
-                            <button id="show-cv" type="submit" class="btn-outline-secondary ms-2 mb-2 rounded-5 w-20">
-                                <img class="edit-icon mt-1" th:src="@{images/icon/download.png}">
-                                Show as PDF
-                            </button>
-                        </form>
-
-                        <a th:href="@{/showCV}" class="btn-outline-secondary ms-2 mb-2 rounded-5 w-20">
-                            <img class="edit-icon mt-1" th:src="@{images/icon/download.png}">
-                            Show as PDF
+                    <section id="personal-more-actions" class="align-items-center ms-2 mb-2 rounded-5 w-20 ff-aleo-r border border-primary">
+                        <a th:href="@{/showCV}" th:target="_blank">
+                            <img class="edit-icon mt-1 me-2" th:src="@{images/icon/download.png}">
+                            <span class="text-dark">Show as PDF</span>
                         </a>
                     </section>
                 </section>
@@ -520,7 +513,7 @@
                                                 </tbody>
                                             </table>
                                             <section class="display-flex mt-3">
-                                                <hr class="w-50 ml-25">
+                                                <hr class="w-50 ms-25">
                                             </section>
                                             <table class="w-100">
                                                 <tbody class="profile-tb">
@@ -554,7 +547,7 @@
                                                 </tbody>
                                             </table>
                                             <section class="display-flex mt-3">
-                                                <hr class="w-50 ml-25">
+                                                <hr class="w-50 ms-25">
                                             </section>
                                             <table>
                                                 <tbody>
@@ -630,7 +623,7 @@
                                 </div>
                             </form>
                             <div class="display-flex">
-                                <hr th:if="${!iStat.last}" class="w-100 ml-1-N">
+                                <hr th:if="${!iStat.last}" class="w-100 ms-1-N">
                             </div>
                         </section>
                     </section>
@@ -792,7 +785,7 @@
                                 </div>
                             </form>
                             <div class="display-flex">
-                                <hr th:if="${!iStat.last}" class="w-100 ml-1-N">
+                                <hr th:if="${!iStat.last}" class="w-100 ms-1-N">
                             </div>
                         </section>
                     </section>
@@ -874,7 +867,7 @@
                                 </div>
                             </form>
                             <div th:if="${!iStat.last}" class="display-flex mt-2-N">
-                                <hr class="w-100 ml-1-N">
+                                <hr class="w-100 ms-1-N">
                             </div>
                         </section>
                     </section>
@@ -963,7 +956,7 @@
                                 </div>
                             </form>
                             <div th:if="${!iStat.last}" class="display-flex mt-2-N">
-                                <hr class="w-100 ml-1-N">
+                                <hr class="w-100 ms-1-N">
                             </div>
                         </section>
                     </section>

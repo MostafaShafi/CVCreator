@@ -47,6 +47,7 @@ function showErrorModal() {
 
 function makePDF() {
     const element = document.getElementById('main');
-    // Choose the element and save the PDF for your user.
-    html2pdf().from(element).save();
+    const personName = document.getElementById('PersonName');
+    var opt = {filename: personName.innerText + ' - CV.pdf'};
+    html2pdf().set(opt).from(element).save();
 }

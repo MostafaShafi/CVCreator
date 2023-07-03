@@ -215,4 +215,8 @@ public class Person {
     public void setLanguages(List<Language> languages) {
         this.languages = languages;
     }
+
+    public boolean getIsAddressEmpty() {
+        return this.address == null || this.address.isEmpty() ? true : false;
+    }
 }

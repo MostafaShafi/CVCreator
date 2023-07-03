@@ -127,14 +127,6 @@ form i {
 
 
 /* Size */
-.ms-30p {
-    margin-left: 30%;
-}
-
-.mt-110pr-N {
-    margin-top: -110px;
-}
-
 .w-94 {
     width: 94%;
 }
@@ -159,6 +151,22 @@ form i {
     width: 60%;
 }
 
+.w-85 {
+    width: 85%;
+}
+
+.h-95-px {
+    height: 95px;
+}
+
+.h-70-px {
+    height: 70px;
+}
+
+.pt-10 {
+    padding-top: 10%;
+}
+
 .mt-1-N {
     margin-top: -1%;
 }
@@ -175,6 +183,38 @@ form i {
     margin-top: -30%;
 }
 
+.mt-110-N {
+    margin-top: -110px;
+}
+
+.ms-3 {
+    margin-left: 3%;
+}
+
+.ms-25 {
+    margin-left: 25%;
+}
+
+.ms-30 {
+    margin-left: 30%;
+}
+
+.ms-50 {
+    margin-left: 50%;
+}
+
+.ms-1-N {
+    margin-left: -1%;
+}
+
+.ms-3-N {
+    margin-left: -3%;
+}
+
+.ms-4-N {
+    margin-left: -4%;
+}
+
 .mb-2-N {
     margin-bottom: -2%;
 }
@@ -183,37 +223,9 @@ form i {
     margin-bottom: -5%;
 }
 
-.ml-1-N {
-    margin-left: -1%;
-}
-
-.ml-3 {
-    margin-left: 3%;
-}
-
-.ml-3-N {
-    margin-left: -3%;
-}
-
-.ml-25 {
-    margin-left: 25%;
-}
-
-.pt-10 {
-    padding-top: 10%;
-}
-
 .A4-size {
     height: 3508px;
     width: 2480px;
-}
-
-.h-110-px {
-    height: 110px;
-}
-
-.h-75-px {
-    height: 75px;
 }
 
 
@@ -379,7 +391,6 @@ form i {
 
 .vertical-line {
     border-left: 2px solid #031633;
-    /*height: 110px;*/
     margin-top: -70%;
     margin-left: 13%;
 }
