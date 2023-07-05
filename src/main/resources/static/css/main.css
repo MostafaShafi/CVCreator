@@ -104,8 +104,18 @@ form i {
     color: #1a1d20;
 }
 
+.add-icon {
+    width: 0.9em;
+    float: right;
+}
+
 .edit-icon {
-    width: 1em;
+    width: 0.7em;
+    float: right;
+}
+
+.remove-icon {
+    width: 0.6em;
     float: right;
 }
 
