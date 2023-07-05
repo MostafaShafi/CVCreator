@@ -110,7 +110,7 @@ public class LoginController {
         //</editor-fold>
 
         model.addAttribute("personList", personList);
-        return "home";
+        return "login";
     }
 
     @GetMapping("/login")
@@ -120,7 +120,7 @@ public class LoginController {
 
     @GetMapping("/logout")
     public String logout() {
-        return "home";
+        return "login";
     }
 
     @PostMapping("/login")
