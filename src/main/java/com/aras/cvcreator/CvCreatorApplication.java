@@ -13,11 +13,11 @@ public class CvCreatorApplication {
 
     @Bean
     public String profileImageDir() {
-        return "D:/Proje/Git/CVCreator/src/main/resources/static/images/profile";
+        return System.getProperties().get("user.dir") + "/src/main/resources/static/images/profile";
     }
 
     @Bean
     public String backgroundImageDir() {
-        return "D:/Proje/Git/CVCreator/src/main/resources/static/images/background";
+        return System.getProperties().get("user.dir") + "/src/main/resources/static/images/background";
     }
 }
