@@ -177,12 +177,15 @@ public class LoginController {
                 model.addAttribute("skill", new Skill());
                 model.addAttribute("language", new Language());
                 model.addAttribute("image", new byte[]{});
+                model.addAttribute("expertise", new Skill());
 
                 model.addAttribute("experienceList", experienceService.findExperiencesByPersonId(person.getId()));
                 model.addAttribute("educationList", educationService.findEducationsByPersonId(person.getId()));
                 model.addAttribute("skillObjList", skillService.findSkillsByPersonId(
                         commonUtils.splitStringOfIntegers(person.getSkills(), ", ")));
-                redirectAttributes.addFlashAttribute("langObjList", languageService.findLanguagesByPersonId(person.getId()));
+                model.addAttribute("expertiseObjList", skillService.findSkillsByPersonId(
+                        commonUtils.splitStringOfIntegers(person.getExpertises(), ", ")));
+                model.addAttribute("langObjList", languageService.findLanguagesByPersonId(person.getId()));
 
                 model.addAttribute("skillList", skillService.findAll());
                 model.addAttribute("languageList", baseLanguageService.findAll());

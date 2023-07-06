@@ -873,6 +873,82 @@
                     </section>
                 </section>
 
+                <!-- Expertise -->
+                <section class="rounded mb-3 ghostwhite-bg-color joby-block" id="expertises-sec">
+                    <!-- Expertises add modal -->
+                    <section class="modal" tabindex="-1" id="add-expertises">
+                        <div class="modal-dialog" id="add-expertises-modal-dialog">
+                            <div class="modal-content" id="add-expertises-modal-content">
+                                <form th:action="@{/addExpertise}" method="post" th:object="${expertise}">
+                                    <section class="modal-header row" id="add-expertises-modal-header">
+                                        <div class="col-md-4"><h4 class="title">Expertises</h4></div>
+                                        <div class="col-md-7"></div>
+                                        <div class="col-md-1">
+                                            <button name="close" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                    </section>
+                                    <section class="modal-body" id="add-expertises-modal-body">
+                                        <div class="display-grid">
+                                            <table class="w-100">
+                                                <tbody class="expertises-tb">
+                                                <tr>
+                                                    <td><label for="expertise-name">Expertise</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <datalist id="expertise-list">
+                                                            <option th:each="item: ${skillObjList}" th:value="${item.name}"
+                                                                    th:text="${item.name}"></option>
+                                                        </datalist>
+
+                                                        <input id="expertise-name" type="text" placeholder="Expertise" required
+                                                               class="pt-1 mb-2 w-100" aria-expanded="false" th:field="*{name}"
+                                                               aria-autocomplete="list" list="expertise-list">
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </section>
+                                    <section class="modal-footer" id="add-expertises-modal-footer">
+                                        <div class="mt-3 d-flex justify-content-end">
+                                            <button id="expertise-save" name="save" type="submit" class="btn-save ms-2 rounded-5 w-100">Save
+                                            </button>
+                                        </div>
+                                    </section>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Expertises show-->
+                    <section class="ms-3" id="Expertises-show">
+                        <section id="expertise-header" class="display-flex">
+                            <div class="w-50em" id="expertise-title">
+                                <h4 class="font-cursive font-larger rounded-bottom w-15 pb-1 ps-1 third-bg-color">Expertises</h4>
+                            </div>
+                            <button type="button" class="btn float-right" data-bs-toggle="modal"
+                                    data-bs-target="#add-expertises">
+                                <img class="add-icon third-bg-color" th:src="@{images/icon/add.png}">
+                            </button>
+                        </section>
+                        <section id="expertise-body" th:each="sk, iStat : ${expertiseObjList}">
+                            <form th:action="@{/removeExpertise}" method="post" th:object="${sk}">
+                                <div class="display-flex">
+                                    <input hidden th:name="expertiseId" th:value="${sk.getId()}"/>
+                                    <p th:text="${sk.name}" class="w-50em"></p>
+                                    <button type="submit" class="btn float-right">
+                                        <img class="remove-icon" th:src="@{images/icon/remove.png}">
+                                    </button>
+                                </div>
+                            </form>
+                            <div th:if="${!iStat.last}" class="display-flex mt-2-N">
+                                <hr class="w-100 ms-1-N">
+                            </div>
+                        </section>
+                    </section>
+                </section>
+
                 <!-- Languages -->
                 <section class="rounded mb-3 ghostwhite-bg-color joby-block" id="languages-sec">
                     <!-- Languages add modal -->
