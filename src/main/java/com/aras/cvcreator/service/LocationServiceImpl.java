@@ -23,6 +23,7 @@ public class LocationServiceImpl implements LocationService {
     }
 
     //@Transactional
+    @Override
     public void saveCountry(Location location) {
         location.setLocationType(LocationType.Country);
         save(location);

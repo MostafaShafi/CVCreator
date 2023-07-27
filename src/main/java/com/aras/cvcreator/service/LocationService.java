@@ -7,7 +7,12 @@ import java.util.List;
 
 public interface LocationService {
     Location save(Location location);
+
     List<Location> findByType(LocationType type);
+
+    void saveCountry(Location location);
+
     List<Location> findAll();
+
     Location findById(Long id);
 }
