@@ -14,29 +14,29 @@ import java.util.stream.Collectors;
 public class MainController {
     //<editor-fold desc="Services and Utils">
     @Autowired
-    private LocationServiceImpl locationService;
+    private LocationService locationService;
     @Autowired
-    private IndustryServiceImpl industryService;
+    private IndustryService industryService;
     @Autowired
-    private DegreeServiceImpl degreeService;
+    private DegreeService degreeService;
     @Autowired
-    private FieldServiceImpl fieldService;
+    private FieldService fieldService;
     @Autowired
-    private SkillServiceImpl skillService;
+    private SkillService skillService;
     @Autowired
-    private StatusServiceImpl statusService;
+    private StatusService statusService;
     @Autowired
-    private GenderServiceImpl genderService;
+    private GenderService genderService;
     @Autowired
-    private ExperienceTypeServiceImpl experienceTypeService;
+    private ExperienceTypeService experienceTypeService;
     @Autowired
-    private WorkLocationTypeServiceImpl workLocationTypeService;
+    private WorkLocationTypeService workLocationTypeService;
     @Autowired
-    private ProficiencyServiceImpl proficiencyService;
+    private ProficiencyService proficiencyService;
     @Autowired
-    private LanguageServiceImpl languageService;
+    private LanguageService languageService;
     @Autowired
-    private BaseLanguageServiceImpl baseLanguageService;
+    private BaseLanguageService baseLanguageService;
     //</editor-fold>
 
     @PostMapping("/saveCountry")
@@ -235,7 +235,7 @@ public class MainController {
                 "Central Kurdish - کوردی (دەستنوسی عەرەبی)",
                 "Chinese - 中文",
                 "Chinese (Hong Kong) - 中文（香港）",
-                "Chinese (Simplified) - 中文（简体）",
+                "Chinese (Sified) - 中文（简体）",
                 "Chinese (Traditional) - 中文（繁體）",
                 "Corsican",
                 "Croatian - hrvatski",

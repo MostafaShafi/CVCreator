@@ -26,37 +26,37 @@ public class RegistrationController {
     @Autowired
     private CommonUtils commonUtils;
     @Autowired
-    private UserServiceImpl userService;
+    private UserService userService;
     @Autowired
-    private PersonServiceImpl personService;
+    private PersonService personService;
     @Autowired
-    private LocationServiceImpl locationService;
+    private LocationService locationService;
     @Autowired
-    private IndustryServiceImpl industryService;
+    private IndustryService industryService;
     @Autowired
-    private DegreeServiceImpl degreeService;
+    private DegreeService degreeService;
     @Autowired
-    private FieldServiceImpl fieldService;
+    private FieldService fieldService;
     @Autowired
-    private ExperienceServiceImpl experienceService;
+    private ExperienceService experienceService;
     @Autowired
-    private EducationServiceImpl educationService;
+    private EducationService educationService;
     @Autowired
-    private GenderServiceImpl genderService;
+    private GenderService genderService;
     @Autowired
-    private ExperienceTypeServiceImpl experienceTypeService;
+    private ExperienceTypeService experienceTypeService;
     @Autowired
-    private WorkLocationTypeServiceImpl workLocationTypeService;
+    private WorkLocationTypeService workLocationTypeService;
     @Autowired
-    private SkillServiceImpl skillService;
+    private SkillService skillService;
     @Autowired
-    private StatusServiceImpl statusService;
+    private StatusService statusService;
     @Autowired
-    private LanguageServiceImpl languageService;
+    private LanguageService languageService;
     @Autowired
-    private BaseLanguageServiceImpl baseLanguageService;
+    private BaseLanguageService baseLanguageService;
     @Autowired
-    private ProficiencyServiceImpl proficiencyService;
+    private ProficiencyService proficiencyService;
     //</editor-fold>
 
     @ModelAttribute("user")
