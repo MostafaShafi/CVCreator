@@ -53,7 +53,7 @@ public class Person {
     @Column(name = "address")
     private String address;
 
-    @Column(name = "summary")
+    @Column(name = "summary", columnDefinition = "varchar(2000)")
     private String summary;
 
     @ManyToOne
