@@ -15,19 +15,25 @@ public class CommonUtils {
      * Add a string field to another with a comma separator. For example: "1, 2, 3"
      * @param string Existence string
      * @param newItem New item string
-     * @return A string field that is concatenated by new item
+     * @return A string field that is concatenated with new item
      */
     public String addItemToStringByCommaSeparator(String string, String newItem) {
         return string == null || string.isEmpty() ? newItem : string.concat(", ").concat(newItem);
     }
 
-    public String removeItemFromStringSeparatedByComma(String mainString, String removableItem) {
-        if (mainString != null && !mainString.isEmpty() && mainString.contains(removableItem)) {
-            if (mainString.endsWith(removableItem)) {
-                mainString = mainString.replace(", ".concat(removableItem), "");
+    /**
+     * Remove one item of a string that separated with comma
+     * @param mainString Existence string
+     * @param removedItem Item that should be removed
+     * @return Main string without removed item
+     */
+    public String removeItemFromStringSeparatedByComma(String mainString, String removedItem) {
+        if (mainString != null && !mainString.isEmpty() && mainString.contains(removedItem)) {
+            if (mainString.endsWith(removedItem)) {
+                mainString = mainString.replace(", ".concat(removedItem), "");
             }
             else {
-                mainString = mainString.replace(removableItem.concat(", "), "");
+                mainString = mainString.replace(removedItem.concat(", "), "");
             }
         }
 
