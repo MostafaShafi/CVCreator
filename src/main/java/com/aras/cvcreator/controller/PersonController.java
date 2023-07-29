@@ -563,6 +563,50 @@ public class PersonController {
         model.addAttribute("skillObjList", skillService.findSkillsByPersonId(
                 commonUtils.splitStringOfIntegers(person.getSkills(), ", ")));
         model.addAttribute("langObjList", languageService.findLanguagesByPersonId(person.getId()));
-        return "resumeTemp";
+        return "firstResumeTemp";
+    }
+
+    @GetMapping("/showFirstResume")
+    public String showFirstResume(@ModelAttribute("user") Users user, @ModelAttribute("image") MultipartFile image, Model model) {
+        Person person = personService.findByUserId(user.getId());
+        if (person == null) {
+
+        }
+
+        model.addAttribute("user", user);
+        model.addAttribute("person", person);
+        model.addAttribute("experience", new Experience());
+        model.addAttribute("education", new Education());
+        model.addAttribute("skill", new Skill());
+        model.addAttribute("language", new Language());
+
+        model.addAttribute("experienceList", experienceService.findExperiencesByPersonId(person.getId()));
+        model.addAttribute("educationList", educationService.findEducationsByPersonId(person.getId()));
+        model.addAttribute("skillObjList", skillService.findSkillsByPersonId(
+                commonUtils.splitStringOfIntegers(person.getSkills(), ", ")));
+        model.addAttribute("langObjList", languageService.findLanguagesByPersonId(person.getId()));
+        return "firstResumeTemp";
+    }
+
+    @GetMapping("/showSecondResume")
+    public String showSecondResume(@ModelAttribute("user") Users user, @ModelAttribute("image") MultipartFile image, Model model) {
+        Person person = personService.findByUserId(user.getId());
+        if (person == null) {
+
+        }
+
+        model.addAttribute("user", user);
+        model.addAttribute("person", person);
+        model.addAttribute("experience", new Experience());
+        model.addAttribute("education", new Education());
+        model.addAttribute("skill", new Skill());
+        model.addAttribute("language", new Language());
+
+        model.addAttribute("experienceList", experienceService.findExperiencesByPersonId(person.getId()));
+        model.addAttribute("educationList", educationService.findEducationsByPersonId(person.getId()));
+        model.addAttribute("skillObjList", skillService.findSkillsByPersonId(
+                commonUtils.splitStringOfIntegers(person.getSkills(), ", ")));
+        model.addAttribute("langObjList", languageService.findLanguagesByPersonId(person.getId()));
+        return "secondResumeTemp";
     }
 }
