@@ -87,6 +87,22 @@ form i {
     color: #031633;
 }
 
+.color-bg-cv-second-1 {
+    background-color: #34434a;
+}
+
+.color-bg-cv-second-2 {
+    background-color: #bbdfc8;
+}
+
+.color-cv-second-1 {
+    color: #34434a;
+}
+
+.color-cv-second-2 {
+    color: #bbdfc8;
+}
+
 
 /* Icon */
 .icon-size-64 {
@@ -137,16 +153,8 @@ form i {
 
 
 /* Size */
-.w-94 {
-    width: 94%;
-}
-
 .w-10em {
     width: 10em;
-}
-
-.w-50em {
-    width: 50em;
 }
 
 .w-15 {
@@ -157,6 +165,10 @@ form i {
     width: 20%;
 }
 
+.w-50em {
+    width: 50em;
+}
+
 .w-60 {
     width: 60%;
 }
@@ -165,16 +177,36 @@ form i {
     width: 85%;
 }
 
-.h-95-px {
-    height: 95px;
+.w-94 {
+    width: 94%;
+}
+
+.h-15 {
+    height: 15%;
+}
+
+.h-33 {
+    height: 33%;
+}
+
+.h-65 {
+    height: 65%;
 }
 
 .h-70-px {
     height: 70px;
 }
 
+.h-95-px {
+    height: 95px;
+}
+
 .pt-10 {
     padding-top: 10%;
+}
+
+.p-0 {
+    padding: 0px;
 }
 
 .mt-1-N {
@@ -209,8 +241,8 @@ form i {
     margin-left: 30%;
 }
 
-.ms-50 {
-    margin-left: 50%;
+.ms-45 {
+    margin-left: 45%;
 }
 
 .ms-1-N {

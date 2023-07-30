@@ -16,100 +16,147 @@
     </head>
     <body class="sheet-outer A4">
         <!-- Download Btn -->
-        <button id="generatePDF" onclick="makePDF()" class="rounded-3 btn btn-secondary ms-50 mt-2 mb-2">Download as PDF</button>
+        <button id="generatePDF" onclick="makePDF()" class="rounded-3 btn btn-secondary ms-45 mt-2 mb-2">Download as PDF</button>
         <!-- End Download Btn -->
 
         <!-- CV PDF -->
-        <main id="main" class="sheet display-flex ff-aleo-r">
-            <div class="col-md-4 color-bg-cv h-100">
-                <section class="ms-5 mt-5 w-10em">
-                    <img th:if="${person.profileImage == null}" class="rounded-circle profile-image"
-                         th:src="@{images/profile/profile.jpg}">
-                    <img th:if="${person.profileImage != null}" class="rounded-circle profile-image"
-                         th:src="@{${'images/profile/' + person.users.firstName + '-' + person.users.lastName + '-' + person.id + '-profile.png'}}">
-                </section>
-                <section class="ms-5 ghostwhite-color">
-                    <h3 class="mt-4 mb-5-N">Contact</h3>
-                    <hr class="w-100 ghostwhite-color ghostwhite-bg-color" size="4">
-                    <h6>Phone:</h6>
-                    <p class="mt-2-N font-size-12" th:text="${person.phone}"></p>
-                    <h6>Email:</h6>
-                    <p class="mt-2-N font-size-12" th:text="${person.users.email}"></p>
-                    <h6 th:unless="${person.isAddressEmpty}">Address:</h6>
-                    <p class="mt-2-N font-size-12" th:unless="${person.isAddressEmpty}" th:text="${person.address}"></p>
+        <main id="main" class="sheet ff-aleo-r" style="border: 1px solid #59C1BD">
+            <section class="h-15">
+                <div class="h-75 color-bg-cv-second-1 color-cv-second-2">
+                    <h1 id="PersonName" class="ff-aleo-b pt-4 align-items-center" th:text="${person.users.firstName + ' ' + person.users.lastName}"></h1>
+                    <p class="ff-aleo-r align-items-center" th:text="${person.currentPosition}"></p>
+                </div>
+                <div class="h-25 color-bg-cv-second-2 color-cv-second-1">
+                    <!--table class="w-100">
+                        <tbody>
+                            <tr>
+                                <td class="p-0"><p class="mt-2-N font-size-12"><span>Gender: </span><span th:text="${person.gender.name}"></span></p></td>
+                                <td class="p-0"><p class="mt-2-N font-size-12"><span>Email: </span><span th:text="${person.users.email}"></span></p></td>
+                                <td class="p-0"><p class="mt-2-N font-size-12"><span>Industry: </span><span th:text="${person.industry.name}"></span></p></td>
+                            </tr>
+                            <tr>
+                                <td class="p-0"><p class="mt-2-N font-size-12"><span>Date of birth: </span><span th:text="${person.birthday}"></span></p></td>
+                                <td class="p-0"><p class="mt-2-N font-size-12"><span>Phone: </span><span th:text="${person.phone}"></span></p></td>
+                                <td class="p-0"><p class="mt-2-N font-size-12"><span>Address: </span><span th:text="${person.address}"></span></p></td>
+                            </tr>
+                        </tbody>
+                    </table-->
 
-                    <h3 class="mt-4 mb-5-N">Education</h3>
-                    <hr class="w-100 ghostwhite-color ghostwhite-bg-color" size="4">
-                    <section th:each="edu, iStat : ${educationList}">
-                        <p class="font-size-12">
-                            <span th:text="${#dates.format(edu.startDate, 'YYY-dd-MM')}"></span>
-                            <span> - </span>
-                            <span th:text="${#dates.format(edu.endDate, 'YYY-dd-MM')}"></span>
-                        </p>
-                        <p class="mt-2-N">
-                            <span th:text="${edu.degreeName}"></span>
-                            <span> . </span>
-                            <span th:text="${edu.fieldName}"></span>
-                        </p>
-                        <p class="mt-2-N font-size-12" th:text="${edu.school}"></p>
+                    <div class="row ms-5 h-65">
+                        <div class="col-md-4 mt-2">
+                            <p class="mt-2-N font-size-12"><span class="fw-bold">Gender: </span><span th:text="${person.gender.name}"></span></p>
+                        </div>
+                        <div class="col-md-4 mt-2">
+                            <p class="mt-2-N font-size-12"><span class="fw-bold">Email: </span><span th:text="${person.users.email}"></span></p>
+                        </div>
+                        <div class="col-md-4 mt-2">
+                            <p class="mt-2-N font-size-12"><span class="fw-bold">Industry: </span><span th:text="${person.industry.name}"></span></p>
+                        </div>
+                    </div>
+                    <div class="row ms-5 h-65">
+                        <div class="col-md-4 mt-2-N">
+                            <p class="mt-2-N font-size-12"><span class="fw-bold">Date of birth: </span><span th:text="${person.birthday}"></span></p>
+                        </div>
+                        <div class="col-md-4 mt-2-N">
+                            <p class="mt-2-N font-size-12"><span class="fw-bold">Phone: </span><span th:text="${person.phone}"></span></p>
+                        </div>
+                        <div class="col-md-4 mt-2-N">
+                            <p class="mt-2-N font-size-12"><span class="fw-bold">Address: </span><span th:text="${person.address}"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="display-flex">
+                <div class="col-md-4 color-bg-cv h-100">
+                    <section class="ms-5 mt-5 w-10em">
+                        <img th:if="${person.profileImage == null}" class="rounded-circle profile-image"
+                             th:src="@{images/profile/profile.jpg}">
+                        <img th:if="${person.profileImage != null}" class="rounded-circle profile-image"
+                             th:src="@{${'images/profile/' + person.users.firstName + '-' + person.users.lastName + '-' + person.id + '-profile.png'}}">
+                    </section>
+                    <section class="ms-5 ghostwhite-color">
+                        <h3 class="mt-4 mb-5-N">Contact</h3>
+                        <hr class="w-100 ghostwhite-color ghostwhite-bg-color" size="4">
+                        <h6>Phone:</h6>
+                        <p class="mt-2-N font-size-12" th:text="${person.phone}"></p>
+                        <h6>Email:</h6>
+                        <p class="mt-2-N font-size-12" th:text="${person.users.email}"></p>
+                        <h6 th:unless="${person.isAddressEmpty}">Address:</h6>
+                        <p class="mt-2-N font-size-12" th:unless="${person.isAddressEmpty}" th:text="${person.address}"></p>
+
+                        <h3 class="mt-4 mb-5-N">Education</h3>
+                        <hr class="w-100 ghostwhite-color ghostwhite-bg-color" size="4">
+                        <section th:each="edu, iStat : ${educationList}">
+                            <p class="font-size-12">
+                                <span th:text="${#dates.format(edu.startDate, 'YYY-dd-MM')}"></span>
+                                <span> - </span>
+                                <span th:text="${#dates.format(edu.endDate, 'YYY-dd-MM')}"></span>
+                            </p>
+                            <p class="mt-2-N">
+                                <span th:text="${edu.degreeName}"></span>
+                                <span> . </span>
+                                <span th:text="${edu.fieldName}"></span>
+                            </p>
+                            <p class="mt-2-N font-size-12" th:text="${edu.school}"></p>
+                        </section>
+
+                        <h3 class="mt-4 mb-5-N">Expertise</h3>
+                        <hr class="w-100 ghostwhite-color ghostwhite-bg-color" size="4">
+                        <ul>
+                            <li>Java</li>
+                            <li>PL/SQL</li>
+                        </ul>
+
+                        <h3 class="mt-4 mb-5-N">Language</h3>
+                        <hr class="w-100 ghostwhite-color ghostwhite-bg-color" size="4">
+                        <section th:each="lang , iStat : ${langObjList}">
+                            <h6>
+                                <span th:text="${lang.name}">    </span>
+                                <span th:text="${lang.proficiency.name}" class="color-darkgrey font-size-12"></span>
+                            </h6>
+                        </section>
+                    </section>
+                </div>
+
+                <div class="col-md-8 ms-3 pe-5 color-text-cv">
+                    <h1 class="ff-aleo-b mt-5" th:text="${person.users.firstName + ' ' + person.users.lastName}"></h1>
+                    <p class="ff-aleo-r mt-2-N" th:text="${person.currentPosition}"></p>
+                    <p class="ff-aleo-r" th:text="${person.summary}"></p>
+
+                    <h3 class="mb-2-N">Experience</h3>
+                    <hr class="w-85 ms-4-N color-bg-cv" size="4">
+                    <section th:each="exp, iStat : ${experienceList}" class="mb-2 row">
+                        <section class="col-md-1">
+                            <div class="dot"></div>
+                            <div th:unless="${exp.isDescriptionEmpty}" class="vertical-line h-95-px"></div>
+                            <div th:if="${exp.isDescriptionEmpty}" class="vertical-line h-70-px"></div>
+                        </section>
+                        <section class="col-md-11">
+                            <p class="font-size-12">
+                                <span th:text="${#dates.format(exp.startDate, 'YYY-dd-MM')}" id="experience-startDate"></span>
+                                <span> - </span>
+                                <span th:if="${exp.endDate != null}" th:text="${#dates.format(exp.endDate, 'YYY-dd-MM')}"
+                                      id="experience-endDate"></span>
+                                <span th:if="${exp.endDate == null}">Present</span>
+                                <span> . </span>
+                                <span id="periodDiff" th:text="${exp.period}" class="forth-color"></span>
+                            </p>
+                            <p class="mt-2-N">
+                                <span th:text="${exp.companyName}">         </span>
+                                <span th:text="${exp.location}" class="mt-2-N color-darkgrey"></span>
+                                <span> . </span>
+                                <span th:text="${exp.workLocationType.name}" class="mt-2-N color-darkgrey"></span>
+                            </p>
+                            <h6 class="mt-2-N" th:text="${exp.title}"></h6>
+                            <p th:text="${exp.descSummary}" class="font-size-12"></p>
+                        </section>
                     </section>
 
-                    <h3 class="mt-4 mb-5-N">Expertise</h3>
-                    <hr class="w-100 ghostwhite-color ghostwhite-bg-color" size="4">
-                    <ul>
-                        <li>Java</li>
-                        <li>PL/SQL</li>
-                    </ul>
-
-                    <h3 class="mt-4 mb-5-N">Language</h3>
-                    <hr class="w-100 ghostwhite-color ghostwhite-bg-color" size="4">
-                    <section th:each="lang , iStat : ${langObjList}">
-                        <h6>
-                            <span th:text="${lang.name}">    </span>
-                            <span th:text="${lang.proficiency.name}" class="color-darkgrey font-size-12"></span>
-                        </h6>
-                    </section>
-                </section>
-            </div>
-
-            <div class="col-md-8 ms-3 pe-5 color-text-cv">
-                <h1 id="PersonName" class="ff-aleo-b mt-5" th:text="${person.users.firstName + ' ' + person.users.lastName}"></h1>
-                <p class="ff-aleo-r mt-2-N" th:text="${person.currentPosition}"></p>
-                <p class="ff-aleo-r" th:text="${person.summary}"></p>
-
-                <h3 class="mb-2-N">Experience</h3>
-                <hr class="w-85 ms-4-N color-bg-cv" size="4">
-                <section th:each="exp, iStat : ${experienceList}" class="mb-2 row">
-                    <section class="col-md-1">
-                        <div class="dot"></div>
-                        <div th:unless="${exp.isDescriptionEmpty}" class="vertical-line h-95-px"></div>
-                        <div th:if="${exp.isDescriptionEmpty}" class="vertical-line h-70-px"></div>
-                    </section>
-                    <section class="col-md-11">
-                        <p class="font-size-12">
-                            <span th:text="${#dates.format(exp.startDate, 'YYY-dd-MM')}" id="experience-startDate"></span>
-                            <span> - </span>
-                            <span th:if="${exp.endDate != null}" th:text="${#dates.format(exp.endDate, 'YYY-dd-MM')}"
-                                  id="experience-endDate"></span>
-                            <span th:if="${exp.endDate == null}">Present</span>
-                            <span> . </span>
-                            <span id="periodDiff" th:text="${exp.period}" class="forth-color"></span>
-                        </p>
-                        <p class="mt-2-N">
-                            <span th:text="${exp.companyName}">         </span>
-                            <span th:text="${exp.location}" class="mt-2-N color-darkgrey"></span>
-                            <span> . </span>
-                            <span th:text="${exp.workLocationType.name}" class="mt-2-N color-darkgrey"></span>
-                        </p>
-                        <h6 class="mt-2-N" th:text="${exp.title}"></h6>
-                        <p th:text="${exp.descSummary}" class="font-size-12"></p>
-                    </section>
-                </section>
-
-                <h3 class="mt-4 mb-2-N">Skill</h3>
-                <hr class="w-85 ms-4-N color-bg-cv" size="4">
-                <span th:each="sk , iStat : ${skillObjList}" th:text="${sk.name}" class="me-3"></span>
-            </div>
+                    <h3 class="mt-4 mb-2-N">Skill</h3>
+                    <hr class="w-85 ms-4-N color-bg-cv" size="4">
+                    <span th:each="sk , iStat : ${skillObjList}" th:text="${sk.name}" class="me-3"></span>
+                </div>
+            </section>
         </main>
         <!-- End CV PDF -->
     </body>

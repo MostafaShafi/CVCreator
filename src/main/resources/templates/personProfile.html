@@ -271,48 +271,6 @@
                             <!-- End change profile image -->
                         </section>
 
-                        <!-- Select resume temp -->
-                        <section class="modal" tabindex="-1" id="resume">
-                            <div class="modal-dialog" id="resume-modal-dialog">
-                                <div class="modal-content" id="resume-modal-content">
-                                    <section class="modal-header row" id="resume-modal-header">
-                                        <div class="col-md-4"><h4 class="title" id="resume-title">Select template</h4></div>
-                                        <div class="col-md-7"></div>
-                                        <div class="col-md-1">
-                                            <button name="close" id="resume-modal-close-btn" class="btn-close"
-                                                    data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                    </section>
-                                    <section class="modal-body" id="resume-modal-body">
-                                        <div class="display-grid" id="resume-form">
-                                            <a th:href="@{/showFirstResume}" th:target="_blank">
-                                                <img class="profile-image-edit" th:src="@{${'images/resumeTemp/firstResumeTemp.png'}}">
-                                            </a>
-                                            <a th:href="@{/showSecondResume}" th:target="_blank">
-                                                <img class="profile-image-edit" th:src="@{${'images/resumeTemp/secondResumeTemp.png'}}">
-                                            </a>
-                                            <a th:href="@{/showThirdResume}" th:target="_blank">
-                                                <img class="profile-image-edit" th:src="@{${'images/resumeTemp/thirdResumeTemp.png'}}">
-                                            </a>
-                                        </div>
-                                    </section>
-                                    <section class="modal-footer" id="resume-modal-footer">
-                                        <div class="mt-3 d-flex justify-content-end">
-                                            <button type="button" class="btn float-right" data-bs-toggle="modal"
-                                                    data-bs-target="#background-image-edit">Add Photo
-                                            </button>
-                                            <form th:action="@{/removeBackgroundImage}" method="post">
-                                                <button id="resume-remove" type="submit"
-                                                        class="btn-save ms-2 rounded-5 w-100">Remove Photo
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </section>
-                                </div>
-                            </div>
-                        </section>
-                        <!-- End show profile image -->
-
                         <section class="ms-3">
                             <section>
                                 <div class="mt-110-N w-10em">
@@ -402,6 +360,48 @@
                         </section>
                     </section>
 
+                    <!-- Select resume temp -->
+                    <section class="modal" tabindex="-1" id="resume">
+                        <div class="modal-dialog" id="resume-modal-dialog">
+                            <div class="modal-content" id="resume-modal-content">
+                                <section class="modal-header row" id="resume-modal-header">
+                                    <div class="col-md-4"><h4 class="title" id="resume-title">Select template</h4></div>
+                                    <div class="col-md-7"></div>
+                                    <div class="col-md-1">
+                                        <button name="close" id="resume-modal-close-btn" class="btn-close"
+                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                </section>
+                                <section class="modal-body" id="resume-modal-body">
+                                    <div class="display-grid" id="resume-form">
+                                        <a th:href="@{/showFirstResume}" th:target="_blank">
+                                            <img class="w-94" th:src="@{images/resumeTemp/firstResumeTemp.png}">
+                                        </a>
+                                        <a th:href="@{/showSecondResume}" th:target="_blank">
+                                            <img class="w-94" th:src="@{images/resumeTemp/secondResumeTemp.png}">
+                                        </a>
+                                        <a th:href="@{/showThirdResume}" th:target="_blank">
+                                            <img class="w-94" th:src="@{images/resumeTemp/thirdResumeTemp.png}">
+                                        </a>
+                                    </div>
+                                </section>
+                                <section class="modal-footer" id="resume-modal-footer">
+                                    <div class="mt-3 d-flex justify-content-end">
+                                        <button type="button" class="btn float-right" data-bs-toggle="modal"
+                                                data-bs-target="#background-image-edit">Add Photo
+                                        </button>
+                                        <form th:action="@{/removeBackgroundImage}" method="post">
+                                            <button id="resume-remove" type="submit"
+                                                    class="btn-save ms-2 rounded-5 w-100">Remove Photo
+                                            </button>
+                                        </form>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- End select resume temp -->
+
                     <section id="personal-more-actions" class="align-items-center ms-2 mb-2 rounded-5 w-20 ff-aleo-r border border-primary">
                         <a th:href="@{/showCV}" th:target="_blank">
                             <img class="edit-icon mt-1 me-2" th:src="@{images/icon/download.png}">
@@ -409,7 +409,7 @@
                         </a>
 
                         <button type="button" class="btn float-right ms-3-N position-absolute" data-bs-toggle="modal"
-                                data-bs-target="#resume-modal-dialog">
+                                data-bs-target="#resume">
                             <img class="edit-icon mt-1 me-2" th:src="@{images/icon/download.png}">
                             <span class="text-dark">Show temps</span>
                         </button>
