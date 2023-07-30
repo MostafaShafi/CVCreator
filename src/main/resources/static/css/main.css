@@ -157,6 +157,10 @@ form i {
     width: 10em;
 }
 
+.w-12em {
+    width: 12em;
+}
+
 .w-15 {
     width: 15%;
 }
@@ -215,6 +219,10 @@ form i {
 
 .mt-2-N {
     margin-top: -2%;
+}
+
+.mt-4-N {
+    margin-top: -4%;
 }
 
 .mt-7-N {
@@ -446,4 +454,7 @@ form i {
     margin-top: -31%;
     margin-bottom: 25%;
     border: 2px solid #031633;
+}
+
+.cv-second-title {
 }
