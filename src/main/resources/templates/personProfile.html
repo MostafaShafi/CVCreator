@@ -373,15 +373,15 @@
                                     </div>
                                 </section>
                                 <section class="modal-body" id="resume-modal-body">
-                                    <div class="display-grid" id="resume-form">
+                                    <div class="display-grid align-items-center" id="resume-form">
                                         <a th:href="@{/showFirstResume}" th:target="_blank">
-                                            <img class="w-94" th:src="@{images/resumeTemp/firstResumeTemp.png}">
+                                            <img class="w-85 mt-s p-2" style="border: 1px solid darkgreen" th:src="@{images/resumeTemp/firstResumeTemp.png}">
                                         </a>
-                                        <a th:href="@{/showSecondResume}" th:target="_blank">
-                                            <img class="w-94" th:src="@{images/resumeTemp/secondResumeTemp.png}">
+                                        <a th:href="@{/showSecondResume}" th:target="_blank" class="mt-2">
+                                            <img class="w-85 mt-s p-2" style="border: 1px solid darkgreen" th:src="@{images/resumeTemp/secondResumeTemp.png}">
                                         </a>
-                                        <a th:href="@{/showThirdResume}" th:target="_blank">
-                                            <img class="w-94" th:src="@{images/resumeTemp/thirdResumeTemp.png}">
+                                        <a th:href="@{/showThirdResume}" th:target="_blank" class="mt-2">
+                                            <img class="w-85 mt-s p-2" style="border: 1px solid darkgreen" th:src="@{images/resumeTemp/thirdResumeTemp.png}">
                                         </a>
                                     </div>
                                 </section>
@@ -402,17 +402,11 @@
                     </section>
                     <!-- End select resume temp -->
 
-                    <section id="personal-more-actions" class="align-items-center ms-2 mb-2 rounded-5 w-20 ff-aleo-r border border-primary">
-                        <a th:href="@{/showCV}" th:target="_blank">
-                            <img class="edit-icon mt-1 me-2" th:src="@{images/icon/download.png}">
-                            <span class="text-dark">Show as PDF</span>
+                    <section id="personal-more-actions" class="align-items-center ms-2 mb-2 rounded-5 w-25 ff-aleo-r border border-primary">
+                        <a type="button" data-bs-toggle="modal" data-bs-target="#resume">
+                            <img class="edit-icon mt-1 ms-2" th:src="@{images/icon/download.png}">
+                            <span class="text-dark">Show PDF templates</span>
                         </a>
-
-                        <button type="button" class="btn float-right ms-3-N position-absolute" data-bs-toggle="modal"
-                                data-bs-target="#resume">
-                            <img class="edit-icon mt-1 me-2" th:src="@{images/icon/download.png}">
-                            <span class="text-dark">Show temps</span>
-                        </button>
                     </section>
                 </section>
 
