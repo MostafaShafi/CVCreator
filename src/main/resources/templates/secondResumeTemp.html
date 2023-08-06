@@ -51,8 +51,8 @@
                     </div>
                 </div>
             </section>
-            <section class="display-flex mt-5">
-                <div class="col-md-5 h-100">
+            <section class="display-flex mt-3">
+                <div class="col-md-5 h-100 ms-3">
                     <section class="ms-5 w-12em">
                         <img th:if="${person.profileImage == null}" class="rounded-circle profile-image"
                              th:src="@{images/profile/profile.jpg}">
@@ -86,6 +86,7 @@
                     <h3 class="mt-2 mb-2 align-items-center color-bg-cv-second-2 color-cv-second-1">Education</h3>
                     <section th:each="edu, iStat : ${educationList}">
                         <p class="font-size-12">
+                            <img th:src="@{images/icon/education.png}" class="second-cv-icon me-1">
                             <span th:text="${#dates.format(edu.startDate, 'YYY-dd-MM')}"></span>
                             <span> - </span>
                             <span th:text="${#dates.format(edu.endDate, 'YYY-dd-MM')}"></span>
@@ -100,13 +101,9 @@
 
                     <h3 class="mt-2 mb-2 align-items-center color-bg-cv-second-2 color-cv-second-1">Experience</h3>
                     <section th:each="exp, iStat : ${experienceList}" class="mb-2 row">
-                        <section class="col-md-1">
-                            <div class="dot"></div>
-                            <div th:unless="${exp.isDescriptionEmpty}" class="vertical-line h-95-px"></div>
-                            <div th:if="${exp.isDescriptionEmpty}" class="vertical-line h-70-px"></div>
-                        </section>
                         <section class="col-md-11">
                             <p class="font-size-12">
+                                <img th:src="@{images/icon/experience.png}" class="second-cv-icon me-1">
                                 <span th:text="${#dates.format(exp.startDate, 'YYY-dd-MM')}" id="experience-startDate"></span>
                                 <span> - </span>
                                 <span th:if="${exp.endDate != null}" th:text="${#dates.format(exp.endDate, 'YYY-dd-MM')}"

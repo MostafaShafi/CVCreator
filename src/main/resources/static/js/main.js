@@ -48,6 +48,6 @@ function showErrorModal() {
 function makePDF() {
     const element = document.getElementById('main');
     const personName = document.getElementById('PersonName');
-    var opt = {filename: personName.innerText + ' - CV.pdf'};
+    var opt = {filename: personName.innerText + ' - Resume.pdf'};
     html2pdf().set(opt).from(element).save();
 }

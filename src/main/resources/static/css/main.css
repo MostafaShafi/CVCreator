@@ -135,6 +135,11 @@ form i {
     float: right;
 }
 
+.second-cv-icon {
+    width: 1.4em;
+    float: left;
+}
+
 
 /* Align */
 .align-items-center {
