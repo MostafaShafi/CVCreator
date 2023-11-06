@@ -88,26 +88,6 @@
 
             <!-- Aside -->
             <aside class="col-md-3 m-2">
-                <!--section class="mb-3 ghostwhite-bg-color joby-block rounded-start">
-                    <section class="ms-3" id="exp-title">
-                        <h4 class="font-cursive font-larger rounded-bottom w-75 pb-1 ps-1 third-bg-color">People may you know</h4>
-                    </section>
-                    <section th:each="person, iStat: ${personList}">
-                        <a class="row" th:href="@{/viewProfile/{id}(id=${person.id})}">
-                            <div class="col-md-3">
-                                <img th:if="${person.profileImage == null}" class="rounded-circle profile-image-aside"
-                                     th:src="@{images/profile/profile.jpg}">
-                                <img th:if="${person.profileImage != null}" class="rounded-circle profile-image-aside"
-                                     th:src="@{${'images/profile/' + person.users.firstName + '-' + person.users.lastName + '-' + person.id + '-profile.png'}}">
-                            </div>
-                            <div class="col-md-8">
-                                <p id="personal-name" class="ff-aleo-b font-085em" th:text="${person.users.firstName + ' ' + person.users.lastName}"></p>
-                                <p id="info-position" class="ff-aleo-r font-085em mt-7-N" th:text="${person.currentPosition}"></p>
-                            </div>
-                        </a>
-                        <hr th:if="${!iStat.last}" class="w-94 ml-3">
-                    </section>
-                </section-->
             </aside>
             <!-- End Aside -->
         </div>
