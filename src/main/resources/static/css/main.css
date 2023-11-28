@@ -36,7 +36,7 @@ form i {
 }
 
 .second-bg-color {
-    background-color: #A0E4CB/*3D8361*/;
+    background-color: #A0E4CB;
 }
 
 .third-bg-color {
@@ -45,10 +45,6 @@ form i {
 
 .forth-bg-color{
     background-color: #0D4C92/*EEF2E6*/;
-}
-
-.second-bg-color {
-    color: #A0E4CB;
 }
 
 .third-color {
@@ -148,12 +144,6 @@ form i {
 
 .align-items-left {
     text-align-last: left;
-}
-
-.joby-block {
-    border: solid #59C1BD 1px;
-    border-radius: 10px;
-    border-block-start-width: 10px;
 }
 
 
@@ -336,6 +326,12 @@ form i {
 }
 
 
+.joby-block {
+    border: solid #59C1BD 1px;
+    border-radius: 10px;
+    border-block-start-width: 10px;
+}
+
 .w-w-text {
     position: absolute;
     top: 34%;
@@ -459,7 +455,4 @@ form i {
     margin-top: -31%;
     margin-bottom: 25%;
     border: 2px solid #031633;
-}
-
-.cv-second-title {
 }
