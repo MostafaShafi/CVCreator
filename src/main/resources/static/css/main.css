@@ -146,12 +146,6 @@ form i {
     text-align-last: left;
 }
 
-.joby-block {
-    border: solid #59C1BD 1px;
-    border-radius: 10px;
-    border-block-start-width: 10px;
-}
-
 
 /* Size */
 .w-10em {
@@ -332,6 +326,12 @@ form i {
 }
 
 
+.joby-block {
+    border: solid #59C1BD 1px;
+    border-radius: 10px;
+    border-block-start-width: 10px;
+}
+
 .w-w-text {
     position: absolute;
     top: 34%;
@@ -455,7 +455,4 @@ form i {
     margin-top: -31%;
     margin-bottom: 25%;
     border: 2px solid #031633;
-}
-
-.cv-second-title {
 }
