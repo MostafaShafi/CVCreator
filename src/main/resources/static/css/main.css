@@ -36,7 +36,7 @@ form i {
 }
 
 .second-bg-color {
-    background-color: #A0E4CB/*3D8361*/;
+    background-color: #A0E4CB;
 }
 
 .third-bg-color {
@@ -45,10 +45,6 @@ form i {
 
 .forth-bg-color{
     background-color: #0D4C92/*EEF2E6*/;
-}
-
-.second-bg-color {
-    color: #A0E4CB;
 }
 
 .third-color {
