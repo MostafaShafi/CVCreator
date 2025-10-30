@@ -1,14 +1,10 @@
 package com.aras.cvcreator.service;
 
-import com.aras.cvcreator.model.Education;
 import com.aras.cvcreator.model.Language;
-import com.aras.cvcreator.model.Skill;
 import com.aras.cvcreator.repository.LanguageRepository;
-import com.aras.cvcreator.repository.SkillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;

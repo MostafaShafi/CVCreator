@@ -146,7 +146,7 @@ public class LoginController {
                     } catch (IOException e) {
                         e.printStackTrace();
                         redirectAttributes.addFlashAttribute("error", "Uploading profile image was not successful!");
-                        return "redirect:/personProfile";
+                        return "redirect:/";
                     }
                 }
 

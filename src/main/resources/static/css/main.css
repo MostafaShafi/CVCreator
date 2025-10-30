@@ -185,12 +185,32 @@ form i {
     margin-top: -2%;
 }
 
+.mt-4-N {
+    margin-top: -4%;
+}
+
+.mt-6-N {
+    margin-top: -6%;
+}
+
 .mt-7-N {
     margin-top: -7%;
 }
 
+.mt-10-N {
+    margin-top: -10%;
+}
+
 .mt-30-N {
     margin-top: -30%;
+}
+
+.mt-70-px {
+    margin-top: 70px;
+}
+
+.mt-70-px-N {
+    margin-top: -70px;
 }
 
 .mt-110-N {
@@ -250,13 +270,19 @@ form i {
 
 
 /* Float */
-.float-right{
+.float-right {
     float: right;
 }
 
-.float-left{
+.float-left {
     float: left;
 }
+
+
+/* Position */
+/*.position-fixed {
+    position: fixed;
+}*/
 
 
 /* Fonts */
@@ -414,4 +440,25 @@ form i {
     margin-top: -31%;
     margin-bottom: 25%;
     border: 2px solid #031633;
+}
+
+
+
+
+.main-div {
+    height: 9.68cm;
+    width: 17.8cm;
+    border: 1px solid darkolivegreen;
+    border-radius: 15px 15px;
+}
+
+.right-div {
+    height: 100%;
+    width: 50%;
+    background-color: currentcolor;
+}
+
+.left-div {
+    height: 100%;
+    width: 50%;
 }

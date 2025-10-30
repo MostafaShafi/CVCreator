@@ -32,11 +32,11 @@
                     <h3 class="mt-4 mb-5-N">Contact</h3>
                     <hr class="w-100 ghostwhite-color ghostwhite-bg-color" size="4">
                     <h6>Phone:</h6>
-                    <p class="mt-2-N font-size-12" th:text="${person.phone}"></p>
-                    <h6>Email:</h6>
-                    <p class="mt-2-N font-size-12" th:text="${person.users.email}"></p>
-                    <h6 th:unless="${person.isAddressEmpty}">Address:</h6>
-                    <p class="mt-2-N font-size-12" th:unless="${person.isAddressEmpty}" th:text="${person.address}"></p>
+                    <p class="mt-4-N font-size-12" th:text="${person.phone}"></p>
+                    <h6 class="mt-2-N">Email:</h6>
+                    <p class="mt-4-N font-size-12" th:text="${person.users.email}"></p>
+                    <h6 th:unless="${person.isAddressEmpty}" class="mt-2-N">Address:</h6>
+                    <p class="mt-4-N font-size-12" th:unless="${person.isAddressEmpty}" th:text="${person.address}"></p>
 
                     <h3 class="mt-4 mb-5-N">Education</h3>
                     <hr class="w-100 ghostwhite-color ghostwhite-bg-color" size="4">
@@ -46,26 +46,25 @@
                             <span> - </span>
                             <span th:text="${#dates.format(edu.endDate, 'YYY-dd-MM')}"></span>
                         </p>
-                        <p class="mt-2-N">
+                        <p class="mt-6-N">
                             <span th:text="${edu.degreeName}"></span>
                             <span> . </span>
                             <span th:text="${edu.fieldName}"></span>
                         </p>
-                        <p class="mt-2-N font-size-12" th:text="${edu.school}"></p>
+                        <p class="mt-6-N font-size-12" th:text="${edu.school}"></p>
                     </section>
 
                     <h3 class="mt-4 mb-5-N">Expertise</h3>
-                    <hr class="w-100 ghostwhite-color ghostwhite-bg-color" size="4">
-                    <ul>
-                        <li>Java</li>
-                        <li>PL/SQL</li>
+                    <hr class="w-100 ghostwhite-color ghostwhite-bg-color mb-4" size="4">
+                    <ul th:each="sk , iStat : ${expertiseObjList}">
+                        <li th:text="${sk.name}" class="mt-10-N"></li>
                     </ul>
 
                     <h3 class="mt-4 mb-5-N">Language</h3>
                     <hr class="w-100 ghostwhite-color ghostwhite-bg-color" size="4">
                     <section th:each="lang , iStat : ${langObjList}">
-                        <h6>
-                            <span th:text="${lang.name}">    </span>
+                        <h6 class="mt-2-N">
+                            <span th:text="${lang.name}" class="font-size-12"> . </span>
                             <span th:text="${lang.proficiency.name}" class="color-darkgrey font-size-12"></span>
                         </h6>
                     </section>
